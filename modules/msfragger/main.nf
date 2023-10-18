@@ -5,14 +5,15 @@ process MSFRAGGER {
     input:
     path input_files
     path database_name
-    val decoy_prefix
-    val params_msf
+    val  decoy_prefix
+    val  msf_output_format
+    val  params_msf
 
     output:
-    path("*.tsv"), emit: ofile
-    path("*.pin"), emit: ofile_pin
-    path("*.pepXML"), emit: ofile_pepXML
-    path("*.params"), emit: ofile_param
+    path("*.tsv", emit: ofile)
+    path("*.pin", optional: true)
+    path("*.pepXML", optional: true)
+    path("*.params", emit: ofile_param)
 
     script:
     // get the extension from the first input file. Should be equal in the channel collect.
@@ -23,7 +24,7 @@ process MSFRAGGER {
     def task_memory = task.memory.toString().replace(' ','').replace('GB','g').replace('MB','m')
 
     // update the database file and decoy_prefix in the parameter file
-    def params_data = Utils.updateMsfParams(params_msf, ['database_name': database_name, 'decoy_prefix': decoy_prefix] )
+    def params_data = Utils.updateMsfParams(params_msf, ['database_name': database_name, 'decoy_prefix': decoy_prefix, 'output_format': msf_output_format] )
     // create param string
     def params_str = ""
     params_data.each { key, value -> params_str += "$key = $value\n" }

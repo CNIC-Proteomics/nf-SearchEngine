@@ -8,23 +8,34 @@ process DECOY_PY_RAT {
     val decoy_prefix
 
     output:
-    path("*.target-decoy.fasta"), emit: ofile
-    path("*.target.fasta"), emit: ofile_target
-    path("*.decoy.fasta"), emit: ofile_decoy
-    path "*.log", emit: log
+    path("*.target-decoy.fasta", emit: ofile)
+    path("*.target.fasta", emit: ofile_target)
+    path("*.decoy.fasta", emit: ofile_decoy)
+    path("*.log", emit: log)
 
     script:
-    // define log file
+    // define files
     def log_file ="${input_file.baseName}.log"
-    // obtain the decoys and targets (make sequence isobaric, replace 'I' to 'L')
-    // concatenate targets and decoys
+    def db_target = "${input_file.baseName}.target.fasta"
+    def db_decoy = "${input_file.baseName}.decoy.fasta"
+    def db_target_decoy = "${input_file.baseName}.target-decoy.fasta"
 
-    // TODO!! USE the para ADD_DECOYS. If false, only copy the given file
-    """
-    python /opt/dbscripts/src/decoyPYrat.v2.py  --output_fasta "${input_file.baseName}.decoy.fasta"  --decoy_prefix=${decoy_prefix} "${input_file}" > "${log_file}" 2>&1
-    mv "${input_file.getParent()}/${input_file.baseName}.target.fasta"  .
-    cat "${input_file.baseName}.target.fasta" "${input_file.baseName}.decoy.fasta" > "${input_file.baseName}.target-decoy.fasta"
-    """
+    // depeding on the parameter...
+    if ( params.add_decoys ) {
+        // obtain the decoys and targets (make sequence isobaric, replace 'I' to 'L')
+        // concatenate targets and decoys
+        """
+        python /opt/dbscripts/src/decoyPYrat.v2.py  --output_fasta "${db_decoy}"  --decoy_prefix=${decoy_prefix} "${input_file}" > "${log_file}" 2>&1
+        mv "${input_file.getParent()}/${db_target}"  .
+        cat "${db_target}" "${db_decoy}" > "${db_target_decoy}"
+        """
+    }
+    else {
+        // copy the original database
+        """
+        cp "${input_file}" 
+        """
+    }
 
 }
 

@@ -60,10 +60,6 @@ def info_report = []
 workflow SEARCH_ENGINE {
 
     //
-    // SUBWORKFLOW: Read in samplesheet, validate and stage input files
-    //
-
-    //
     // SUBWORKFLOW: Create input channel
     //
     CREATE_INFILES_CHANNEL (
@@ -89,7 +85,7 @@ workflow SEARCH_ENGINE {
     //
     // WORKFLOW: Run MSFragger analysis
     //
-    MSFRAGGER(THERMO_RAW_PARSER.out.ofile.collect(), DECOY_PY_RAT.out.ofile, params.decoy_prefix, params.params_msf)
+    MSFRAGGER(THERMO_RAW_PARSER.out.ofile.collect(), DECOY_PY_RAT.out.ofile, params.decoy_prefix, params.msf_output_format, params.params_msf)
 
 }
 
