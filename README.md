@@ -19,15 +19,14 @@ nextflow \
 
 Debugging using Ubuntu (WSL):
 ```
-cd /home/jmrodriguezc/projects/nf-ReFrag
+cd /home/jmrodriguezc/projects/nf-SearchEngine
 
 nextflow \
     -log "/var/log/nextflow/nextflow.log" \
     run main.nf   \
         -profile singularity \
-        --params_msf "/home/jmrodriguezc/projects/nf-ReFrag/tests/test1/params/closed_fragger.params" \
-        --input_files "/home/jmrodriguezc/projects/nf-ReFrag/tests/test1/raws/*.raw" \
-        --outdir  "/home/jmrodriguezc/projects/nf-ReFrag/tests/test1" \
+        -params-file "/home/jmrodriguezc/projects/nf-SearchEngine/params/params.yml" \
+        --params_msf "/home/jmrodriguezc/projects/nf-SearchEngine/tests/test1/params/closed_fragger.params" \
         -resume
 
 ```
