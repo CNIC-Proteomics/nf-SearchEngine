@@ -22,7 +22,7 @@
 include { DECOY_PY_RAT }            from '../modules/decoypyrat/main'
 include { THERMO_RAW_PARSER }       from '../modules/thermo_raw_parser/main'
 include { MSFRAGGER }               from '../modules/msfragger/main'
-// include { MZ_EXTRACTOR }            from '../modules/msf/main'
+include { MZ_EXTRACTOR }            from '../modules/mz_extractor/main'
 // include { REFRAG }                  from '../modules/msf/main'
 
 
@@ -65,15 +65,14 @@ workflow SEARCH_ENGINE {
     CREATE_INFILES_CHANNEL (
         params.input_files
     )
-    CREATE_INFILE_CHANNEL (
-        params.database_name
-    )
+    ch_database_name = CREATE_INFILE_CHANNEL ( params.database_name )
+    ch_reporter_ion_isotopic = CREATE_INFILE_CHANNEL ( params.reporter_ion_isotopic )
 
 
     //
     // WORKFLOW: ThermoRawFileParser analysis
     //
-    DECOY_PY_RAT(CREATE_INFILE_CHANNEL.out.input_file, params.add_decoys, params.decoy_prefix)
+    DECOY_PY_RAT(ch_database_name, params.add_decoys, params.decoy_prefix)
 
 
     //
@@ -85,7 +84,19 @@ workflow SEARCH_ENGINE {
     //
     // WORKFLOW: Run MSFragger analysis
     //
-    MSFRAGGER(THERMO_RAW_PARSER.out.ofile.collect(), DECOY_PY_RAT.out.ofile, params.decoy_prefix, params.msf_output_format, params.params_msf)
+    MSFRAGGER(THERMO_RAW_PARSER.out.ofile.collect(), DECOY_PY_RAT.out.ofile, params.decoy_prefix, params.msf_output_format, params.msf_params_file)
+
+
+    //
+    // WORKFLOW: Run MZ_extractor analysis
+    //
+    // MZ_EXTRACTOR(MSFRAGGER.out.ofile.collect(), THERMO_RAW_PARSER.out.ofile.collect(), ch_reporter_ion_isotopic)
+    // println("FLATTEN: ${MSFRAGGER.out.ofile.flatten().view()}")
+    // println("MZML: ${THERMO_RAW_PARSER.out.ofile.view()}")
+    a = MSFRAGGER.out.ofile.flatten().combine( THERMO_RAW_PARSER.out.ofile).view()
+    println("COMBINE: ${a}")
+    // MZ_EXTRACTOR(MSFRAGGER.out.ofile.flatten(), THERMO_RAW_PARSER.out.ofile, ch_reporter_ion_isotopic)
+    
 
 }
 
