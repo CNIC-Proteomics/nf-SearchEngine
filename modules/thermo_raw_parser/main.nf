@@ -33,7 +33,7 @@ process THERMO_RAW_PARSER {
     def log_file ="${input_file.baseName}.log"
 
     """
-    mono /opt/thermorawfileparser/ThermoRawFileParser.exe -i "${input_file}" -f "${params.thermo_parser_format}" > "${log_file}" 2>&1
+    mono ${THERMORAWFILEPARSER_HOME}/ThermoRawFileParser.exe -i "${input_file}" -f "${params.thermo_parser_format}" > "${log_file}" 2>&1
     mv "${input_file.getParent()}/${input_file.baseName}.${prefix}" .
     """
 }

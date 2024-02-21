@@ -25,7 +25,7 @@ process DECOY_PY_RAT {
         // obtain the decoys and targets (make sequence isobaric, replace 'I' to 'L')
         // concatenate targets and decoys
         """
-        python /opt/dbscripts/src/decoyPYrat.v2.py  --output_fasta "${db_decoy}"  --decoy_prefix=${decoy_prefix} "${input_file}" > "${log_file}" 2>&1
+        python ${DECOYPYRAT_HOME}/decoyPYrat.v2.py  --output_fasta "${db_decoy}"  --decoy_prefix=${decoy_prefix} "${input_file}" > "${log_file}" 2>&1
         mv "${input_file.getParent()}/${db_target}"  .
         cat "${db_target}" "${db_decoy}" > "${db_target_decoy}"
         """

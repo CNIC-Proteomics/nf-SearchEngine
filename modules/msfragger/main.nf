@@ -33,7 +33,7 @@ process MSFRAGGER {
 
     """
     echo "${params_str}" > "${params_file}"
-    java -Xmx"${task_memory}" -jar /opt/msfragger/MSFragger.jar "${params_file}"  *.${prefix}  > "${log_file}" 2>&1
+    java -Xmx"${task_memory}" -jar ${MSFRAGGER_HOME}/MSFragger.jar "${params_file}"  *.${prefix}  > "${log_file}" 2>&1
     """
 
 }

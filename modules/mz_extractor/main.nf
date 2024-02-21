@@ -19,6 +19,6 @@ process MZ_EXTRACTOR {
     def log_file ="${task.process.tokenize(':')[-1].toLowerCase()}.log"
 
     """
-    python /opt/mz_extractor/mz_extractor.py -i "*.${ident_prefix}" -z "*.${mzml_prefix}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
+    python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "*.${ident_prefix}" -z "*.${mzml_prefix}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
     """
 }
