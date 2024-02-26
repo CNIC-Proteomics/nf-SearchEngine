@@ -1,4 +1,4 @@
-process MSFRAGGER {
+process MSF {
 
     label 'process_very_high'
 
