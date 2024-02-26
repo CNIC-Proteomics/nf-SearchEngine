@@ -118,7 +118,7 @@ workflow SEARCH_ENGINE {
     // MZ_EXTRACTOR(MSFRAGGER.out.ofile.collect(), THERMO_RAW_PARSER.out.ofile.collect(), ch_reporter_ion_isotopic)
     // println("FLATTEN: ${MSFRAGGER.out.ofile.flatten().view()}")
     // println("MZML: ${THERMO_RAW_PARSER.out.ofile.view()}")
-    a = MSFRAGGER.out.ofile.flatten().combine( THERMO_RAW_PARSER.out.raws).view()
+    a = MSFRAGGER.out.ofile.flatten().combine( THERMORAWPARSER.out.raws).view()
     println("COMBINE: ${a}")
     // MZ_EXTRACTOR(MSFRAGGER.out.ofile.flatten(), THERMO_RAW_PARSER.out.ofile, ch_reporter_ion_isotopic)
 }
