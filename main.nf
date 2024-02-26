@@ -122,8 +122,8 @@ workflow SEARCH_ENGINE {
     //
     // MZ_EXTRACTOR(MSFRAGGER.out.ofile.collect(), THERMO_RAW_PARSER.out.ofile.collect(), ch_reporter_ion_isotopic)
     MZEXTRACTOR(
-        MSFRAGGER.out.ofile.collect(),
-        THERMORAWPARSER.out.raws.collect(),
+        MSFRAGGER.out.ofile,
+        THERMORAWPARSER.out.raws,
         CREATE_INPUT_CHANNEL_MZEXTRACTOR.out.ch_reporter_ion_isotopic
     )
 }
