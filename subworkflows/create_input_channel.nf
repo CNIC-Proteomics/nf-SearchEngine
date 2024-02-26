@@ -41,16 +41,17 @@ workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
     main:
 
     // read the file with input parameters
-    f = new FileInputStream(new File(input_files))
+    fi = new FileInputStream(new File(input_files))
     // create yaml
-    inputs = new Yaml().load(f)
+    inputs = new Yaml().load(fi)
 
     // create channels from input files
     database = Channel.fromPath("${inputs.database}", checkIfExists: true)
 
     // add the parameters into params variable
-    f = new FileInputStream(new File(params_file))
-    new Yaml().load(f).each({ k, v -> params[k] = v })
+    def fp = new FileInputStream(new File(params_file))
+    new Yaml().load(fp).each({ k, v -> params[k] = v })
+    println "PARAMS0: ${params}"
 
     // required parameters
     def requiredParams = ['add_decoys', 'decoy_prefix']
