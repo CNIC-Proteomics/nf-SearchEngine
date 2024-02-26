@@ -28,7 +28,7 @@ workflow MZEXTRACTOR {
     // combine_indent_quant = MSFRAGGER.out.ofile.flatten().combine( THERMORAWPARSER.out.raws).view()
     // println("COMBINE: ${combine_indent_quant}")
 
-    combine_indent_quant = ident_files.combine(mzml_files)
+    def combine_indent_quant = ident_files.combine(mzml_files)
     MZ_EXTRACTOR(combine_indent_quant, reporter_ion_isotopic)
 
     // return channels
