@@ -121,12 +121,9 @@ workflow SEARCH_ENGINE {
     // WORKFLOW: Run MZ_extractor analysis
     //
     // MZ_EXTRACTOR(MSFRAGGER.out.ofile.collect(), THERMO_RAW_PARSER.out.ofile.collect(), ch_reporter_ion_isotopic)
-    // println("FLATTEN: ${MSFRAGGER.out.ofile.flatten().view()}")
-    // println("MZML: ${THERMORAWPARSER.out.raws.view()}")
-    combine_indent_quant = MSFRAGGER.out.ofile.flatten().combine( THERMORAWPARSER.out.raws).view()
-    // println("COMBINE: ${combine_indent_quant}")
     MZEXTRACTOR(
-        combine_indent_quant,
+        MSFRAGGER.out.ofile,
+        THERMORAWPARSER.out.raws,
         CREATE_INPUT_CHANNEL_MZEXTRACTOR.out.ch_reporter_ion_isotopic
     )
 }
