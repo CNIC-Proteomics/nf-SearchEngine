@@ -3,7 +3,7 @@ process MZ_EXTRACTOR {
     label 'process_high'
 
     input:
-    path ident_files
+    tuple path(ident_files), path(mz_file)
     path ion_file
 
     output:
