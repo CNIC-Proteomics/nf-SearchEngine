@@ -11,9 +11,10 @@ process MZ_EXTRACTOR {
     path("*.log", emit: log)
 
     script:
-    println "IDE: ${indent_files}"
     // get the extension from the first input file. Should be equal in the channel collect.
     def ident_prefix = ident_files.first().getExtension()
+    println "IDE: ${ident_prefix}"
+
     // get the extension from the first input file. Should be equal in the channel collect.
     // def mzml_prefix = mzml_files.first().getExtension()
     // define log file
