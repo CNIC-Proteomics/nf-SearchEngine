@@ -36,6 +36,9 @@ workflow DECOYPYRAT {
     //
     // SUBMODULE: obtain the decoy fasta file
     //
+    println "DATABASE: ${database}"
+    println "DECOY: ${add_decoys}"
+    println "PREFIX: ${decoy_prefix}"
     DECOY_PY_RAT(database, add_decoys, decoy_prefix)
 
     path("*.target-decoy.fasta", emit: ofile)
