@@ -83,6 +83,9 @@ workflow SEARCH_ENGINE {
     //
     // WORKFLOW: DecoyPyRat analysis
     //
+    println "DATABASE0: ${database}"
+    println "DECOY0: ${params.add_decoys}"
+    println "PREFIX0: ${params.decoy_prefix}"
     DECOYPYRAT(
         CREATE_INPUT_CHANNEL_DECOYPYRAT.out.ch_database,
         params.add_decoys,
