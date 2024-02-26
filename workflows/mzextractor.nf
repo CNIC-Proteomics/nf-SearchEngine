@@ -27,10 +27,11 @@ workflow MZEXTRACTOR {
     // println("MZML: ${THERMORAWPARSER.out.raws.view()}")
     // combine_indent_quant = MSFRAGGER.out.ofile.flatten().combine( THERMORAWPARSER.out.raws).view()
     // println("COMBINE: ${combine_indent_quant}")
-
+    
+    // combine the indetification files and quantification files
     def combine_indent_quant = ident_files.combine(mzml_files).view()
-    println("COMBINE: ${combine_indent_quant}")
-    // MZ_EXTRACTOR(combine_indent_quant, reporter_ion_isotopic)
+    // however, at the moment, we only use the identification files
+    MZ_EXTRACTOR(ident_files, reporter_ion_isotopic)
 
     // return channels
     // ch_ofile         = MSF.out.ofile
