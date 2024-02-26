@@ -30,7 +30,7 @@ workflow MZEXTRACTOR {
     
     // combine the indetification files and quantification files
     def combine_indent_quant = ident_files.flatten()
-                                    .combine(mzml_files, by: 0)
+                                    .combine(mzml_files, { file1, file2 -> file1.getBaseName() == file2.getBaseName() })
                                     .map { ident, mzml ->
                                             MZ_EXTRACTOR(ident, mzml, reporter_ion_isotopic)
                                     }
