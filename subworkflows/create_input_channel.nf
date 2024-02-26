@@ -48,20 +48,20 @@ workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
     // create channels from input files
     database = Channel.fromPath("${inputs.database}", checkIfExists: true)
 
-    // // add the parameters into params variable
-    // f = new FileInputStream(new File(params_file))
-    // new Yaml().load(f).each({ k, v -> params[k] = v })
+    // add the parameters into params variable
+    f = new FileInputStream(new File(params_file))
+    new Yaml().load(f).each({ k, v -> params[k] = v })
 
-    // // required parameters
-    // def requiredParams = ['add_decoys', 'decoy_prefix']
+    // required parameters
+    def requiredParams = ['add_decoys', 'decoy_prefix']
 
-    // // get the list of missing parameters
-    // def missingParams = getMissingParams(params, requiredParams)
+    // get the list of missing parameters
+    def missingParams = getMissingParams(params, requiredParams)
 
-    // // stop from the missing parameters
-    // if (!missingParams.isEmpty()) {
-    //     exit 1, "ERROR: Missing parameters in dictionary: ${missingParams}"
-    // }
+    // stop from the missing parameters
+    if (!missingParams.isEmpty()) {
+        exit 1, "ERROR: Missing parameters in dictionary: ${missingParams}"
+    }
 
     emit:
     ch_database   = database

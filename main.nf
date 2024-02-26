@@ -76,9 +76,8 @@ workflow SEARCH_ENGINE {
     //
     // SUBWORKFLOW: Create input channel
     //
-    println "PARAMS: ${params.params_file}"
     CREATE_INPUT_CHANNEL_DECOYPYRAT (
-        params.inputs
+        params.inputs,
         params.params_file
     )
     //
