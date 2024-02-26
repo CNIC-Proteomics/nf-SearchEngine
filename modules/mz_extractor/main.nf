@@ -4,7 +4,7 @@ process MZ_EXTRACTOR {
 
     input:
     path ident_file
-    // path mz_file
+    path mz_file
     path ion_file
 
     output:
