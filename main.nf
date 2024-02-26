@@ -127,7 +127,7 @@ workflow SEARCH_ENGINE {
     println("COMBINE: ${combine_indent_quant}")
     MZEXTRACTOR(
         combine_indent_quant,
-        CREATE_INPUT_CHANNEL_MZEXTRACTOR.ch_reporter_ion_isotopic
+        CREATE_INPUT_CHANNEL_MZEXTRACTOR.out.ch_reporter_ion_isotopic
     )
 }
 
