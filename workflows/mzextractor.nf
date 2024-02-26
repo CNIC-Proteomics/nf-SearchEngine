@@ -29,7 +29,7 @@ workflow MZEXTRACTOR {
     // println("COMBINE: ${combine_indent_quant}")
     
     // combine the indetification files and quantification files
-    def combine_indent_quant = ident_files.combine(mzml_files).view()
+    def combine_indent_quant = ident_files.flatten().combine(mzml_files).view()
     // however, at the moment, we only use the identification files
     MZ_EXTRACTOR(ident_files, reporter_ion_isotopic)
 
