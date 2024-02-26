@@ -117,20 +117,20 @@ class Utils {
 
         // parse the MSF file
         def ini_data = parseMsfFile(ifile)
-        // update the given attributes
-        try {
-            replaces.each { replace ->
-                if ( ini_data.containsKey(replace.key) ) {
-                    ini_data[replace.key] = replace.value
-                }
-                else {
-                    throw new Exception("Key '$replace.key' is not in the parameter file.")
-                }
-            }
-        } catch(Exception ex) {
-            println("ERROR:${new Object(){}.getClass().getEnclosingMethod().getName()}:$ex")
-            System.exit(1)
-        }
+        // // update the given attributes
+        // try {
+        //     replaces.each { replace ->
+        //         if ( ini_data.containsKey(replace.key) ) {
+        //             ini_data[replace.key] = replace.value
+        //         }
+        //         else {
+        //             throw new Exception("Key '$replace.key' is not in the parameter file.")
+        //         }
+        //     }
+        // } catch(Exception ex) {
+        //     println("ERROR:${new Object(){}.getClass().getEnclosingMethod().getName()}:$ex")
+        //     System.exit(1)
+        // }
 
         return ini_data
     }
