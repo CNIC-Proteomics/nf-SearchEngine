@@ -17,7 +17,7 @@
 ========================================================================================
 */
 
-include { DECOY_PY_RAT }            from '../modules/decoypyrat/main'
+include { MSFRAGGER }               from '../modules/msfragger/main'
 
 /*
 ========================================================================================
@@ -25,32 +25,28 @@ include { DECOY_PY_RAT }            from '../modules/decoypyrat/main'
 ========================================================================================
 */
 
-workflow DECOYPYRAT {
+workflow MSFRAGGER {
 
     take:
+    raw_files
     database
-    add_decoys
     decoy_prefix
+    output_format
+    msf_params_file
 
     main:
     //
-    // SUBMODULE: obtain the decoy fasta file
+    // SUBMODULE: execute MSFragger
     //
-    DECOY_PY_RAT(database, add_decoys, decoy_prefix)
-
-    // path("*.target-decoy.fasta", emit: ofile)
-    // path("*.target.fasta", emit: ofile_target)
-    // path("*.decoy.fasta", emit: ofile_decoy)
+    MSFRAGGER(raw_files, database, decoy_prefix, output_format, msf_params_file)
 
     // return channels
-    ch_target_decoy   = DECOY_PY_RAT.out.ofile
-    ch_target         = DECOY_PY_RAT.out.ofile_target
-    ch_decoy          = DECOY_PY_RAT.out.ofile_decoy
+    ch_ofile         = MSFRAGGER.out.ofile
+    ch_ofile_param   = MSFRAGGER.out.ofile_param
 
     emit:
-    target_decoy = ch_target_decoy
-    target       = ch_target
-    decoy        = ch_decoy
+    ofile       = ch_ofile
+    ofile_param = ch_ofile_param
 }
 
 /*

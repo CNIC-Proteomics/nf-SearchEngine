@@ -26,7 +26,7 @@ nextflow.enable.dsl = 2
 // include { SEARCH_ENGINE } from './workflows/search_engine'
 include { DECOYPYRAT } from './workflows/decoypyrat'
 include { THERMORAWPARSER } from './workflows/thermorawparser'
-// include { MSFRAGGER } from './workflows/msfragger'
+include { MSFRAGGER } from './workflows/msfragger'
 // include { MZEXTRACTOR } from './workflows/mzextractor'
 
 //
@@ -99,7 +99,16 @@ workflow SEARCH_ENGINE {
     THERMORAWPARSER(
         CREATE_INPUT_CHANNEL_THERMORAWPARSER.out.ch_raws
     )
-
+    //
+    // WORKFLOW: Run MSFragger analysis
+    //
+    MSFRAGGER(
+        THERMORAWPARSER.out.raws.collect(),
+        DECOYPYRAT.out.target_decoy,
+        params.decoy_prefix,
+        params.msf_output_format,
+        params.msf_params_file
+    )
 }
 
 workflow DECOYPYRAT_WORKFLOW {
