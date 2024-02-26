@@ -3,7 +3,7 @@ process MZ_EXTRACTOR {
     label 'process_high'
 
     input:
-    path ident_files
+    val ident_files
     // path mzml_files
     path ion_file
 
@@ -13,7 +13,7 @@ process MZ_EXTRACTOR {
     script:
     // get the extension from the first input file. Should be equal in the channel collect.
     def ident_prefix = ident_files.first().getExtension()
-    println "IDE: ${ident_prefix}"
+    println "IDE: ${ident_files}"
 
     // get the extension from the first input file. Should be equal in the channel collect.
     // def mzml_prefix = mzml_files.first().getExtension()
