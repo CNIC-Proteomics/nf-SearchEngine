@@ -17,7 +17,7 @@
 ========================================================================================
 */
 
-include { MSFRAGGER }               from '../modules/msfragger/main'
+include { MSF }               from '../modules/msfragger/main'
 
 /*
 ========================================================================================
@@ -38,11 +38,11 @@ workflow MSFRAGGER {
     //
     // SUBMODULE: execute MSFragger
     //
-    MSFRAGGER(raw_files, database, decoy_prefix, output_format, msf_params_file)
+    MSF(raw_files, database, decoy_prefix, output_format, msf_params_file)
 
     // return channels
-    ch_ofile         = MSFRAGGER.out.ofile
-    ch_ofile_param   = MSFRAGGER.out.ofile_param
+    ch_ofile         = MSF.out.ofile
+    ch_ofile_param   = MSF.out.ofile_param
 
     emit:
     ofile       = ch_ofile

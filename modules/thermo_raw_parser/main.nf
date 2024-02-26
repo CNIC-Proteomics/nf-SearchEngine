@@ -1,6 +1,6 @@
 process THERMO_RAW_PARSER {
 
-    label 'process_medium'
+    label 'process_high'
 
     input:
     val input_file
