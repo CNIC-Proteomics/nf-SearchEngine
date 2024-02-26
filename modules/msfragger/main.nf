@@ -4,7 +4,7 @@ process MSF {
 
     input:
     path input_files
-    path database_name
+    path database
     val  decoy_prefix
     val  msf_output_format
     val  msf_params_file
@@ -24,7 +24,7 @@ process MSF {
     def task_memory = task.memory.toString().replace(' ','').replace('GB','g').replace('MB','m')
 
     // update the database file and decoy_prefix in the parameter file
-    def params_data = Utils.updateMsfParams(msf_params_file, ['database_name': database_name, 'decoy_prefix': decoy_prefix, 'output_format': msf_output_format] )
+    def params_data = Utils.updateMsfParams(msf_params_file, ['database_name': database, 'decoy_prefix': decoy_prefix, 'output_format': msf_output_format] )
     // create param string
     def params_str = ""
     params_data.each { key, value -> params_str += "$key = $value\n" }

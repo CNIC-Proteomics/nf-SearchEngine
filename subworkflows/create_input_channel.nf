@@ -49,7 +49,7 @@ workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
     // }
 
     emit:
-    ch_database   = database
+    ch_database       = database
 }
 
 workflow CREATE_INPUT_CHANNEL_THERMORAWPARSER {
@@ -82,12 +82,12 @@ workflow CREATE_INPUT_CHANNEL_MSFRAGGER {
     inputs = new Yaml().load(f)
 
     // create channels from input files
-    raw_files = Channel.fromPath("${inputs.raw_files}", checkIfExists: true)
     database = Channel.fromPath("${inputs.database}", checkIfExists: true)
-    msf_params_file = Channel.fromPath("${inputs.msf_params_file}", checkIfExists: true)
+    raw_files = Channel.fromPath("${inputs.raw_files}", checkIfExists: true)
+    msf_param_file = Channel.fromPath("${inputs.msf_params_file}", checkIfExists: true)
 
     emit:
-    ch_raws           = raw_files
     ch_database       = database
-    ch_msf_param_file = msf_params_file
+    ch_raws           = raw_files
+    ch_msf_param_file = msf_param_file
 }

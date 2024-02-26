@@ -85,6 +85,9 @@ workflow SEARCH_ENGINE {
     CREATE_INPUT_CHANNEL_THERMORAWPARSER (
         params.inputs
     )
+    CREATE_INPUT_CHANNEL_MSFRAGGER (
+        params.inputs
+    )
     //
     // WORKFLOW: DecoyPyRat analysis
     //
@@ -107,7 +110,7 @@ workflow SEARCH_ENGINE {
         DECOYPYRAT.out.target_decoy,
         params.decoy_prefix,
         params.msf_output_format,
-        params.msf_params_file
+        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_msf_param_file
     )
 }
 
@@ -143,33 +146,30 @@ workflow THERMORAWPARSER_WORKFLOW {
     )
 }
 
-// workflow MSFRAGGER_WORKFLOW {
-//     //
-//     // SUBWORKFLOW: Create input channels
-//     //
-//     CREATE_INFILES_CHANNEL (
-//         params.input_files
-//     )
-//     ch_database_name = CREATE_INFILE_CHANNEL ( params.database_name )
-//     ch_reporter_ion_isotopic = CREATE_INFILE_CHANNEL ( params.reporter_ion_isotopic )
-//     //
-//     // WORKFLOW: ThermoRawFileParser analysis
-//     //
-//     THERMO_RAW_PARSER(CREATE_INFILES_CHANNEL.out.input_file)
-//     //
-//     // WORKFLOW: Run MSFragger analysis
-//     //
-//     MSFRAGGER(THERMO_RAW_PARSER.out.ofile.collect(), DECOYPYRAT.out.ofile, params.decoy_prefix, params.msf_output_format, params.msf_params_file)
-//     //
-//     // WORKFLOW: Run MZ_extractor analysis
-//     //
-//     // MZ_EXTRACTOR(MSFRAGGER.out.ofile.collect(), THERMO_RAW_PARSER.out.ofile.collect(), ch_reporter_ion_isotopic)
-//     // println("FLATTEN: ${MSFRAGGER.out.ofile.flatten().view()}")
-//     // println("MZML: ${THERMO_RAW_PARSER.out.ofile.view()}")
-//     a = MSFRAGGER.out.ofile.flatten().combine( THERMO_RAW_PARSER.out.ofile).view()
-//     println("COMBINE: ${a}")
-//     // MZ_EXTRACTOR(MSFRAGGER.out.ofile.flatten(), THERMO_RAW_PARSER.out.ofile, ch_reporter_ion_isotopic)
-// }
+workflow MSFRAGGER_WORKFLOW {
+    //
+    // SUBWORKFLOW: Create input channels
+    //
+    CREATE_INPUT_CHANNEL_DECOYPYRAT (
+        params.inputs
+    )
+    CREATE_INPUT_CHANNEL_THERMORAWPARSER (
+        params.inputs
+    )
+    CREATE_INPUT_CHANNEL_MSFRAGGER (
+        params.inputs
+    )
+    //
+    // WORKFLOW: Run MSFragger analysis
+    //
+    MSFRAGGER(
+        CREATE_INPUT_CHANNEL_THERMORAWPARSER.out.raws.collect(),
+        CREATE_INPUT_CHANNEL_DECOYPYRAT.out.ch_database,
+        params.decoy_prefix,
+        params.msf_output_format,
+        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_msf_param_file
+    )
+}
 
 /*
 ========================================================================================
