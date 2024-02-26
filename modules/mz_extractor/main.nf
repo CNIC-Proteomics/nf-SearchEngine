@@ -12,8 +12,6 @@ process MZ_EXTRACTOR {
 
     script:
 
-    println("KK")
-
     // // get the extension from the first input file. Should be equal in the channel collect.
     // def ident_prefix = ident_files.first().getExtension()
     // // get the extension from the first input file. Should be equal in the channel collect.
@@ -30,7 +28,6 @@ process MZ_EXTRACTOR {
     // define log file
     def log_file ="${task.process.tokenize(':')[-1].toLowerCase()}.log"
 
-    println "source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i ${ident_file} -z ${mz_file} -r ${ion_file}"
     // """
     // echo source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "*.${ident_prefix}" -z "*.${mzml_prefix}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
     // """
