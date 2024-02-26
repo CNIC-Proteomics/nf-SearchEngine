@@ -33,7 +33,7 @@ include { DECOYPYRAT } from './workflows/decoypyrat'
 // SUBWORKFLOW: Create input channels
 //
 
-include { CREATE_INFILES_CHANNEL ; CREATE_INFILE_CHANNEL } from './subworkflows/create_input_channel'
+include { CREATE_INPUT_CHANNEL_DECOYPYRAT ; CREATE_INPUT_CHANNEL_MSFRAGGER } from './subworkflows/create_input_channel'
 
 
 
