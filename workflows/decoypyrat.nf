@@ -43,9 +43,9 @@ workflow DECOYPYRAT {
     println "PREFIX: ${decoy_prefix}"
     DECOY_PY_RAT(database, add_decoys, decoy_prefix)
 
-    path("*.target-decoy.fasta", emit: ofile)
-    path("*.target.fasta", emit: ofile_target)
-    path("*.decoy.fasta", emit: ofile_decoy)
+    // path("*.target-decoy.fasta", emit: ofile)
+    // path("*.target.fasta", emit: ofile_target)
+    // path("*.decoy.fasta", emit: ofile_decoy)
 
     // return channels
     ch_target_decoy   = DECOY_PY_RAT.out.ofile

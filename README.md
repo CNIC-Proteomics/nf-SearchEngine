@@ -12,7 +12,7 @@ nextflow \
         --wkf "search_engine" \
         --inputs "/mnt/tierra/nf-SearchEngine/tests/test1/params/inputs_searchengine.yml" \
         --outdir  "/mnt/tierra/nf-SearchEngine/tests/test1" \
-        --params_file "/mnt/tierra/nf-SearchEngine/tests/test1/params/params.yml" \
+        -params-file "/mnt/tierra/nf-SearchEngine/tests/test1/params/params.yml" \
         -resume
 ```
 
