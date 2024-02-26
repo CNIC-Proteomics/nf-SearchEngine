@@ -25,10 +25,10 @@ process MSF {
 
     // update the database file and decoy_prefix in the parameter file
     println "MSF_FILE: ${msf_params_file}"
-    def params_data = Utils.updateMsfParams(msf_params_file, ['database_name': database, 'decoy_prefix': decoy_prefix, 'output_format': msf_output_format] )
+    // def params_data = Utils.updateMsfParams(msf_params_file, ['database_name': database, 'decoy_prefix': decoy_prefix, 'output_format': msf_output_format] )
     // create param string
     def params_str = ""
-    params_data.each { key, value -> params_str += "$key = $value\n" }
+    // params_data.each { key, value -> params_str += "$key = $value\n" }
     // print the params data
     def params_file = new File("msfragger.params")
 
