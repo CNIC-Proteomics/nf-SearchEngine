@@ -16,7 +16,7 @@ process MZ_EXTRACTOR {
     // def mzml_prefix = mzml_files.first().getExtension()
 
     // get the file name without extension
-    def indent_fname = ident_files.getBaseName()
+    def indent_fname = ident_files.first().getBaseName()
     // create quantification file based on file extension
     def mz_file = "${indent_fname}.mzML"
 
