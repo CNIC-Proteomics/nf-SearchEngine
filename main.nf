@@ -54,7 +54,7 @@ workflow SEARCH_ENGINE {
     // //
     // // WORKFLOW: ThermoRawFileParser analysis
     // //
-    // DECOY_PY_RAT(ch_database_name, params.add_decoys, params.decoy_prefix)
+    // DECOYPYRAT(ch_database_name, params.add_decoys, params.decoy_prefix)
     // //
     // // WORKFLOW: ThermoRawFileParser analysis
     // //
@@ -62,7 +62,7 @@ workflow SEARCH_ENGINE {
     // //
     // // WORKFLOW: Run MSFragger analysis
     // //
-    // MSFRAGGER(THERMO_RAW_PARSER.out.ofile.collect(), DECOY_PY_RAT.out.ofile, params.decoy_prefix, params.msf_output_format, params.msf_params_file)
+    // MSFRAGGER(THERMO_RAW_PARSER.out.ofile.collect(), DECOYPYRAT.out.ofile, params.decoy_prefix, params.msf_output_format, params.msf_params_file)
     // //
     // // WORKFLOW: Run MZ_extractor analysis
     // //
@@ -83,7 +83,7 @@ workflow SEARCH_ENGINE {
     //
     // WORKFLOW: DecoyPyRat analysis
     //
-    DECOY_PY_RAT(
+    DECOYPYRAT(
         CREATE_INPUT_CHANNEL_DECOYPYRAT.out.ch_database,
         params.add_decoys,
         params.decoy_prefix
@@ -102,7 +102,7 @@ workflow SEARCH_ENGINE {
 //     //
 //     // WORKFLOW: ThermoRawFileParser analysis
 //     //
-//     DECOY_PY_RAT(ch_database_name, params.add_decoys, params.decoy_prefix)
+//     DECOYPYRAT(ch_database_name, params.add_decoys, params.decoy_prefix)
 // }
 
 // workflow MSFRAGGER_WORKFLOW {
@@ -121,7 +121,7 @@ workflow SEARCH_ENGINE {
 //     //
 //     // WORKFLOW: Run MSFragger analysis
 //     //
-//     MSFRAGGER(THERMO_RAW_PARSER.out.ofile.collect(), DECOY_PY_RAT.out.ofile, params.decoy_prefix, params.msf_output_format, params.msf_params_file)
+//     MSFRAGGER(THERMO_RAW_PARSER.out.ofile.collect(), DECOYPYRAT.out.ofile, params.decoy_prefix, params.msf_output_format, params.msf_params_file)
 //     //
 //     // WORKFLOW: Run MZ_extractor analysis
 //     //
