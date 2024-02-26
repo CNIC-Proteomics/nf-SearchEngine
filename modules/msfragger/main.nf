@@ -33,7 +33,7 @@ process MSF {
 
     """
     echo "${params_str}" > "${params_file}"
-    java -Xmx"${task_memory}" -jar ${MSFRAGGER_HOME}/MSFragger.jar "${params_file}"  *.${prefix}  > "${log_file}" 2>&1
+    echo java -Xmx"${task_memory}" -jar ${MSFRAGGER_HOME}/MSFragger.jar "${params_file}"  *.${prefix}  > "${log_file}" 2>&1
     """
 
 }
