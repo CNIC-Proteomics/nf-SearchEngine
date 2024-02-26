@@ -4,7 +4,7 @@ process MZ_EXTRACTOR {
 
     input:
     path ident_files
-    path mzml_files
+    // path mzml_files
     path ion_file
 
     output:
@@ -14,11 +14,11 @@ process MZ_EXTRACTOR {
     // get the extension from the first input file. Should be equal in the channel collect.
     def ident_prefix = ident_files.first().getExtension()
     // get the extension from the first input file. Should be equal in the channel collect.
-    def mzml_prefix = mzml_files.first().getExtension()
+    // def mzml_prefix = mzml_files.first().getExtension()
     // define log file
     def log_file ="${task.process.tokenize(':')[-1].toLowerCase()}.log"
 
     """
-    source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "*.${ident_prefix}" -z "*.${mzml_prefix}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
+    echo source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "*.${ident_prefix}" -z "*.${mzml_prefix}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
     """
 }
