@@ -110,29 +110,29 @@ workflow SEARCH_ENGINE {
     //
     // WORKFLOW: Run MSFragger analysis
     //
-    MSFRAGGER(
-        THERMORAWPARSER.out.raws.collect(),
-        DECOYPYRAT.out.target_decoy,
-        params.decoy_prefix,
-        params.msf_output_format,
-        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_msf_param_file
-    )
     // MSFRAGGER(
     //     THERMORAWPARSER.out.raws.collect(),
     //     DECOYPYRAT.out.target_decoy,
     //     params.decoy_prefix,
     //     params.msf_output_format,
-    //     CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_msf_param_file,
-    //     CREATE_INPUT_CHANNEL_MZEXTRACTOR.out.ch_reporter_ion_isotopic
+    //     CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_msf_param_file
     // )
+    MSFRAGGER(
+        THERMORAWPARSER.out.raws.collect(),
+        DECOYPYRAT.out.target_decoy,
+        params.decoy_prefix,
+        params.msf_output_format,
+        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_msf_param_file,
+        CREATE_INPUT_CHANNEL_MZEXTRACTOR.out.ch_reporter_ion_isotopic
+    )
     //
     // WORKFLOW: Run MZ_extractor analysis
     //
-    MZEXTRACTOR(
-        MSFRAGGER.out.ofile,
-        THERMORAWPARSER.out.raws,
-        CREATE_INPUT_CHANNEL_MZEXTRACTOR.out.ch_reporter_ion_isotopic
-    )
+    // MZEXTRACTOR(
+    //     MSFRAGGER.out.ofile,
+    //     THERMORAWPARSER.out.raws,
+    //     CREATE_INPUT_CHANNEL_MZEXTRACTOR.out.ch_reporter_ion_isotopic
+    // )
 }
 
 workflow DECOYPYRAT_WORKFLOW {
