@@ -33,7 +33,10 @@ include { THERMORAWPARSER } from './workflows/thermorawparser'
 // SUBWORKFLOW: Create input channels
 //
 
-include { CREATE_INPUT_CHANNEL_DECOYPYRAT ; CREATE_INPUT_CHANNEL_MSFRAGGER } from './subworkflows/create_input_channel'
+include {
+    CREATE_INPUT_CHANNEL_DECOYPYRAT;
+    CREATE_INPUT_CHANNEL_THERMORAWPARSER;
+    CREATE_INPUT_CHANNEL_MSFRAGGER } from './subworkflows/create_input_channel'
 
 
 
