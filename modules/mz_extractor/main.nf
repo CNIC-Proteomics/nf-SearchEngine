@@ -3,7 +3,8 @@ process MZ_EXTRACTOR {
     label 'process_high'
 
     input:
-    tuple path(ident_files), path(mz_file)
+    path ident_file
+    path mz_file
     path ion_file
 
     output:
@@ -19,22 +20,22 @@ process MZ_EXTRACTOR {
     // def mzml_prefix = mzml_files.first().getExtension()
 
     // get the file name without extension
-    def indent_fname = ident_files.first().getBaseName()
-    println("COMBINE2: ${indent_fname}")
+    // def indent_fname = ident_files.first().getBaseName()
+    // println("COMBINE2: ${indent_fname}")
 
 
-    // create quantification file based on file extension
-    def mz_file = "${indent_fname}.mzML"
+    // // create quantification file based on file extension
+    // def mz_file = "${indent_fname}.mzML"
 
     // define log file
     def log_file ="${task.process.tokenize(':')[-1].toLowerCase()}.log"
 
-    println "source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i ${ident_files} -z ${mz_file} -r ${ion_file}"
+    println "source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i ${ident_file} -z ${mz_file} -r ${ion_file}"
     // """
     // echo source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "*.${ident_prefix}" -z "*.${mzml_prefix}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
     // """
     """
-    source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "${ident_files}" -z "${mz_file}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
+    source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "${ident_file}" -z "${mz_file}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
     """
 }
 
