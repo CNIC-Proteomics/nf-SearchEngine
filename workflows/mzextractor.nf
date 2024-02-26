@@ -29,6 +29,7 @@ workflow MZEXTRACTOR {
     // println("COMBINE: ${combine_indent_quant}")
 
     def combine_indent_quant = ident_files.combine(mzml_files)
+    println("COMBINE: ${combine_indent_quant}")
     MZ_EXTRACTOR(combine_indent_quant, reporter_ion_isotopic)
 
     // return channels
