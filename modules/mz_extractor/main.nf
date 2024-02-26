@@ -34,7 +34,7 @@ process MZ_EXTRACTOR {
     // echo source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "*.${ident_prefix}" -z "*.${mzml_prefix}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
     // """
     """
-    echo source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "${ident_files}" -z "${mz_file}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
+    source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "${ident_files}" -z "${mz_file}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
     """
 }
 
