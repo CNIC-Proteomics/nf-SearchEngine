@@ -36,7 +36,7 @@ def getMissingParams(Map dictionary, List params) {
 workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
     take:
     input_files
-    params_file
+    // params_file
 
     main:
 

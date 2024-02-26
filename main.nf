@@ -9,8 +9,6 @@
 
 nextflow.enable.dsl = 2
 
-import org.yaml.snakeyaml.Yaml
-
 /*
 ========================================================================================
     VALIDATE & PRINT PARAMETER SUMMARY
@@ -79,12 +77,8 @@ workflow SEARCH_ENGINE {
     // SUBWORKFLOW: Create input channel
     //
     CREATE_INPUT_CHANNEL_DECOYPYRAT (
-        params.inputs,
-        params.params_file
+        params.inputs
     )
-    // add the parameters into params variable
-    def fp = new FileInputStream(new File(params.params_file))
-    new Yaml().load(fp).each({ k, v -> params[k] = v })
     //
     // WORKFLOW: DecoyPyRat analysis
     //
