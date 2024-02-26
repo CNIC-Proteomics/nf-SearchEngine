@@ -3,7 +3,7 @@ process MZ_EXTRACTOR {
     label 'process_high'
 
     input:
-    val ident_files
+    path ident_files
     path ion_file
 
     output:
