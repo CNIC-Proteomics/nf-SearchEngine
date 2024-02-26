@@ -22,9 +22,7 @@ workflow MZEXTRACTOR {
     //
     // SUBMODULE: execute MZ_extractor
     //
-    println "IDE_QUANT: ${combine_indent_quant}"
-    println "--"
-    // MZ_EXTRACTOR(raw_files, database, decoy_prefix, output_format, msf_params_file)
+    MZ_EXTRACTOR(combine_indent_quant, reporter_ion_isotopic)
 
     // return channels
     // ch_ofile         = MSF.out.ofile
