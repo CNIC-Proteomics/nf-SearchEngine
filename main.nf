@@ -76,9 +76,10 @@ workflow SEARCH_ENGINE {
     //
     // SUBWORKFLOW: Create input channel
     //
+    println
     CREATE_INPUT_CHANNEL_DECOYPYRAT (
         params.inputs
-        params.param_file
+        params.params_file
     )
     //
     // WORKFLOW: DecoyPyRat analysis

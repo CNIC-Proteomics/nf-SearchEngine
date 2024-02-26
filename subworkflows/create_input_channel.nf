@@ -36,7 +36,7 @@ def getMissingParams(Map dictionary, List params) {
 workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
     take:
     input_files
-    param_file
+    params_file
 
     main:
 
@@ -49,7 +49,7 @@ workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
     database = Channel.fromPath("${inputs.database}", checkIfExists: true)
 
     // add the parameters into params variable
-    f = new FileInputStream(new File(param_file))
+    f = new FileInputStream(new File(params_file))
     new Yaml().load(f).each({ k, v -> params[k] = v })
 
     // required parameters
@@ -70,7 +70,7 @@ workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
 workflow CREATE_INPUT_CHANNEL_MSFRAGGER {
     take:
     input_files
-    param_file
+    params_file
 
     main:
 
