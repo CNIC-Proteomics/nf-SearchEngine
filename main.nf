@@ -83,7 +83,11 @@ workflow SEARCH_ENGINE {
     //
     // WORKFLOW: DecoyPyRat analysis
     //
-    DECOY_PY_RAT(CREATE_INPUT_CHANNEL_DECOYPYRAT.out.ch_database_name, params.add_decoys, params.decoy_prefix)
+    DECOY_PY_RAT(
+        CREATE_INPUT_CHANNEL_DECOYPYRAT.out.ch_database,
+        params.add_decoys,
+        params.decoy_prefix
+    )
 }
 
 // workflow DECOYPYRAT_WORKFLOW {
