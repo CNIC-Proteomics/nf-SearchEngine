@@ -48,10 +48,10 @@ workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
     // create channels from input files
     database = Channel.fromPath("${inputs.database}", checkIfExists: true)
 
-    // add the parameters into params variable
-    def fp = new FileInputStream(new File(params_file))
-    new Yaml().load(fp).each({ k, v -> params[k] = v })
-    println "PARAMS-1: ${params}"
+    // // add the parameters into params variable
+    // def fp = new FileInputStream(new File(params_file))
+    // new Yaml().load(fp).each({ k, v -> params[k] = v })
+    // println "PARAMS-1: ${params}"
 
     // // required parameters
     // def requiredParams = ['add_decoys', 'decoy_prefix']
@@ -66,7 +66,6 @@ workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
 
     emit:
     ch_database   = database
-    params        = params
 }
 
 workflow CREATE_INPUT_CHANNEL_MSFRAGGER {
