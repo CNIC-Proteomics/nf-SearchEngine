@@ -1,0 +1,18 @@
+#
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  Input parameters for Search Engine pipeline
+# ----------------------------------------------------------------------------------------
+# 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Raw files for Search engine (MSFragger)
+raw_files: /mnt/tierra/nf-SearchEngine/tests/test1/raws/*.raw
+
+# FASTA file for DecoyPYrat and Search engine (MSFragger)
+database: '/mnt/tierra/nf-SearchEngine/tests/test1/dbs/human_202105_pro-sw.fasta'
+
+# MSFragger options
+msf_params_file: '/mnt/tierra/nf-SearchEngine/tests/test1/params/closed_fragger.params'
+
+# MZ_extractor options
+reporter_ion_isotopic: '/mnt/tierra/nf-SearchEngine/tests/test1/params/reporter_ion_isotopic.tsv'
