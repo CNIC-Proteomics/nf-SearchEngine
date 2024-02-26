@@ -31,7 +31,7 @@ workflow MZEXTRACTOR {
     // combine the indetification files and quantification files
     def combine_indent_quant = ident_files
                                     .combine(mzml_files, by: 0)
-                                    .map { ident, mzml -> [ident, mzml] }
+    //                                 .map { ident, mzml -> [ident, mzml] }
     // println("COMBINE: ${combine_indent_quant.view()}")
 
     // // Join the two channels based on the file name
