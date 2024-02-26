@@ -25,7 +25,7 @@ nextflow.enable.dsl = 2
 
 // include { SEARCH_ENGINE } from './workflows/search_engine'
 include { DECOYPYRAT } from './workflows/decoypyrat'
-// include { THERMORAWPARSER } from './workflows/thermorawparser'
+include { THERMORAWPARSER } from './workflows/thermorawparser'
 // include { MSFRAGGER } from './workflows/msfragger'
 // include { MZEXTRACTOR } from './workflows/mzextractor'
 
@@ -44,7 +44,7 @@ include { CREATE_INPUT_CHANNEL_DECOYPYRAT ; CREATE_INPUT_CHANNEL_MSFRAGGER } fro
 
 workflow SEARCH_ENGINE {
     // //
-    // // SUBWORKFLOW: Create input channel
+    // // SUBWORKFLOW: Create input channels
     // //
     // CREATE_INFILES_CHANNEL (
     //     params.input_files
@@ -74,7 +74,34 @@ workflow SEARCH_ENGINE {
     // // MZ_EXTRACTOR(MSFRAGGER.out.ofile.flatten(), THERMO_RAW_PARSER.out.ofile, ch_reporter_ion_isotopic)
 
     //
-    // SUBWORKFLOW: Create input channel
+    // SUBWORKFLOW: Create input channels
+    //
+    CREATE_INPUT_CHANNEL_DECOYPYRAT (
+        params.inputs
+    )
+    CREATE_INPUT_CHANNEL_THERMORAWPARSER (
+        params.inputs
+    )
+    //
+    // WORKFLOW: DecoyPyRat analysis
+    //
+    DECOYPYRAT(
+        CREATE_INPUT_CHANNEL_DECOYPYRAT.out.ch_database,
+        params.add_decoys,
+        params.decoy_prefix
+    )
+    //
+    // WORKFLOW: ThermoRawFileParser analysis
+    //
+    THERMORAWPARSER(
+        CREATE_INPUT_CHANNEL_THERMORAWPARSER.out.ch_raws
+    )
+
+}
+
+workflow DECOYPYRAT_WORKFLOW {
+    //
+    // SUBWORKFLOW: Create input channels
     //
     CREATE_INPUT_CHANNEL_DECOYPYRAT (
         params.inputs
@@ -89,24 +116,24 @@ workflow SEARCH_ENGINE {
     )
 }
 
-// workflow DECOYPYRAT_WORKFLOW {
-//     //
-//     // SUBWORKFLOW: Create input channel
-//     //
-//     CREATE_INFILES_CHANNEL (
-//         params.input_files
-//     )
-//     ch_database_name = CREATE_INFILE_CHANNEL ( params.database_name )
-//     ch_reporter_ion_isotopic = CREATE_INFILE_CHANNEL ( params.reporter_ion_isotopic )
-//     //
-//     // WORKFLOW: ThermoRawFileParser analysis
-//     //
-//     DECOYPYRAT(ch_database_name, params.add_decoys, params.decoy_prefix)
-// }
+workflow THERMORAWPARSER_WORKFLOW {
+    //
+    // SUBWORKFLOW: Create input channels
+    //
+    CREATE_INPUT_CHANNEL_THERMORAWPARSER (
+        params.inputs
+    )
+    //
+    // WORKFLOW: ThermoRawFileParser analysis
+    //
+    THERMORAWPARSER(
+        CREATE_INPUT_CHANNEL_THERMORAWPARSER.out.ch_raws
+    )
+}
 
 // workflow MSFRAGGER_WORKFLOW {
 //     //
-//     // SUBWORKFLOW: Create input channel
+//     // SUBWORKFLOW: Create input channels
 //     //
 //     CREATE_INFILES_CHANNEL (
 //         params.input_files
