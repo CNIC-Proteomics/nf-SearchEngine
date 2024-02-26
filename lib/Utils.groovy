@@ -113,7 +113,9 @@ class Utils {
     //
     public static Map updateMsfParams(ifile, replaces) {
 
-        // parse the INI file
+        println("PARAM_FILE ${ifile}")
+
+        // parse the MSF file
         def ini_data = parseMsfFile(ifile)
         // update the given attributes
         try {
