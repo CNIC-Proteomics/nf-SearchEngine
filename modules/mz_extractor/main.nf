@@ -11,7 +11,7 @@ process MZ_EXTRACTOR {
 
     script:
 
-    println("COMBINE2: ${ident_files}")
+    println("KK")
 
     // // get the extension from the first input file. Should be equal in the channel collect.
     // def ident_prefix = ident_files.first().getExtension()
@@ -20,6 +20,9 @@ process MZ_EXTRACTOR {
 
     // get the file name without extension
     def indent_fname = ident_files.first().getBaseName()
+    println("COMBINE2: ${indent_fname}")
+
+
     // create quantification file based on file extension
     def mz_file = "${indent_fname}.mzML"
 
