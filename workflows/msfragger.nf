@@ -5,7 +5,7 @@
 */
 
 include { MSF }               from '../modules/msfragger/main'
-include { MZ_EXTRACTOR }      from '../modules/mz_extractor/main'
+// include { MZ_EXTRACTOR }      from '../modules/mz_extractor/main'
 
 /*
 ========================================================================================
