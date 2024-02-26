@@ -4,7 +4,7 @@
 ========================================================================================
 */
 
-include { THERMO_RAW_PARSER }       from '../modules/thermo_raw_parser/main'
+include { MZ_EXTRACTOR }            from '../modules/mz_extractor/main'
 
 /*
 ========================================================================================
@@ -12,22 +12,28 @@ include { THERMO_RAW_PARSER }       from '../modules/thermo_raw_parser/main'
 ========================================================================================
 */
 
-workflow THERMORAWPARSER {
+workflow MZEXTRACTOR {
 
     take:
     raw_files
+    database
+    decoy_prefix
+    output_format
+    msf_params_file
 
     main:
     //
-    // SUBMODULE: convert the raws to [mzML, mzXML, MGF, Parquet]
+    // SUBMODULE: execute MSFragger
     //
-    THERMO_RAW_PARSER(raw_files)
+    MZ_EXTRACTOR(raw_files, database, decoy_prefix, output_format, msf_params_file)
 
     // return channels
-    ch_raws   = THERMO_RAW_PARSER.out.ofile
+    ch_ofile         = MSF.out.ofile
+    ch_ofile_param   = MSF.out.ofile_param
 
     emit:
-    raws = ch_raws
+    ofile       = ch_ofile
+    ofile_param = ch_ofile_param
 }
 
 /*
