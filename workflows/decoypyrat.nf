@@ -36,6 +36,8 @@ workflow DECOYPYRAT {
     //
     // SUBMODULE: obtain the decoy fasta file
     //
+    println "-----"
+    println "PARAMS: ${params}"
     println "DATABASE: ${database}"
     println "DECOY: ${add_decoys}"
     println "PREFIX: ${decoy_prefix}"

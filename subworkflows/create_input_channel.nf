@@ -51,7 +51,7 @@ workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
     // add the parameters into params variable
     def fp = new FileInputStream(new File(params_file))
     new Yaml().load(fp).each({ k, v -> params[k] = v })
-    println "PARAMS0: ${params}"
+    println "PARAMS-1: ${params}"
 
     // // required parameters
     // def requiredParams = ['add_decoys', 'decoy_prefix']
@@ -66,6 +66,7 @@ workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
 
     emit:
     ch_database   = database
+    params        = params
 }
 
 workflow CREATE_INPUT_CHANNEL_MSFRAGGER {
