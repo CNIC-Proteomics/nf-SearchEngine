@@ -91,3 +91,21 @@ workflow CREATE_INPUT_CHANNEL_MSFRAGGER {
     ch_raws           = raw_files
     ch_msf_param_file = msf_param_file
 }
+
+workflow CREATE_INPUT_CHANNEL_MZEXTRACTOR {
+    take:
+    input_files
+
+    main:
+
+    // read the file with input parameters
+    f = new FileInputStream(new File(input_files))
+    // create yaml
+    inputs = new Yaml().load(f)
+
+    // create channels from input files
+    reporter_ion_isotopic = Channel.fromPath("${inputs.reporter_ion_isotopic}", checkIfExists: true)
+
+    emit:
+    ch_reporter_ion_isotopic       = reporter_ion_isotopic
+}

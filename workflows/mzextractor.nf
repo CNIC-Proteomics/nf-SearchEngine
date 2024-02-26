@@ -15,25 +15,23 @@ include { MZ_EXTRACTOR }            from '../modules/mz_extractor/main'
 workflow MZEXTRACTOR {
 
     take:
-    raw_files
-    database
-    decoy_prefix
-    output_format
-    msf_params_file
+    combine_indent_quant
+    reporter_ion_isotopic
 
     main:
     //
-    // SUBMODULE: execute MSFragger
+    // SUBMODULE: execute MZ_extractor
     //
-    MZ_EXTRACTOR(raw_files, database, decoy_prefix, output_format, msf_params_file)
+    println "IDE_QUANT: ${combine_indent_quant}"
+    // MZ_EXTRACTOR(raw_files, database, decoy_prefix, output_format, msf_params_file)
 
     // return channels
-    ch_ofile         = MSF.out.ofile
-    ch_ofile_param   = MSF.out.ofile_param
+    // ch_ofile         = MSF.out.ofile
+    // ch_ofile_param   = MSF.out.ofile_param
 
-    emit:
-    ofile       = ch_ofile
-    ofile_param = ch_ofile_param
+    // emit:
+    // ofile       = ch_ofile
+    // ofile_param = ch_ofile_param
 }
 
 /*

@@ -36,7 +36,9 @@ include { MZEXTRACTOR } from './workflows/mzextractor'
 include {
     CREATE_INPUT_CHANNEL_DECOYPYRAT;
     CREATE_INPUT_CHANNEL_THERMORAWPARSER;
-    CREATE_INPUT_CHANNEL_MSFRAGGER } from './subworkflows/create_input_channel'
+    CREATE_INPUT_CHANNEL_MSFRAGGER;
+    CREATE_INPUT_CHANNEL_MZEXTRACTOR
+} from './subworkflows/create_input_channel'
 
 
 
@@ -88,6 +90,9 @@ workflow SEARCH_ENGINE {
     CREATE_INPUT_CHANNEL_MSFRAGGER (
         params.inputs
     )
+    CREATE_INPUT_CHANNEL_MZEXTRACTOR (
+        params.inputs
+    )
     //
     // WORKFLOW: DecoyPyRat analysis
     //
@@ -116,11 +121,14 @@ workflow SEARCH_ENGINE {
     // WORKFLOW: Run MZ_extractor analysis
     //
     // MZ_EXTRACTOR(MSFRAGGER.out.ofile.collect(), THERMO_RAW_PARSER.out.ofile.collect(), ch_reporter_ion_isotopic)
-    // println("FLATTEN: ${MSFRAGGER.out.ofile.flatten().view()}")
-    // println("MZML: ${THERMO_RAW_PARSER.out.ofile.view()}")
-    a = MSFRAGGER.out.ofile.flatten().combine( THERMORAWPARSER.out.raws).view()
-    println("COMBINE: ${a}")
-    // MZ_EXTRACTOR(MSFRAGGER.out.ofile.flatten(), THERMO_RAW_PARSER.out.ofile, ch_reporter_ion_isotopic)
+    println("FLATTEN: ${MSFRAGGER.out.ofile.flatten().view()}")
+    println("MZML: ${THERMORAWPARSER.out.raws.view()}")
+    combine_indent_quant = MSFRAGGER.out.ofile.flatten().combine( THERMORAWPARSER.out.raws).view()
+    println("COMBINE: ${combine_indent_quant}")
+    MZEXTRACTOR(
+        combine_indent_quant,
+        CREATE_INPUT_CHANNEL_MZEXTRACTOR.ch_reporter_ion_isotopic
+    )
 }
 
 workflow DECOYPYRAT_WORKFLOW {
