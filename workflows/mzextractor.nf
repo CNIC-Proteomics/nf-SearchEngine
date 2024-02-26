@@ -23,6 +23,7 @@ workflow MZEXTRACTOR {
     // SUBMODULE: execute MZ_extractor
     //
     println "IDE_QUANT: ${combine_indent_quant}"
+    println "--"
     // MZ_EXTRACTOR(raw_files, database, decoy_prefix, output_format, msf_params_file)
 
     // return channels
