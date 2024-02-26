@@ -3,7 +3,7 @@ process MZ_EXTRACTOR {
     label 'process_high'
 
     input:
-    path ident_files
+    val ident_files
     path ion_file
 
     output:
@@ -19,7 +19,6 @@ process MZ_EXTRACTOR {
     def indent_fname = ident_files.getBaseName()
     // create quantification file based on file extension
     def mz_file = "${indent_fname}.mzML"
-
 
     // define log file
     def log_file ="${task.process.tokenize(':')[-1].toLowerCase()}.log"
