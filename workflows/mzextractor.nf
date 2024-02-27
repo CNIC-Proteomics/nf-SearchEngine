@@ -63,11 +63,12 @@ workflow MZEXTRACTOR {
         .join(mzml_files)
         .map { name, ident, mzml -> [ident, mzml] }
         .view { "value: $it" }
-        .set { joined_indent_quant }
+        .set { joined_ident_quant }
 
-    // Channel.of( joined_indent_quant ).view { "value: $it" }
-    // println "${joined_indent_quant}"
+    // Channel.of( joined_ident_quant ).view { "value: $it" }
+    // println "${joined_ident_quant}"
 
+    def ident_quant = Channel.of(joined_ident_quant).view { "value: $it" }
 
     // ident_files
     //     .join(mzml_files)
@@ -80,12 +81,12 @@ workflow MZEXTRACTOR {
     // println("COMBINE: ${combine_indent_quant}")
 
     // // Join the two channels based on the file name
-    // def joined_indent_quant = ident_files.join(mzml_files, by: { file1, file2 -> file1.getBaseName() == file2.getBaseName() })
+    // def joined_ident_quant = ident_files.join(mzml_files, by: { file1, file2 -> file1.getBaseName() == file2.getBaseName() })
     //                                 .map { it -> [it[0],it[1]] }
-    // println "JOINED: ${joined_indent_quant}"
+    // println "JOINED: ${joined_ident_quant}"
 
     // however, at the moment, we only use the identification files
-    MZ_EXTRACTOR(joined_indent_quant, reporter_ion_isotopic)
+    MZ_EXTRACTOR(ident_quant, reporter_ion_isotopic)
 
     // return channels
     // ch_ofile         = MSF.out.ofile
