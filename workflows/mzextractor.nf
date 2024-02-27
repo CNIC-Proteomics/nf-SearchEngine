@@ -38,9 +38,7 @@ workflow MZEXTRACTOR {
 
     // Join the two channels based on the file name
     def joined_indent_quant = ident_files.join(mzml_files, by: { file1, file2 -> file1.getBaseName() == file2.getBaseName() })
-                                    .map { it ->
-                                            MZ_EXTRACTOR(it[0], it[0], reporter_ion_isotopic)
-                                    }
+                                    .map { it -> [it[0],it[1]] }
     println "JOINED: ${joined_indent_quant}"
 
     // however, at the moment, we only use the identification files
