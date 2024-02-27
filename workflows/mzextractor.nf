@@ -35,6 +35,7 @@ workflow MZEXTRACTOR {
     //                                 }
     //                                 // .view()
     ident_files
+        .flatten()
         .combine(mzml_files)
         .view()
         // .map { ident, mzml -> [indent,mzml] }
