@@ -34,10 +34,10 @@ workflow MZEXTRACTOR {
     //                                 .map { ident, mzml -> [indent,mzml]
     //                                 }
     //                                 // .view()
-    ident_files.
-            .combine(mzml_files, { file1, file2 -> getBaseName(file1) == getBaseName(file2) })
-            .map { ident, mzml -> [indent,mzml] }
-            .set { combine_indent_quant }
+    ident_files
+        .combine(mzml_files, { file1, file2 -> getBaseName(file1) == getBaseName(file2) })
+        .map { ident, mzml -> [indent,mzml] }
+        .set { combine_indent_quant }
     println("COMBINE: ${combine_indent_quant}")
 
     // // Join the two channels based on the file name
