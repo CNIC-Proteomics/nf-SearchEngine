@@ -4,7 +4,7 @@ process MZ_EXTRACTOR {
 
     input:
     // tuple val(basename), path(ident_file), path(mz_file)
-    tuple path(ident_file), path(mz_file)
+    path(ident_file), path(mz_file)
     // val basename
     // path ident_file
     // path mz_file
