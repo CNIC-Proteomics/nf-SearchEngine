@@ -4,7 +4,7 @@ process MZ_EXTRACTOR {
 
     input:
     // tuple val(basename), path(ident_file), path(mz_file)
-    tuple path(ident_file), path(mz_file), path(ion_file)
+    tuple path(ident_file), path(mz_file)
     // val basename
     // path ident_file
     // path mz_file
@@ -34,7 +34,7 @@ process MZ_EXTRACTOR {
     def log_file ="${task.process.tokenize(':')[-1].toLowerCase()}.log"
 
     """
-    source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "${ident_file}" -z "${mz_file}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
+    source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "${ident_file}" -z "${mz_file}" -r "/mnt/tierra/nf-SearchEngine/tests/test1/params/reporter_ion_isotopic_2.tsv" -o "." > "${log_file}" 2>&1
     """
 }
 
