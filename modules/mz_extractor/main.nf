@@ -7,7 +7,7 @@ process MZ_EXTRACTOR {
     path ion_file
 
     output:
-    path("*.tsv", emit: ofile)
+    path("*_quant.tsv", emit: ofile)
     path("*.log", emit: log)
 
     script:

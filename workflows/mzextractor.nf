@@ -65,6 +65,7 @@ workflow MZEXTRACTOR {
         .set { joined_indent_quant }
 
     // Channel.of( joined_indent_quant ).view { "value: $it" }
+    println "${joined_indent_quant}"
 
 
     // ident_files
