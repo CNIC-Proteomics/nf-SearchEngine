@@ -64,6 +64,10 @@ workflow MZEXTRACTOR {
         .view()
         .set{ joined_indent_quant }
 
+    Channel
+        .fromList( joined_indent_quant )
+        .view { "value: $it" }
+
 
     // ident_files
     //     .join(mzml_files)
@@ -81,7 +85,7 @@ workflow MZEXTRACTOR {
     // println "JOINED: ${joined_indent_quant}"
 
     // however, at the moment, we only use the identification files
-    MZ_EXTRACTOR(joined_indent_quant, reporter_ion_isotopic)
+    // MZ_EXTRACTOR(joined_indent_quant, reporter_ion_isotopic)
 
     // return channels
     // ch_ofile         = MSF.out.ofile
