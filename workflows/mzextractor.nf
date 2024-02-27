@@ -34,12 +34,16 @@ workflow MZEXTRACTOR {
     //                                 .map { ident, mzml -> [indent,mzml]
     //                                 }
     //                                 // .view()
-    // println("COMBINE: ${combine_indent_quant}")
+    ident_files.
+            .combine(mzml_files, { file1, file2 -> getBaseName(file1) == getBaseName(file2) })
+            .map { ident, mzml -> [indent,mzml] }
+            .set { combine_indent_quant }
+    println("COMBINE: ${combine_indent_quant}")
 
-    // Join the two channels based on the file name
-    def joined_indent_quant = ident_files.join(mzml_files, by: { file1, file2 -> file1.getBaseName() == file2.getBaseName() })
-                                    .map { it -> [it[0],it[1]] }
-    println "JOINED: ${joined_indent_quant}"
+    // // Join the two channels based on the file name
+    // def joined_indent_quant = ident_files.join(mzml_files, by: { file1, file2 -> file1.getBaseName() == file2.getBaseName() })
+    //                                 .map { it -> [it[0],it[1]] }
+    // println "JOINED: ${joined_indent_quant}"
 
     // however, at the moment, we only use the identification files
     // MZ_EXTRACTOR(combine_indent_quant, reporter_ion_isotopic)
