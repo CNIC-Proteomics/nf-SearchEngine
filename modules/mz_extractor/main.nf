@@ -3,7 +3,8 @@ process MZ_EXTRACTOR {
     label 'process_high'
 
     input:
-    tuple val(basename), path(ident_file), path(mz_file) from joined_indent_quant
+    // tuple val(basename), path(ident_file), path(mz_file)
+    tuple path(ident_file), path(mz_file)
     // val basename
     // path ident_file
     // path mz_file

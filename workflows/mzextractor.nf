@@ -61,6 +61,7 @@ workflow MZEXTRACTOR {
     // join both channels based on the first element (base name)
     ident_files
         .join(mzml_files)
+        .map { name, ident, mzml -> [ident, mzml] }
         .view { "value: $it" }
         .set { joined_indent_quant }
 
