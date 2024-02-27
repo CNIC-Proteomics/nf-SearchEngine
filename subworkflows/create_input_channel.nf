@@ -113,7 +113,7 @@ workflow CREATE_INPUT_CHANNEL_MZEXTRACTOR {
     getMissingParams(inputs, requiredParams)
 
     // create channels from input files
-    // this file will be used multiple times, so, we create a Value Channel
+    // this file will be used multiple times, so, we have to create a Value Channel and then, check if file exists
     File file = new File("${inputs.reporter_ion_isotopic}")
     if ( file.exists() ) {
         reporter_ion_isotopic = Channel.value("${inputs.reporter_ion_isotopic}")
@@ -122,7 +122,6 @@ workflow CREATE_INPUT_CHANNEL_MZEXTRACTOR {
         exit 1, "ERROR: The 'reporter_ion_isotopic' file does not exist"
     }
     
-
     emit:
     ch_reporter_ion_isotopic       = reporter_ion_isotopic
 }
