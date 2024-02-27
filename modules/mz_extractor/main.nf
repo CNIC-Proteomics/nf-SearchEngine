@@ -4,11 +4,11 @@ process MZ_EXTRACTOR {
 
     input:
     // tuple val(basename), path(ident_file), path(mz_file)
-    tuple path(ident_file), path(mz_file)
+    tuple path(ident_file), path(mz_file), path(ion_file)
     // val basename
     // path ident_file
     // path mz_file
-    path ion_file
+    // path ion_file
 
     output:
     path("*_quant.tsv", emit: ofile)
