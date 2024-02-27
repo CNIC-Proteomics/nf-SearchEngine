@@ -52,11 +52,13 @@ workflow MZEXTRACTOR {
         // .view()
         .set { ident_files }
 
+    // create a list of tuples with the base name and the file name.
     mzml_files
         .map { file -> tuple(file.baseName, file) }
         // .view()
         .set { mzml_files }
 
+    // join both channels based on the first element (base name)
     ident_files
         .join(mzml_files)
         .view()
@@ -79,7 +81,7 @@ workflow MZEXTRACTOR {
     // println "JOINED: ${joined_indent_quant}"
 
     // however, at the moment, we only use the identification files
-    // MZ_EXTRACTOR(combine_indent_quant, reporter_ion_isotopic)
+    MZ_EXTRACTOR(joined_indent_quant, reporter_ion_isotopic)
 
     // return channels
     // ch_ofile         = MSF.out.ofile
