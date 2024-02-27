@@ -88,7 +88,7 @@ workflow MZEXTRACTOR {
     // println "JOINED: ${joined_ident_quant}"
 
     // however, at the moment, we only use the identification files
-    MZ_EXTRACTOR(ident_quant, path(reporter_ion_isotopic))
+    MZ_EXTRACTOR(ident_quant, file(reporter_ion_isotopic))
 
     // return channels
     // ch_ofile         = MSF.out.ofile
