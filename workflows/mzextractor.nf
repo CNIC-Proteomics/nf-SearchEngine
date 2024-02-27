@@ -61,7 +61,7 @@ workflow MZEXTRACTOR {
     // join both channels based on the first element (base name)
     ident_quant = ident_files
         .join(mzml_files)
-        .map { name, ident, mzml -> [path(ident), path(mzml)] }
+        .map { name, ident, mzml -> [ident, mzml] }
         // .view { "value: $it" }
         // .set { joined_ident_quant }
 
@@ -88,7 +88,7 @@ workflow MZEXTRACTOR {
     // println "JOINED: ${joined_ident_quant}"
 
     // however, at the moment, we only use the identification files
-    MZ_EXTRACTOR(ident_quant, reporter_ion_isotopic)
+    MZ_EXTRACTOR(ident_quant)
 
     // return channels
     // ch_ofile         = MSF.out.ofile

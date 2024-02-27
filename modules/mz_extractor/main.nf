@@ -8,7 +8,7 @@ process MZ_EXTRACTOR {
     // val basename
     // path ident_file
     // path mz_file
-    path ion_file
+    // path ion_file
 
     output:
     path("*_quant.tsv", emit: ofile)
