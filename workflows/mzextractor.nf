@@ -68,7 +68,7 @@ workflow MZEXTRACTOR {
     // Channel.of( joined_ident_quant ).view { "value: $it" }
     // println "${joined_ident_quant}"
 
-    joined_ident_quant
+    ident_quant = joined_ident_quant
                             .flatMap { name, ident, mzml -> [ident, mzml] }
                             .view { "value: $it" }
 
