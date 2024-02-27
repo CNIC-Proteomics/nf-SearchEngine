@@ -8,7 +8,7 @@ process MZ_EXTRACTOR {
     // val basename
     // path ident_file
     // path mz_file
-    // path ion_file
+    val ion_file
 
     output:
     path("*_quant.tsv", emit: ofile)
@@ -23,8 +23,8 @@ process MZ_EXTRACTOR {
 
     // get the file name without extension
     // def indent_fname = ident_files.first().getBaseName()
-    println("IDENT: ${ident_file}")
-    println("MZ: ${mz_file}")
+    // println("IDENT: ${ident_file}")
+    // println("MZ: ${mz_file}")
 
 
     // // create quantification file based on file extension
@@ -34,7 +34,7 @@ process MZ_EXTRACTOR {
     def log_file ="${task.process.tokenize(':')[-1].toLowerCase()}.log"
 
     """
-    source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "${ident_file}" -z "${mz_file}" -r "/mnt/tierra/nf-SearchEngine/tests/test1/params/reporter_ion_isotopic_2.tsv" -o "." > "${log_file}" 2>&1
+    source ${MZEXTRACTOR_HOME}/env/bin/activate && python ${MZEXTRACTOR_HOME}/mz_extractor.py -i "${ident_file}" -z "${mz_file}" -r "${ion_file}" -o "." > "${log_file}" 2>&1
     """
 }
 
