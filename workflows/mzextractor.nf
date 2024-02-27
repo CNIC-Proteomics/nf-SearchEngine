@@ -49,7 +49,7 @@ workflow MZEXTRACTOR {
     MZ_EXTRACTOR(ident_quant, reporter_ion_isotopic)
 
     // return channels
-    ch_ofile         = MSF.out.ofile
+    ch_ofile         = MZ_EXTRACTOR.out.ofile
 
     emit:
     ofile       = ch_ofile
