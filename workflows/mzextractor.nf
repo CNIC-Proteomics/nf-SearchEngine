@@ -46,6 +46,7 @@ workflow MZEXTRACTOR {
 
     ident_files
         .join(mzml_files)
+        .map { file -> tuple(file.baseName, file) }
         .groupTuple()
         .view()
         // .map { ident, mzml -> [indent,mzml] }
