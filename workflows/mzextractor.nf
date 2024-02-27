@@ -37,6 +37,8 @@ workflow MZEXTRACTOR {
     ident_files
         .flatten()
         .combine(mzml_files)
+        .map { file -> tuple(get_prefix(file.name), file) }
+        .groupTuple()
         .view()
         // .map { ident, mzml -> [indent,mzml] }
         .set { combine_indent_quant }
