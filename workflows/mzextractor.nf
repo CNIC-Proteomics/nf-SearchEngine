@@ -57,11 +57,17 @@ workflow MZEXTRACTOR {
 
     ident_files
         .join(mzml_files)
-    //     .map { file -> tuple(file.baseName, file) }
-    //     .groupTuple()
         .view()
-    //     // .map { ident, mzml -> [indent,mzml] }
-    //     .set { combine_indent_quant }
+        .set { joined_indent_quant }
+
+
+    // ident_files
+    //     .join(mzml_files)
+    // //     .map { file -> tuple(file.baseName, file) }
+    // //     .groupTuple()
+    //     .view()
+    // //     // .map { ident, mzml -> [indent,mzml] }
+    // //     .set { combine_indent_quant }
 
     // println("COMBINE: ${combine_indent_quant}")
 
