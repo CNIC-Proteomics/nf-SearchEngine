@@ -59,18 +59,18 @@ workflow MZEXTRACTOR {
         .set { mzml_files }
 
     // join both channels based on the first element (base name)
-    ident_files
+    ident_quant = ident_files
         .join(mzml_files)
         .map { name, ident, mzml -> [ident, mzml] }
-        .view { "value: $it" }
-        .set { joined_ident_quant }
+        // .view { "value: $it" }
+        // .set { joined_ident_quant }
 
     // Channel.of( joined_ident_quant ).view { "value: $it" }
     // println "${joined_ident_quant}"
 
-    ident_quant = joined_ident_quant
-                            .flatMap { name, ident, mzml -> [ident, mzml] }
-                            .view { "value: $it" }
+    // ident_quant = joined_ident_quant
+    //                         .flatMap { name, ident, mzml -> [ident, mzml] }
+    //                         .view { "value: $it" }
 
     // ident_files
     //     .join(mzml_files)
