@@ -104,7 +104,7 @@ workflow CREATE_INPUT_CHANNEL_MZEXTRACTOR {
     inputs = new Yaml().load(f)
 
     // create channels from input files
-    reporter_ion_isotopic = Channel.fromPath("${inputs.reporter_ion_isotopic}", checkIfExists: true)
+    reporter_ion_isotopic = Channel.value("${inputs.reporter_ion_isotopic}", checkIfExists: true)
 
     emit:
     ch_reporter_ion_isotopic       = reporter_ion_isotopic
