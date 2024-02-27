@@ -8,7 +8,7 @@ process MZ_EXTRACTOR {
     // val basename
     // path ident_file
     // path mz_file
-    // path ion_file
+    path ion_file
 
     output:
     path("*_quant.tsv", emit: ofile)
@@ -23,8 +23,8 @@ process MZ_EXTRACTOR {
 
     // get the file name without extension
     // def indent_fname = ident_files.first().getBaseName()
-    println("IDENT: ${ident_file}")
-    println("MZ: ${mz_file}")
+    // println("IDENT: ${ident_file}")
+    // println("MZ: ${mz_file}")
 
 
     // // create quantification file based on file extension
