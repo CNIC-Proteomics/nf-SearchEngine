@@ -15,21 +15,6 @@ process MZ_EXTRACTOR {
     path("*.log", emit: log)
 
     script:
-
-    // // get the extension from the first input file. Should be equal in the channel collect.
-    // def ident_prefix = ident_files.first().getExtension()
-    // // get the extension from the first input file. Should be equal in the channel collect.
-    // def mzml_prefix = mzml_files.first().getExtension()
-
-    // get the file name without extension
-    // def indent_fname = ident_files.first().getBaseName()
-    // println("IDENT: ${ident_file}")
-    // println("MZ: ${mz_file}")
-
-
-    // // create quantification file based on file extension
-    // def mz_file = "${indent_fname}.mzML"
-
     // define log file
     def log_file ="${task.process.tokenize(':')[-1].toLowerCase()}.log"
 
