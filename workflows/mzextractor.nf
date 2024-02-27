@@ -68,7 +68,9 @@ workflow MZEXTRACTOR {
     // Channel.of( joined_ident_quant ).view { "value: $it" }
     // println "${joined_ident_quant}"
 
-    def ident_quant = Channel.of(joined_ident_quant).view { "value: $it" }
+    joined_ident_quant
+                            .flatMap { name, ident, mzml -> [ident, mzml] }
+                            .view { "value: $it" }
 
     // ident_files
     //     .join(mzml_files)
