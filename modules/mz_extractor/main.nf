@@ -4,7 +4,7 @@ process MZ_EXTRACTOR {
 
     input:
     // tuple val(basename), path(ident_file), path(mz_file)
-    path ident_file
+    tuple path(ident_file), path(mz_file)
     // val basename
     // path ident_file
     // path mz_file
@@ -24,7 +24,7 @@ process MZ_EXTRACTOR {
     // get the file name without extension
     // def indent_fname = ident_files.first().getBaseName()
     println("IDENT: ${ident_file}")
-    // println("MZ: ${mz_file}")
+    println("MZ: ${mz_file}")
 
 
     // // create quantification file based on file extension
