@@ -49,13 +49,13 @@ workflow MZEXTRACTOR {
     ident_files
         .flatten()
         .map{ file -> tuple(file.baseName, file) }
-        .view()
-        .set{}
+        // .view()
+        // .set{}
 
     mzml_files
         .map { file -> tuple(file.baseName, file) }
-        .view()
-        .set{}
+        // .view()
+        // .set{}
 
     ident_files
         .join(mzml_files)
