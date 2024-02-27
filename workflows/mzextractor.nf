@@ -48,9 +48,9 @@ workflow MZEXTRACTOR {
         // .map { file -> tuple(file.baseName, file) }
         .view()
 
-    // mzml_files
+    mzml_files
     //     .map { file -> tuple(file.baseName, file) }
-    //     .view()
+        .view()
 
     // ident_files
     //     .join(mzml_files)
