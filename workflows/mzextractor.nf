@@ -45,12 +45,12 @@ workflow MZEXTRACTOR {
     //     .set { combine_indent_quant }
 
     ident_files
-        .map { file -> tuple(file.baseName, file) }
+        // .map { file -> tuple(file.baseName, file) }
         .view()
 
-    mzml_files
-        .map { file -> tuple(file.baseName, file) }
-        .view()
+    // mzml_files
+    //     .map { file -> tuple(file.baseName, file) }
+    //     .view()
 
     // ident_files
     //     .join(mzml_files)
