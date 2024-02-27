@@ -34,14 +34,23 @@ workflow MZEXTRACTOR {
     //                                 .map { ident, mzml -> [indent,mzml]
     //                                 }
     //                                 // .view()
+    
+    // ident_files
+    //     .flatten()
+    //     .combine(mzml_files)
+    //     .map { file -> tuple(file.baseName, file) }
+    //     .groupTuple()
+    //     .view()
+    //     // .map { ident, mzml -> [indent,mzml] }
+    //     .set { combine_indent_quant }
+
     ident_files
-        .flatten()
-        .combine(mzml_files)
-        .map { file -> tuple(file.baseName, file) }
+        .join(mzml_files, by: { file1, file2 -> file1.baseName == file2.baseName })
         .groupTuple()
         .view()
         // .map { ident, mzml -> [indent,mzml] }
         .set { combine_indent_quant }
+
     // println("COMBINE: ${combine_indent_quant}")
 
     // // Join the two channels based on the file name
