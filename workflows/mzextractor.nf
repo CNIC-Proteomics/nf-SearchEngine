@@ -48,14 +48,14 @@ workflow MZEXTRACTOR {
     // This channels is a list of channels (collect()), we have to flatten the list
     ident_files
         .flatten()
-        .map{ file -> tuple(file.baseName, file) }
+        .map{  file -> tuple(file.baseName, file) }
         // .view()
-        // .set{}
+        .set { ident_files }
 
     mzml_files
         .map { file -> tuple(file.baseName, file) }
         // .view()
-        // .set{}
+        .set { mzml_files }
 
     ident_files
         .join(mzml_files)
