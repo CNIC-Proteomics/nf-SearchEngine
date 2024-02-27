@@ -45,6 +45,7 @@ workflow MZEXTRACTOR {
     //     .set { combine_indent_quant }
 
     ident_files
+        .flatten()
         // .map { file -> tuple(file.baseName, file) }
         .view()
 
