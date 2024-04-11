@@ -23,13 +23,14 @@ process MSF {
     // define the task memory
     def task_memory = task.memory.toString().replace(' ','').replace('GB','g').replace('MB','m')
 
-    // update the database file and decoy_prefix in the parameter file
-    def params_data = Utils.updateMsfParams(msf_params_file, ['database_name': database, 'decoy_prefix': decoy_prefix, 'output_format': msf_output_format] )
-    // create param string
-    def params_str = ""
-    params_data.each { key, value -> params_str += "$key = $value\n" }
-    // print the params data
-    def params_file = new File("msfragger.params")
+    // // update the database file and decoy_prefix in the parameter file
+    // //def params_data = Utils.updateMsfParams(msf_params_file, ['database_name': database, 'decoy_prefix': decoy_prefix, 'output_format': msf_output_format] )
+    // def params_data = Utils.updateMsfParams(msf_params_file, ['database_name': database] )
+    // // create param string
+    // def params_str = ""
+    // params_data.each { key, value -> params_str += "$key = $value\n" }
+    // // print the params data
+    // def params_file = new File("msfragger.params")
 
     """
     echo "${params_str}" > "${params_file}"

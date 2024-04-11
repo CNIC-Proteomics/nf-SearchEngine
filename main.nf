@@ -44,7 +44,7 @@ include {
 // WORKFLOW: Run main analysis pipeline
 //
 
-workflow SEARCH_ENGINE {
+workflow SEARCH_ENGINE_WORKFLOW {
     //
     // SUBWORKFLOW: Create input channels
     //
@@ -178,7 +178,7 @@ workflow {
 
     // Select the type of workflow
     if ( 'search_engine' == params.wkf ) {
-        SEARCH_ENGINE()
+        SEARCH_ENGINE_WORKFLOW()
     } else if ( 'decoypyrat' == params.wkf ) {
         DECOYPYRAT_WORKFLOW()
     } else if ( 'msfragger' == params.wkf ) {
