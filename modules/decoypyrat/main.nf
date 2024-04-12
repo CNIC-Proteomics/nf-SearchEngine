@@ -1,9 +1,10 @@
 process DECOY_PY_RAT {
-
+    tag "${order}"
     label 'process_single'
 
     input:
-    val input_file
+    val order
+    path input_file
     val add_decoys
     val decoy_prefix
 
@@ -26,9 +27,10 @@ process DECOY_PY_RAT {
         // concatenate targets and decoys
         """
         source ${BIODATAHUB_HOME}/env/bin/activate && python ${BIODATAHUB_HOME}/src/decoyPYrat.v2.py  --output_fasta "${db_decoy}"  --decoy_prefix=${decoy_prefix} "${input_file}" > "${log_file}" 2>&1
-        mv "${input_file.getParent()}/${db_target}"  .
         cat "${db_target}" "${db_decoy}" > "${db_target_decoy}"
         """
+        // mv "${input_file.getParent()}/${db_target}"  .
+
     }
     else {
         // copy the original database

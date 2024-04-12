@@ -98,24 +98,14 @@ workflow MSFRAGGER_WORKFLOW {
     //
     // SUBWORKFLOW: Create input channels
     //
-    CREATE_INPUT_CHANNEL_DECOYPYRAT(
-        params.inputs
-    )
-    CREATE_INPUT_CHANNEL_THERMORAWPARSER(
-        params.inputs
-    )
-    CREATE_INPUT_CHANNEL_MSFRAGGER(
-        params.inputs
-    )
-    CREATE_INPUT_CHANNEL_MZEXTRACTOR(
-        params.inputs
-    )
+    CREATE_INPUT_CHANNEL_MSFRAGGER()
+    CREATE_INPUT_CHANNEL_MZEXTRACTOR()
     //
     // WORKFLOW: Run MSFragger analysis
     //
     MSFRAGGER(
-        CREATE_INPUT_CHANNEL_THERMORAWPARSER.out.raws.collect(),
-        CREATE_INPUT_CHANNEL_DECOYPYRAT.out.ch_database,
+        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_raws,
+        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_database,
         params.decoy_prefix,
         params.msf_output_format,
         CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_msf_param_file
@@ -125,7 +115,7 @@ workflow MSFRAGGER_WORKFLOW {
     //
     MZEXTRACTOR(
         MSFRAGGER.out.ofile,
-        THERMORAWPARSER.out.raws,
+        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_raws,
         CREATE_INPUT_CHANNEL_MZEXTRACTOR.out.ch_reporter_ion_isotopic
     )
 }

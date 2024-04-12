@@ -85,7 +85,14 @@ workflow CREATE_INPUT_CHANNEL_SEARCH_ENGINE {
     // create channels from input files
     raw_files = Channel.fromPath("${params.raw_files}", checkIfExists: true)
     database = Channel.fromPath("${params.database}", checkIfExists: true)
-    msf_param_file = Channel.fromPath("${params.msf_params_file}", checkIfExists: true)
+
+    // update the given parameter into the fixed parameter file
+    def redefinedParams = ['database_name': params.database, 'decoy_prefix': params.decoy_prefix, 'output_format': params.msf_output_format]
+    def updated_params_str = Utils.updateParamsFile(params.msf_params_file, redefinedParams)
+    def updated_params_file = Utils.writeStrIntoFile(updated_params_str, "${params.paramdir}/msfragger.params")
+
+    // create channel for params file
+    msf_param_file = Channel.value("${updated_params_file}")
 
     // create channels from input files
     // this file will be used multiple times, so, we have to create a Value Channel and then, check if file exists

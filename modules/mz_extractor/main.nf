@@ -1,8 +1,9 @@
 process MZ_EXTRACTOR {
-
+    tag "${order}"
     label 'process_high'
 
     input:
+    val order
     tuple path(ident_file), path(mz_file)
     path ion_file
 

@@ -1,9 +1,10 @@
 process THERMO_RAW_PARSER {
-
+    tag "${order}"
     label 'process_high'
 
     input:
-    val input_file
+    val order
+    path input_file
 
     output:
     // select the output prefix depending on the given format
@@ -34,6 +35,8 @@ process THERMO_RAW_PARSER {
 
     """
     mono ${THERMORAWFILEPARSER_HOME}/ThermoRawFileParser.exe -i "${input_file}" -f "${params.thermo_parser_format}" > "${log_file}" 2>&1
-    mv "${input_file.getParent()}/${input_file.baseName}.${prefix}" .
     """
+
+    // mv "${input_file.getParent()}/${input_file.baseName}.${prefix}" .
+
 }
