@@ -46,7 +46,7 @@ workflow MZEXTRACTOR {
         .set { ident_quant }
 
     // execute the process
-    MZ_EXTRACTOR(ident_quant, reporter_ion_isotopic)
+    MZ_EXTRACTOR('01', ident_quant, reporter_ion_isotopic)
 
     // return channels
     ch_ofile         = MZ_EXTRACTOR.out.ofile

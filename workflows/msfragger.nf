@@ -25,7 +25,7 @@ workflow MSFRAGGER {
     //
     // SUBMODULE: execute MSFragger
     //
-    MSF(raw_files, database, decoy_prefix, output_format, msf_params_file)
+    MSF('01', raw_files, database, decoy_prefix, output_format, msf_params_file)
 
     // return channels
     ch_ofile         = MSF.out.ofile

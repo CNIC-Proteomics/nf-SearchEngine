@@ -23,7 +23,7 @@ workflow DECOYPYRAT {
     //
     // SUBMODULE: obtain the decoy fasta file
     //
-    DECOY_PY_RAT(database, add_decoys, decoy_prefix)
+    DECOY_PY_RAT('01', database, add_decoys, decoy_prefix)
 
     // return channels
     ch_target_decoy   = DECOY_PY_RAT.out.ofile

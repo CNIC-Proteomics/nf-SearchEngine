@@ -2,10 +2,6 @@ params {
   // ThermoRawFileParser options
   thermo_parser_format = 2
 
-  // DecoyPYrat options
-  add_decoys = true
-  decoy_prefix = 'DECOY_'
-
   // MSFragger options
   // File format of output files: tsv, pin, pepxml, tsv_pin, tsv_pepxml, pepxml_pin, or tsv_pepxml_pin. At the very least, the 'tsv' format is required.
   msf_output_format = 'tsv_pepxml_pin'

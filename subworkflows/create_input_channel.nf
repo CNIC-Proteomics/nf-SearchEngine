@@ -1,122 +1,168 @@
 //
-// Create channel for input file
+// Create channel for input files
 //
+
+
+/*
+========================================================================================
+    IMPORT MODULES
+========================================================================================
+*/
 
 import org.yaml.snakeyaml.Yaml
 
-// Define a function to check which parameters are missing in the dictionary
-def getMissingParams(Map dictionary, List params) {
+/*
+========================================================================================
+    LOCAL FUNCIOTNS
+========================================================================================
+*/
+
+
+// Define a function to check which parameters are missing
+def getMissingParams(params, required_params) {
     def missingParams = []
     // Iterate over each parameter in the list
-    for (param in params) {
-        // Check if the parameter exists in the dictionary
-        if (!dictionary.containsKey(param)) {
+    for (param in required_params) {
+        // Check if the parameter exists in the params
+        if (!params.containsKey(param)) {
             // If parameter is missing, add it to the list of missing parameters
             missingParams.add(param)
         }
-    }
-    // Stop from the missing parameters
-    if (!missingParams.isEmpty()) {
-        exit 1, "ERROR: Missing parameters in dictionary: ${missingParams}"
     }
     // Return the list of missing parameters
     return missingParams
 }
 
-workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
-    take:
-    input_files
+// Print an error message for the missing parameters
+def printErrorMissingParams(params, required_params) {
+    // check which parameters are missing in the dict
+    def missingParams = getMissingParams(params, required_params)
+    // stop from the missing parameters
+    if (!missingParams.isEmpty()) {
+        exit 1, "ERROR: Missing parameters: ${missingParams}"
+    }
+}
 
+// Join two channels based on the file name
+def joinChannelsFromFilename(ifiles1, ifiles2) {
+
+    // create a list of tuples with the base name and the file name.
+    def files1 = ifiles1
+                    // .flatten()
+                    .map{  file -> tuple(file.baseName, file) }
+                    // .view()
+                    // .set { files1 }
+
+    // create a list of tuples with the base name and the file name.
+    def files2 = ifiles2
+                    .map { file -> tuple(file.baseName, file) }
+                    // .view()
+                    // .set { files2 }
+
+    // join both channels based on the first element (base name)
+    def files3 = files1
+                    .join(files2)
+                    .map { name, f1, f2 -> [f1, f2] }
+                    // .view { "value: $it" }
+                    // .set { files3 }
+
+    return files3
+}
+
+/*
+========================================================================================
+    DEFINED WORKFLOWS
+========================================================================================
+*/
+
+workflow CREATE_INPUT_CHANNEL_SEARCH_ENGINE {
     main:
 
-    // read the file with input parameters
-    fi = new FileInputStream(new File(input_files))
-    // create yaml
-    inputs = new Yaml().load(fi)
+    // stop from the missing parameters
+    def requiredParams = ['raw_files','database','msf_params_file','reporter_ion_isotopic']
+    printErrorMissingParams(params, requiredParams)
+
+    // create channels from input files
+    raw_files = Channel.fromPath("${params.raw_files}", checkIfExists: true)
+    database = Channel.fromPath("${params.database}", checkIfExists: true)
+    msf_param_file = Channel.fromPath("${params.msf_params_file}", checkIfExists: true)
+
+    // create channels from input files
+    // this file will be used multiple times, so, we have to create a Value Channel and then, check if file exists
+    File file = new File("${params.reporter_ion_isotopic}")
+    if ( file.exists() ) {
+        reporter_ion_isotopic = Channel.value("${params.reporter_ion_isotopic}")
+    }
+    else {
+        exit 1, "ERROR: The 'reporter_ion_isotopic' file does not exist"
+    }
+
+
+    emit:
+    ch_raws                   = raw_files
+    ch_database               = database
+    ch_msf_param_file         = msf_param_file
+    ch_reporter_ion_isotopic  = reporter_ion_isotopic
+}
+
+workflow CREATE_INPUT_CHANNEL_DECOYPYRAT {
+    main:
 
     // stop from the missing parameters
     def requiredParams = ['database']
-    getMissingParams(inputs, requiredParams)
+    printErrorMissingParams(params, requiredParams)
 
     // create channels from input files
-    database = Channel.fromPath("${inputs.database}", checkIfExists: true)
-
-    // // add the parameters into params variable
-    // def fp = new FileInputStream(new File(params_file))
-    // new Yaml().load(fp).each({ k, v -> params[k] = v })
+    database = Channel.fromPath("${params.database}", checkIfExists: true)
 
     emit:
     ch_database       = database
 }
 
 workflow CREATE_INPUT_CHANNEL_THERMORAWPARSER {
-    take:
-    input_files
-
     main:
-
-    // read the file with input parameters
-    f = new FileInputStream(new File(input_files))
-    // create yaml
-    inputs = new Yaml().load(f)
 
     // stop from the missing parameters
     def requiredParams = ['raw_files']
-    getMissingParams(inputs, requiredParams)
+    printErrorMissingParams(params, requiredParams)
 
     // create channels from input files
-    raw_files = Channel.fromPath("${inputs.raw_files}", checkIfExists: true)
+    raw_files = Channel.fromPath("${params.raw_files}", checkIfExists: true)
 
     emit:
     ch_raws           = raw_files
 }
 
 workflow CREATE_INPUT_CHANNEL_MSFRAGGER {
-    take:
-    input_files
-
     main:
 
-    // read the file with input parameters
-    f = new FileInputStream(new File(input_files))
-    // create yaml
-    inputs = new Yaml().load(f)
-
     // stop from the missing parameters
-    def requiredParams = ['database','raw_files','msf_params_file']
-    getMissingParams(inputs, requiredParams)
+    def requiredParams = ['raw_files','database','msf_params_file']
+    printErrorMissingParams(params, requiredParams)
 
     // create channels from input files
-    database = Channel.fromPath("${inputs.database}", checkIfExists: true)
-    raw_files = Channel.fromPath("${inputs.raw_files}", checkIfExists: true)
-    msf_param_file = Channel.fromPath("${inputs.msf_params_file}", checkIfExists: true)
+    raw_files = Channel.fromPath("${params.raw_files}", checkIfExists: true)
+    database = Channel.fromPath("${params.database}", checkIfExists: true)
+    msf_param_file = Channel.fromPath("${params.msf_params_file}", checkIfExists: true)
 
     emit:
-    ch_database       = database
     ch_raws           = raw_files
+    ch_database       = database
     ch_msf_param_file = msf_param_file
 }
 
 workflow CREATE_INPUT_CHANNEL_MZEXTRACTOR {
-    take:
-    input_files
-
     main:
-
-    // read the file with input parameters
-    f = new FileInputStream(new File(input_files))
-    // create yaml
-    inputs = new Yaml().load(f)
 
     // stop from the missing parameters
     def requiredParams = ['reporter_ion_isotopic']
-    getMissingParams(inputs, requiredParams)
+    printErrorMissingParams(params, requiredParams)
 
     // create channels from input files
     // this file will be used multiple times, so, we have to create a Value Channel and then, check if file exists
-    File file = new File("${inputs.reporter_ion_isotopic}")
+    File file = new File("${params.reporter_ion_isotopic}")
     if ( file.exists() ) {
-        reporter_ion_isotopic = Channel.value("${inputs.reporter_ion_isotopic}")
+        reporter_ion_isotopic = Channel.value("${params.reporter_ion_isotopic}")
     }
     else {
         exit 1, "ERROR: The 'reporter_ion_isotopic' file does not exist"
