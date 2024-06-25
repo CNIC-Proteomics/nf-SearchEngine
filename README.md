@@ -10,12 +10,18 @@ nextflow \
     -log "/tmp/nextflow/log/nf-search-engine.log" \
     run main.nf   \
         -profile singularity \
-        -params-file "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/inputs.yml" \
+        --raw_files "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/raw_files/*" \
+        --database "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/database.fasta" \
+        --add_decoys true \
+        --decoy_prefix "DECOY_" \
+        --msf_params_file "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/msf_params_file.params" \
+        --reporter_ion_isotopic "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/reporter_ion_isotopic.tsv" \
         --outdir  "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1" \
         -resume
 ```
 
-        <!-- --params_file "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/params.yml" \ -->
+
+        <!-- --msf_params_file "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/params.yml" \ -->
 
 <!-- Debugging using Ubuntu (Docker - backend):
 ```
