@@ -1,0 +1,3 @@
+[submodule "nf-modules"]
+	path = nf-modules
+	url = https://github.com/CNIC-Proteomics/nf-modules.git
