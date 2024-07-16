@@ -37,8 +37,8 @@ singularity pull --arch amd64 library://proteomicscnic/next-launcher/search_engi
 1. Download test files
 ```
 cd tests && \
-wget https://zenodo.org/records/12748269/files/test_ReCom_1.zip?download=1 -O test_Recom_1.zip && \
-unzip test_Recom_1.zip -d test_Recom_1
+wget https://zenodo.org/records/12750690/files/test_Raws_1.zip?download=1 -O test_Raws_1.zip && \
+unzip test_Raws_1.zip -d test_Raws_1
 ```
 
 2. Execute the pipeline:
@@ -47,14 +47,13 @@ nextflow \
     -log "/tmp/nextflow/log/nf-SearchEngine.log" \
     run main.nf   \
         -profile singularity \
-        --recom_files "tests/test_Recom_1/recom_files/*" \
-        --exp_table "tests/test_Recom_1/exp_table.txt" \
-        --database "tests/test_Recom_1/database.fasta" \
+        --raw_files "tests/test_Raws_1/raw_files/*" \
+        --database "tests/test_Raws_1/database.fasta" \
+        --add_decoys true \
         --decoy_prefix "DECOY_"\
-        --params_file "tests/test_Recom_1/params.ini" \
-        --sitelist_file "tests/test_Recom_1/sitelist.txt" \
-        --groupmaker_file "tests/test_Recom_1/groupmaker.txt" \
-        --outdir  "tests/test_Recom_1" \
+        --msf_params_file "tests/test_Raws_1/msf_params_file.params" \
+        --reporter_ion_isotopic "tests/test_Raws_1/reporter_ion_isotopic.tsv" \
+        --outdir  "tests/test_Raws_1" \
         -resume
 ```
 
