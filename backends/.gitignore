@@ -1,8 +1,6 @@
 # Ignore everything in this directory
-#*
+*
 # Except this file
 !.gitignore
 !search_engine.def
 !DEVELOPMENT.md
-search_engine.sif
-search_engine_*
