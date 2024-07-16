@@ -4,7 +4,7 @@
 ========================================================================================
 */
 
-include { MZ_EXTRACTOR }            from '../modules/mz_extractor/main'
+include { MZ_EXTRACTOR }            from '../nf-modules/modules/mz_extractor/main'
 
 /*
 ========================================================================================

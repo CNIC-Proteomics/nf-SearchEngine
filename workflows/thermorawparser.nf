@@ -4,7 +4,7 @@
 ========================================================================================
 */
 
-include { THERMO_RAW_PARSER }       from '../modules/thermo_raw_parser/main'
+include { THERMO_RAW_PARSER }       from '../nf-modules/modules/thermo_raw_parser/main'
 
 /*
 ========================================================================================

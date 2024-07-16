@@ -19,7 +19,7 @@ include {
     CREATE_INPUT_CHANNEL_THERMORAWPARSER;
     CREATE_INPUT_CHANNEL_MSFRAGGER;
     CREATE_INPUT_CHANNEL_MZEXTRACTOR
-} from '../subworkflows/create_input_channel'
+} from '../nf-modules/subworkflows/search_engine'
 
 
 //

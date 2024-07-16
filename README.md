@@ -77,13 +77,13 @@ nextflow \
     -log "/tmp/nextflow/log/nf-search-engine.log" \
     run main.nf   \
         -profile singularity \
-        --raw_files "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/raw_files/*" \
-        --database "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/database.fasta" \
+        --raw_files "/mnt/tierra/U_Proteomica/UNIDAD/Softwares/jmrodriguezc/nf-SearchEngine/tests/test1/inputs/raw_files/*" \
+        --database "/mnt/tierra/U_Proteomica/UNIDAD/Softwares/jmrodriguezc/nf-SearchEngine/tests/test1/inputs/database.fasta" \
         --add_decoys true \
         --decoy_prefix "DECOY_" \
-        --msf_params_file "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/msf_params_file.params" \
-        --reporter_ion_isotopic "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1/inputs/reporter_ion_isotopic.tsv" \
-        --outdir  "/mnt/tierra/U_Proteomica/UNIDAD/DatosCrudos/jmrodriguezc/projects/nf-SearchEngine/tests/test1" \
+        --msf_params_file "/mnt/tierra/U_Proteomica/UNIDAD/Softwares/jmrodriguezc/nf-SearchEngine/tests/test1/inputs/msf_params_file.params" \
+        --reporter_ion_isotopic "/mnt/tierra/U_Proteomica/UNIDAD/Softwares/jmrodriguezc/nf-SearchEngine/tests/test1/inputs/reporter_ion_isotopic.tsv" \
+        --outdir  "/mnt/tierra/U_Proteomica/UNIDAD/Softwares/jmrodriguezc/nf-SearchEngine/tests/test1" \
         -resume
 ```
  -->
