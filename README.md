@@ -25,7 +25,8 @@ For more information, read the [How to install Singularity](docs/SingularityCE.m
 
 You need to download the Singularity image for the pipeline, ensuring version compatibility with the Nextflow pipeline. See the above *versions* section:
 ```
-singularity pull --arch amd64 library://proteomicscnic/next-launcher/ptm-compass:0.1.0
+cd backends
+singularity pull --arch amd64 library://proteomicscnic/next-launcher/search_engine:0.1.0
 ```
 
 # Version history

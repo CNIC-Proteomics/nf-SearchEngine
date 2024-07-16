@@ -3,3 +3,4 @@
 # Except this file
 !.gitignore
 DEVELOPMENT.md
+search_engine*
