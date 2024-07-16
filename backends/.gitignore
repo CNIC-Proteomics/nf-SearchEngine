@@ -2,6 +2,7 @@
 #*
 # Except this file
 !.gitignore
-DEVELOPMENT.md
-search_engine.def
-search_engine*
+!search_engine.def
+!DEVELOPMENT.md
+search_engine.sif
+search_engine_*
