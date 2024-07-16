@@ -29,19 +29,6 @@ cd backends
 singularity pull --arch amd64 library://proteomicscnic/next-launcher/search_engine:0.1.0
 ```
 
-# Version history
-
-| Version | Description                  | Singularity image                                                                            | Tag     | Code                                                                     | Version |
-|---------|------------------------------|----------------------------------------------------------------------------------------------|---------|--------------------------------------------------------------------------|---------|
-| 0.1.0   | First stable version         |                                                                                              |         |                                                                          |         |
-|         |                              | [search_engine](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  | 0.1.0   |                                                                          |         |
-|         |                              |                                                                                              |         | [MSFragger](https://msfragger.nesvilab.org)                              | 3.8     |
-|         |                              |                                                                                              |         | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.2   |
-|         |                              |                                                                                              |         | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)							 		 | 2.13    |
-|         |                              |                                                                                              |         | [MZ_extractor](https://github.com/CNIC-Proteomics/mz_extractor)			 		 | 1.0	   |
-
-
-
 # Usage
 
 ## Execute the pipeline using Raws as input
@@ -87,3 +74,16 @@ nextflow \
         -resume
 ```
  -->
+
+
+# Version history
+
+| Version | Description                  | Singularity image                                                                            | Tag     | Code                                                                     | Version |
+|---------|------------------------------|----------------------------------------------------------------------------------------------|---------|--------------------------------------------------------------------------|---------|
+| 0.1.0   | First stable version         |                                                                                              |         |                                                                          |         |
+|         |                              | [search_engine](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  | 0.1.0   |                                                                          |         |
+|         |                              |                                                                                              |         | [MSFragger](https://msfragger.nesvilab.org)                              | 3.8     |
+|         |                              |                                                                                              |         | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.2   |
+|         |                              |                                                                                              |         | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)							 		 | 2.13    |
+|         |                              |                                                                                              |         | [MZ_extractor](https://github.com/CNIC-Proteomics/mz_extractor)			 		 | 1.0	   |
+
