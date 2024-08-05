@@ -13,10 +13,6 @@ Before you begin, ensure you have met the following requirements:
 
 - You have Linux operating system on your machine. If you have Windows operating system, read the section [Install WSL on Windows](docs/WSL.md)
 
-## Install Nextflow
-
-For more information, read the [How to install Nextflow](docs/Nextflow.md) section.
-
 ## Install Singularity
 
 For more information, read the [How to install Singularity](docs/SingularityCE.md) section.
@@ -28,6 +24,34 @@ You need to download the Singularity image for the pipeline, ensuring version co
 cd backends
 singularity pull --arch amd64 library://proteomicscnic/next-launcher/search_engine:0.1.0
 ```
+
+## Install Nextflow
+
+For more information, read the [How to install Nextflow](docs/Nextflow.md) section.
+
+## Install Git
+
+To update the package list, use the following command:
+```
+sudo apt-get update
+```
+
+We now install git with the following command:
+```
+apt-get install -y git
+```
+
+# Download the pipeline with the latest release
+
+You can clone the latest release directly using git with the following command:
+```
+export VERSION=0.1.0 && \
+  git clone https://github.com/CNIC-Proteomics/nf-SearchEngine.git --branch ${VERSION} --recursive
+```
+With the *--recursive* parameter, the submodules repositories are cloned as well.
+
+The list of releases is located on the [releases page](https://github.com/CNIC-Proteomics/nf-SearchEngine/releases).
+
 
 # Usage
 
