@@ -34,6 +34,23 @@ sudo apt-get install -y \
     zlib1g-dev
 ```
 
+## Install C compiler
+
+1. Update Ubuntu package list
+To update the package list, use the following command:
+```
+sudo apt-get update
+```
+
+2. Install GCC on Ubuntu
+We now install GCC with the following command.
+```
+sudo apt-get install -y gcc build-essential
+```
+If GCC is already installed on your system, the command will list the version installed.
+
+You have installed also GCC with the build-essential package. This will install GCC as well as other popular packages such as make, which is often used with GCC to automate the compilation process of bigger software.
+
 ## Install Go
 SingularityCE is written in **Go**, and may require a newer version of Go than is available in the repositories of your distribution. We recommend installing the latest version of Go from the official binaries (https://golang.org/dl/)
 
