@@ -38,6 +38,35 @@ For this case, we recomend the **Ubuntu-22.04** distribution. Type the following
 wsl --install -d Ubuntu-22.04
 ```
 
+5. **Update the WSL to WSL 2 (Optional)**
+
+If you have WSL 1, you can update it to WSL 2.
+
+To check which version you have, execute the following command:
+```
+wsl --list --verbose
+```
+
+Alternatively, to check the WSL status, use:
+```
+wsl --status
+```
+You should see a message including "Default Version 2," which verifies that the default version has been set correctly.
+
+To set the version to 2, enter the following command:
+```
+wsl --set-version Ubuntu-22.04 2
+```
+Wait for the "Conversion complete" or "This distribution is already the requested version" message in the terminal.
+
+Again, execute the following command to check the current version:
+```
+wsl --list --verbose
+```
+You should see a message including "NAME Ubuntu VERSION 2," which verifies that the version has been set correctly.
+
+
+
 ### References
 
 For further information, read the [Microsoft documentation](https://learn.microsoft.com/en-us/windows/wsl/install).
@@ -46,8 +75,9 @@ For further information, read the [Microsoft documentation](https://learn.micros
 https://pureinfotech.com/install-windows-subsystem-linux-2-windows-10/#install_wsl_command_2004_windows10
 https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview
 https://linuxconfig.org/ubuntu-22-04-on-wsl-windows-subsystem-for-linux
-
+https://superuser.com/questions/1746633/update-the-windows-subsystem-for-linux-wsl-to-wsl-2
 -->
+
 
 
 
