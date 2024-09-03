@@ -40,7 +40,7 @@ sudo apt-get update
 
 We now install git with the following command:
 ```
-apt-get install -y git
+apt-get install -y git git-lfs
 ```
 
 # Download the pipeline with the latest release
