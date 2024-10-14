@@ -6,7 +6,7 @@ DATE: 2024_10
 
 ### Highlights
 
-
++ DecoyPyRat: Optional outputs added when the database is copied.
 
 ### Changes
 
