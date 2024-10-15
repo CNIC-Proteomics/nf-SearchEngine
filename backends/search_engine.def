@@ -18,7 +18,7 @@ From: ubuntu:22.04
     SEARCH_HOME=/opt/search_engine
     
     # MSFRAGGER: Declare the file name (with version)
-    MSF_FILE_NAME=MSFragger-3.8
+    MSF_FILE_NAME=MSFragger-4.1
     MSF_HOME=/opt/search_engine/msfragger
 
     # THERMORAWPARSER: Declare the file name (with version)
