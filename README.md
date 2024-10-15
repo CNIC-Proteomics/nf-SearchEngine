@@ -27,6 +27,12 @@ cd backends
 singularity pull --arch amd64 library://proteomicscnic/next-launcher/search_engine:0.1.1
 ```
 
+Create a symbolic link
+```
+ln -s search_engine_0.1.1.sif search_engine.sif
+```
+
+
 ## Install Nextflow
 
 For more information, read the [How to install Nextflow](docs/Nextflow.md) section.
