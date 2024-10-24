@@ -50,6 +50,40 @@ singularity shell --bind /mnt/tierra:/mnt/tierra search_engine.sif
 
 # Singularity Hub
 
+## How to generate a new keypair
+
+Open a command line and check for your generated keys:
+```
+singularity keys list
+```
+
+If you already have a generated key just skip the next step and go to the third one, to obtain your key's fingerprint. Otherwise, if you need to generate a key just run:
+```
+singularity keys newpair
+```
+
+In order to obtain the fingerprint from the key you just created, list again your keys:
+```
+singularity keys list
+This will list the keys you have created. In this list, you will find your key's fingerprint next to "F:", for example:
+0) U: John Doe (my key) <johndoe@sylabs.io>
+C: 2018-08-21 20:14:39 +0200 CEST
+F: D87FE3AF5C1F063FCBCC9B02F812842B5EEE5934
+L: 4096
+```
+
+Copy your fingerprint ( e.g. from the previous example the fingerprint would be D87FE3AF5C1F063FCBCC9B02F812842B5EEE5934 ) and then add it to your keystore by doing:
+```
+singularity keys push <Your key's fingerprint>
+```
+
+From the previous example it would be:
+```
+singularity keys push D87FE3AF5C1F063FCBCC9B02F812842B5EEE5934
+```
+
+## Login and Push image
+
 Login to Singularity Hub
 ```
 singularity remote login
@@ -57,7 +91,7 @@ singularity remote login
 
 Sign your image locally using Singularity CLI.
 ```
-singularity sign image.sif
+singularity sign search_engine.sif
 No OpenPGP signing keys found, autogenerate? [Y/n]
 Enter your name (e.g., John Doe) : John Doe
 Enter your email address (e.g., john.doe@example.com) : john.doe@example.com
@@ -68,44 +102,15 @@ Enter encryption passphrase :
 
 Verifying an image is quite easy, just run the verify command within your terminal.
 ```
-singularity verify image.sif
+singularity verify search_engine.sif
 Verifying image: image.sif
 Data integrity checked, authentic and signed by:
 John Doe <john.doe@example.com>, KeyID 284972D6D4FC6713
 ```
 
-
 Push image
 ```
-singularity push search_engine.sif library://proteomicscnic/next-launcher/search_engine:0.1.0
-```
-
-## How to generate a new keypair
-Open a command line and check for your generated keys:
-```
-singularity keys list
-```
-
-If you already have a generated key just skip the next step and go to the third one, to obtain your key's fingerprint. Otherwise, if you need to generate a key just run:
-```
-singularity keys newpair
-```
-In order to obtain the fingerprint from the key you just created, list again your keys:
-```
-singularity keys list
-This will list the keys you have created. In this list, you will find your key's fingerprint next to "F:", for example:
-0) U: John Doe (my key) <johndoe@sylabs.io>
-C: 2018-08-21 20:14:39 +0200 CEST
-F: D87FE3AF5C1F063FCBCC9B02F812842B5EEE5934
-L: 4096
-```
-Copy your fingerprint ( e.g. from the previous example the fingerprint would be D87FE3AF5C1F063FCBCC9B02F812842B5EEE5934 ) and then add it to your keystore by doing:
-```
-singularity keys push <Your key's fingerprint>
-```
-From the previous example it would be:
-```
-singularity keys push D87FE3AF5C1F063FCBCC9B02F812842B5EEE5934
+singularity push search_engine.sif library://proteomicscnic/next-launcher/search_engine:0.1.1
 ```
 
 
