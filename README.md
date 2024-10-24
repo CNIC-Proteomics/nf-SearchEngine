@@ -111,8 +111,7 @@ nextflow \
 
 | Version | Description                  | Singularity image                                                                            			| Code                                                                     | Version |
 |---------|------------------------------|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|---------|
-| 0.1.1   | Update MSFragger version     |                                                                                              			|                                                                          |         |
-|         |                              | [search_engine:0.1.1](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)	|                                                                          |         |
+| 0.1.1   | Update MSFragger version     | [search_engine:0.1.1](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)	|                                                                          |         |
 |         |                              |                                                                                              			| [MSFragger](https://msfragger.nesvilab.org)                              | 4.1     |
 |         |                              |                                                                                              			| [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.2   |
 |         |                              |                                                                                              			| [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)							 		 | 2.13    |
