@@ -29,9 +29,9 @@ From: ubuntu:22.04
     BIODATAHUB_VERSION=v2.13
     BIODATAHUB_HOME=/opt/search_engine/biodatahub
 
-    # MZ_EXTRACTOR: Setting up variables (with version)
-    MZEXTRACTOR_VERSION=v1.0
-    MZEXTRACTOR_HOME=/opt/search_engine/mzextractor
+    # SEARCHTOOLKIT: Setting up variables (with version)
+    SEARCHTOOLKIT_VERSION=1.1
+    SEARCHTOOLKIT_HOME=/opt/search_engine/searchtoolkit
     
 
 %environment
@@ -118,16 +118,16 @@ From: ubuntu:22.04
     cd {{BIODATAHUB_HOME}} && python -m venv env
     . {{BIODATAHUB_HOME}}/env/bin/activate && pip install -r {{BIODATAHUB_HOME}}/python_requirements.txt
 
-    ################
-    # MZ_EXTRACTOR #
-    ################
+    #################
+    # SEARCHTOOLKIT #
+    #################
 
     # Clone the repository
-    git clone https://github.com/CNIC-Proteomics/mz_extractor.git  --branch {{MZEXTRACTOR_VERSION}}  {{MZEXTRACTOR_HOME}}
+    git clone https://github.com/CNIC-Proteomics/SearchToolkit  --branch {{SEARCHTOOLKIT_VERSION}}  {{SEARCHTOOLKIT_HOME}}
 
     # Python environment --
-    cd {{MZEXTRACTOR_HOME}} && python -m venv env
-    . {{MZEXTRACTOR_HOME}}/env/bin/activate && pip install -r {{MZEXTRACTOR_HOME}}/python_requirements.txt
+    cd {{SEARCHTOOLKIT_HOME}} && python -m venv env
+    . {{SEARCHTOOLKIT_HOME}}/env/bin/activate && pip install -r {{SEARCHTOOLKIT_HOME}}/python_requirements.txt
 
 
     # To end the build
@@ -187,12 +187,12 @@ From: ubuntu:22.04
         exit 1
     fi
 
-    # Check if mzExtractor has been installed
-    mzExtractor_test=$(cd {{MZEXTRACTOR_HOME}} && . env/bin/activate && python mz_extractor.py 2>&1 | grep "usage:")
-    if [ "${mzExtractor_test}" != "" ]; then
-        echo "mzExtractor ${mzExtractor_test} has been installed as expected."
+    # Check if SearchToolkit has been installed
+    SearchToolkit_test=$(cd {{SEARCHTOOLKIT_HOME}} && . env/bin/activate && python mz_extractor.py 2>&1 | grep "usage:")
+    if [ "${SearchToolkit_test}" != "" ]; then
+        echo "SearchToolkit ${SearchToolkit_test} has been installed as expected."
     else
-        echo "mzExtractor has not been installed."
+        echo "SearchToolkit has not been installed."
         exit 1
     fi
 

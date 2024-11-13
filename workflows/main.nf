@@ -7,6 +7,7 @@
 include { DECOYPYRAT } from './decoypyrat'
 include { THERMORAWPARSER } from './thermorawparser'
 include { MSFRAGGER } from './msfragger'
+include { MSFRAGGERADAPTED } from './msfraggeradapted'
 include { MZEXTRACTOR } from './mzextractor'
 
 //
@@ -56,10 +57,16 @@ workflow SEARCH_ENGINE_WORKFLOW {
         CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_msf_param_file
     )
     //
+    // WORKFLOW: Add Spectrum File and ScanID
+    //
+    MSFRAGGERADAPTED(
+        MSFRAGGER.out.ofile
+    )
+    //
     // WORKFLOW: Run MZ_extractor analysis
     //
     MZEXTRACTOR(
-        MSFRAGGER.out.ofile,
+        MSFRAGGERADAPTED.out.ofile,
         THERMORAWPARSER.out.raws,
         CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_reporter_ion_isotopic
     )
