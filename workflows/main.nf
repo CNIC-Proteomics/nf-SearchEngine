@@ -60,7 +60,7 @@ workflow SEARCH_ENGINE_WORKFLOW {
     // WORKFLOW: Add Spectrum File and ScanID
     //
     MSFRAGGERADAPTED(
-        MSFRAGGER.out.ofile
+        MSFRAGGER.out.ofile.flatten()
     )
     //
     // WORKFLOW: Run MZ_extractor analysis

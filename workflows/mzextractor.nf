@@ -27,7 +27,7 @@ workflow MZEXTRACTOR {
     // create a list of tuples with the base name and the file name.
     // This channels is a list of channels (collect()), we have to flatten the list
     ident_files
-        .flatten()
+        // .flatten()
         .map{  file -> tuple(file.baseName, file) }
         // .view()
         .set { ident_files }
