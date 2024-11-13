@@ -24,12 +24,12 @@ For more information, read the [How to install Singularity](docs/SingularityCE.m
 You need to download the Singularity image for the pipeline, ensuring version compatibility with the Nextflow pipeline. See the above *versions* section:
 ```
 cd backends
-singularity pull --arch amd64 library://proteomicscnic/next-launcher/search_engine:0.1.1
+singularity pull --arch amd64 library://proteomicscnic/next-launcher/search_engine:0.1.2
 ```
 
 Create a symbolic link
 ```
-ln -s search_engine_0.1.1.sif search_engine.sif
+ln -s search_engine_0.1.2.sif search_engine.sif
 ```
 
 
@@ -53,7 +53,7 @@ apt-get install -y git git-lfs
 
 You can clone the latest release directly using git with the following command:
 ```
-export VERSION=0.1.1 && \
+export VERSION=0.1.2 && \
   git clone https://github.com/CNIC-Proteomics/nf-SearchEngine.git --branch ${VERSION} --recursive
 ```
 With the *--recursive* parameter, the submodules repositories are cloned as well.
@@ -89,23 +89,6 @@ nextflow \
         -resume
 ```
 
-<!-- 
-```
-nextflow \
-    -log "/tmp/nextflow/log/nf-search-engine.log" \
-    run main.nf   \
-        -profile singularity \
-        --raw_files "/mnt/tierra/U_Proteomica/UNIDAD/Softwares/jmrodriguezc/nf-SearchEngine/tests/test1/inputs/raw_files/*" \
-        --database "/mnt/tierra/U_Proteomica/UNIDAD/Softwares/jmrodriguezc/nf-SearchEngine/tests/test1/inputs/database.fasta" \
-        --add_decoys true \
-        --decoy_prefix "DECOY_" \
-        --msf_params_file "/mnt/tierra/U_Proteomica/UNIDAD/Softwares/jmrodriguezc/nf-SearchEngine/tests/test1/inputs/msf_params_file.params" \
-        --reporter_ion_isotopic "/mnt/tierra/U_Proteomica/UNIDAD/Softwares/jmrodriguezc/nf-SearchEngine/tests/test1/inputs/reporter_ion_isotopic.tsv" \
-        --outdir  "/mnt/tierra/U_Proteomica/UNIDAD/Softwares/jmrodriguezc/nf-SearchEngine/tests/test1" \
-        -resume
-```
- -->
-
 
 # Image Version history
 
@@ -117,3 +100,5 @@ nextflow \
 |         |                                                                                                    | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)                    | 2.13    |
 |         |                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)            | 1.1     |
 
+
+For more information, read the [changelog](changelog.md) for the current version.
