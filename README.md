@@ -97,8 +97,8 @@ nextflow \
 | 0.1.2   | [search_engine:0.1.2](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  |                                                                          |         |
 |         |                                                                                                    | [MSFragger](https://msfragger.nesvilab.org)                              | 4.1     |
 |         |                                                                                                    | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.2   |
-|         |                                                                                                    | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)                    | 2.13    |
-|         |                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)            | 1.1     |
+|         |                                                                                                    | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)                  | 2.13    |
+|         |                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.1     |
 
 
 For more information, read the [changelog](changelog.md) for the current version.

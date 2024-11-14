@@ -12,6 +12,8 @@ DATE: 2024_11
 
 + Created a 'SearchToolkit' repository to house the 'mz_extractor' program and other tools that adapt search engine results.
 
++ MSFragger adapted: execute process, then the output files overwrite the inputs (*.tsv).
+
 ### Image Version history
 
 | Version | Singularity image                                                                                  | Code                                                                     | Version |
@@ -19,8 +21,8 @@ DATE: 2024_11
 | 0.1.2   | [search_engine:0.1.2](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  |                                                                          |         |
 |         |                                                                                                    | [MSFragger](https://msfragger.nesvilab.org)                              | 4.1     |
 |         |                                                                                                    | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.2   |
-|         |                                                                                                    | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)                    | 2.13    |
-|         |                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)            | 1.1     |
+|         |                                                                                                    | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)                  | 2.13    |
+|         |                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.1     |
 
 ___
 ## 0.1.1
