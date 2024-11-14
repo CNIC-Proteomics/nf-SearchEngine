@@ -19,6 +19,7 @@ include {
     CREATE_INPUT_CHANNEL_DECOYPYRAT;
     CREATE_INPUT_CHANNEL_THERMORAWPARSER;
     CREATE_INPUT_CHANNEL_MSFRAGGER;
+    CREATE_INPUT_CHANNEL_MSFRAGGERADAPTED;
     CREATE_INPUT_CHANNEL_MZEXTRACTOR
 } from '../nf-modules/subworkflows/search_engine'
 
@@ -100,7 +101,6 @@ workflow THERMORAWPARSER_WORKFLOW {
     )
 }
 
-// Under TEST
 workflow MSFRAGGER_WORKFLOW {
     //
     // SUBWORKFLOW: Create input channels
@@ -118,12 +118,39 @@ workflow MSFRAGGER_WORKFLOW {
         CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_msf_param_file
     )
     //
+    // WORKFLOW: Add Spectrum File and ScanID
+    //
+    MSFRAGGERADAPTED(
+        MSFRAGGER.out.ofile.flatten()
+    )
+    //
     // WORKFLOW: Run MZ_extractor analysis
     //
     MZEXTRACTOR(
         MSFRAGGER.out.ofile,
         CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_raws,
         CREATE_INPUT_CHANNEL_MZEXTRACTOR.out.ch_reporter_ion_isotopic
+    )
+}
+
+workflow MSFRAGGERADAPTED_WORKFLOW {
+    //
+    // SUBWORKFLOW: Create input channels
+    //
+    CREATE_INPUT_CHANNEL_MSFRAGGERADAPTED()
+    //
+    // WORKFLOW: Add Spectrum File and ScanID
+    //
+    MSFRAGGERADAPTED(
+        CREATE_INPUT_CHANNEL_MSFRAGGERADAPTED.out.ch_msf_files
+    )
+    //
+    // WORKFLOW: Run MZ_extractor analysis
+    //
+    MZEXTRACTOR(
+        MSFRAGGERADAPTED.out.ofile,
+        CREATE_INPUT_CHANNEL_MSFRAGGERADAPTED.out.ch_mz_files,
+        CREATE_INPUT_CHANNEL_MSFRAGGERADAPTED.out.ch_reporter_ion_isotopic
     )
 }
 
