@@ -16,12 +16,13 @@ workflow THERMORAWPARSER {
 
     take:
     raw_files
+    create_mzml
 
     main:
     //
     // SUBMODULE: convert the raws to [mzML, mzXML, MGF, Parquet]
     //
-    THERMO_RAW_PARSER('01', raw_files)
+    THERMO_RAW_PARSER('01', raw_files, create_mzml)
 
     // return channels
     ch_raws   = THERMO_RAW_PARSER.out.ofile

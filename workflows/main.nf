@@ -45,13 +45,18 @@ workflow SEARCH_ENGINE_WORKFLOW {
     // WORKFLOW: ThermoRawFileParser analysis
     //
     THERMORAWPARSER(
-        CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_raws
+        CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_raws,
+        params.create_mzml
     )
+    //
+    // Collect raw files, handling the case where THERMORAWPARSER is skipped
+    //
+    def raw_files = params.create_mzml ? THERMORAWPARSER.out.raws.collect() : CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_raws.collect()
     //
     // WORKFLOW: Run MSFragger analysis
     //
     MSFRAGGER(
-        THERMORAWPARSER.out.raws.collect(),
+        raw_files,
         DECOYPYRAT.out.target_decoy,
         params.decoy_prefix,
         params.msf_output_format,
@@ -97,7 +102,8 @@ workflow THERMORAWPARSER_WORKFLOW {
     // WORKFLOW: ThermoRawFileParser analysis
     //
     THERMORAWPARSER(
-        CREATE_INPUT_CHANNEL_THERMORAWPARSER.out.ch_raws
+        CREATE_INPUT_CHANNEL_THERMORAWPARSER.out.ch_raws,
+        params.create_mzml
     )
 }
 
