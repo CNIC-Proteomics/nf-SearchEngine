@@ -14,6 +14,8 @@ DATE: 2024_11
 
 + MSFragger adapted: execute process, then the output files overwrite the inputs (*.tsv).
 
++ Skip the method "mz_extractor" from a flag parameter (create_mzml).
+
 ### Image Version history
 
 | Version | Singularity image                                                                                  | Code                                                                     | Version |
