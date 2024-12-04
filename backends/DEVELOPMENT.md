@@ -30,13 +30,20 @@ git commit -m "Add new MSFragger release"
 git push origin main
 ```
 
+# Define the version
+
+Export a env variable to define the version
+```
+export DEF_VERSION=0.1.2
+```
+
 # Build in Singularity
 
 Building containers from SingularityCE definition files
 Create a symbolic link
 ```
-sudo singularity  build  search_engine_0.1.2.sif  search_engine.def
-ln -s search_engine_0.1.2.sif search_engine.sif
+sudo singularity  build  search_engine_${DEF_VERSION}.sif  search_engine.def
+ln -s search_engine_${DEF_VERSION}.sif search_engine.sif
 ```
 
 Building container in sandbox from SingularityCE definition files
@@ -56,7 +63,7 @@ By default, when you run SingularityCE, you are the same user inside the contain
 
 Using a fake root (for non-admin users)
 ```
-singularity build --fakeroot search_engine_0.1.2.sif search_engine.def
+singularity build --fakeroot search_engine_${DEF_VERSION}.sif search_engine.def
 ```
 
 
@@ -64,7 +71,7 @@ singularity build --fakeroot search_engine_0.1.2.sif search_engine.def
 The shell command allows you to spawn a new shell within your container and interact with it as though it were a virtual machine.
 
 ```
-singularity shell search_engine_0.1.2.sif
+singularity shell search_engine_${DEF_VERSION}.sif
 ```
 
 Enable to write in folder container (sandbox)
@@ -74,12 +81,12 @@ sudo singularity shell --writable /tmp/search_engine
 
 Enable to write in file container
 ```
-sudo singularity shell --writable-tmpfs search_engine_0.1.2.sif
+sudo singularity shell --writable-tmpfs search_engine_${DEF_VERSION}.sif
 ```
 
 Bind disk
 ```
-singularity shell --bind /mnt/tierra:/mnt/tierra search_engine_0.1.2.sif
+singularity shell --bind /mnt/tierra:/mnt/tierra search_engine_${DEF_VERSION}.sif
 ```
 
 # Singularity Hub
@@ -125,7 +132,7 @@ singularity remote login
 
 Sign your image locally using Singularity CLI.
 ```
-singularity sign search_engine_0.1.2.sif
+singularity sign search_engine_${DEF_VERSION}.sif
 No OpenPGP signing keys found, autogenerate? [Y/n]
 Enter your name (e.g., John Doe) : John Doe
 Enter your email address (e.g., john.doe@example.com) : john.doe@example.com
@@ -136,7 +143,7 @@ Enter encryption passphrase :
 
 Verifying an image is quite easy, just run the verify command within your terminal.
 ```
-singularity verify search_engine_0.1.2.sif
+singularity verify search_engine_${DEF_VERSION}.sif
 Verifying image: image.sif
 Data integrity checked, authentic and signed by:
 John Doe <john.doe@example.com>, KeyID 284972D6D4FC6713
@@ -144,7 +151,7 @@ John Doe <john.doe@example.com>, KeyID 284972D6D4FC6713
 
 Push image
 ```
-singularity push search_engine_0.1.2.sif library://proteomicscnic/next-launcher/search_engine:0.1.2
+singularity push search_engine_${DEF_VERSION}.sif library://proteomicscnic/next-launcher/search_engine:${DEF_VERSION}
 ```
 
 
