@@ -33,8 +33,10 @@ git push origin main
 # Build in Singularity
 
 Building containers from SingularityCE definition files
+Create a symbolic link
 ```
 sudo singularity  build  search_engine_0.1.2.sif  search_engine.def
+ln -s search_engine_0.1.2.sif search_engine.sif
 ```
 
 Building container in sandbox from SingularityCE definition files
