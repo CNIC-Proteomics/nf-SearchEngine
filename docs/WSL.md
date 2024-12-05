@@ -66,6 +66,36 @@ wsl --list --verbose
 You should see a message including "NAME Ubuntu VERSION 2," which verifies that the version has been set correctly.
 
 
+### Fix Common Issues
+If the installation fails with errors like **"Virtual Machine Platform not enabled"** or mentions enabling **virtualization in the BIOS**, follow these solutions:
+
+#### **Solution 1: Enable Required Windows Features**
+
+1. Open the **Start Menu** and search for **Turn Windows features on or off**.
+
+2. Enable the following features by checking their boxes:
+   - **Virtual Machine Platform**
+   - **Windows Subsystem for Linux**
+   - (Optional) **Windows Hypervisor Platform** (recommended for advanced virtualization tasks).
+
+3. Click **OK** and let Windows install the features. Restart your computer if prompted.
+
+#### **Solution 2: Enable Virtualization in the BIOS**
+
+If WSL still doesn’t work or the error mentions virtualization, you need to enable it in your computer’s BIOS:
+
+1. **Restart your computer** and enter the BIOS/UEFI setup. This usually requires pressing a specific key during startup (like `F2`, `F10`, `Del`, or `Esc`).
+   - The key varies depending on your manufacturer, so check your system’s manual if unsure.
+
+2. Look for an option like:
+   - **Intel Virtualization Technology (VT-x)** (for Intel processors).
+   - **SVM Mode** (for AMD processors).
+
+3. Enable the option.
+
+4. Save the changes and exit the BIOS (usually with the `F10` key).
+
+
 
 ### References
 
