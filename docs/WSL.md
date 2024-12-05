@@ -9,7 +9,7 @@ To install WSL with a specific distro on Windows 10, use these steps:
 3. **Type the following command to view a list of available WSL distros to install on Windows 10 and press Enter**:
 ```
 wsl --list --online
-
+```
 	The following is a list of valid distributions that can be installed.
 	Install using 'wsl.exe --install <Distro>'.
 
@@ -28,7 +28,7 @@ wsl --list --online
 	SUSE-Linux-Enterprise-Server-15-SP4    SUSE Linux Enterprise Server 15 SP4
 	SUSE-Linux-Enterprise-15-SP5           SUSE Linux Enterprise 15 SP5
 	openSUSE-Tumbleweed                    openSUSE Tumbleweed
-```
+
 Quick note: At the time of this writing, you can install Ubuntu, Debian, Kali Linux, openSUSE, and SUSE Linux Enterprise Server.
 
 4. **Install the Ubuntu 22.04 from the Windows Store**.
