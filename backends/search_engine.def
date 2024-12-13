@@ -22,7 +22,7 @@ From: ubuntu:22.04
     MSF_HOME=/opt/search_engine/msfragger
 
     # THERMORAWPARSER: Declare the file name (with version)
-    RAWPARSER_FILE_NAME=ThermoRawFileParser1.4.2
+    RAWPARSER_FILE_NAME=ThermoRawFileParser1.4.5
     RAWPARSER_HOME=/opt/search_engine/thermorawfileparser
 
     # DECOYPYRAT: Setting up variables (with version)
