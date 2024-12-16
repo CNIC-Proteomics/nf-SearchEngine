@@ -46,6 +46,48 @@ sudo singularity  build  search_engine_${DEF_VERSION}.sif  search_engine.def
 ln -s search_engine_${DEF_VERSION}.sif search_engine.sif
 ```
 
+# Singularity Hub
+
+## Login and Push image
+
+Login to Singularity Hub
+```
+singularity remote login
+```
+
+Sign your image locally using Singularity CLI.
+```
+singularity sign search_engine_${DEF_VERSION}.sif
+
+No OpenPGP signing keys found, autogenerate? [Y/n]
+Enter your name (e.g., John Doe) : John Doe
+Enter your email address (e.g., john.doe@example.com) : john.doe@example.com
+Enter optional comment (e.g., development keys) : demo
+Generating Entity and OpenPGP Key Pair... Done
+Enter encryption passphrase :
+```
+
+Verifying an image is quite easy, just run the verify command within your terminal.
+```
+singularity verify search_engine_${DEF_VERSION}.sif
+
+Verifying image: image.sif
+Data integrity checked, authentic and signed by:
+John Doe <john.doe@example.com>, KeyID 284972D6D4FC6713
+```
+
+Push image
+```
+singularity push search_engine_${DEF_VERSION}.sif library://proteomicscnic/next-launcher/search_engine:${DEF_VERSION}
+```
+
+
+
+
+# FOR MORE INFORMATION
+
+# Build in Singularity
+
 Building container in sandbox from SingularityCE definition files
 ```
 sudo  singularity  build  --sandbox  /tmp/search_engine    search_engine.def
@@ -56,7 +98,6 @@ You can build into the same sandbox container multiple times (though the results
 sudo singularity  build  --update  --sandbox  /tmp/search_engine  search_engine.def
 ```
 
-
 In this case, we're running singularity build with sudo because installing software with apt-get, as in the %post section, requires the root privileges.
 
 By default, when you run SingularityCE, you are the same user inside the container as on the host machine. Using sudo on the host, to acquire root privileges, ensures we can use apt-get as root inside the container.
@@ -65,7 +106,6 @@ Using a fake root (for non-admin users)
 ```
 singularity build --fakeroot search_engine_${DEF_VERSION}.sif search_engine.def
 ```
-
 
 # Interacting with images: Shell
 The shell command allows you to spawn a new shell within your container and interact with it as though it were a virtual machine.
@@ -122,37 +162,4 @@ From the previous example it would be:
 ```
 singularity keys push D87FE3AF5C1F063FCBCC9B02F812842B5EEE5934
 ```
-
-## Login and Push image
-
-Login to Singularity Hub
-```
-singularity remote login
-```
-
-Sign your image locally using Singularity CLI.
-```
-singularity sign search_engine_${DEF_VERSION}.sif
-No OpenPGP signing keys found, autogenerate? [Y/n]
-Enter your name (e.g., John Doe) : John Doe
-Enter your email address (e.g., john.doe@example.com) : john.doe@example.com
-Enter optional comment (e.g., development keys) : demo
-Generating Entity and OpenPGP Key Pair... Done
-Enter encryption passphrase :
-```
-
-Verifying an image is quite easy, just run the verify command within your terminal.
-```
-singularity verify search_engine_${DEF_VERSION}.sif
-Verifying image: image.sif
-Data integrity checked, authentic and signed by:
-John Doe <john.doe@example.com>, KeyID 284972D6D4FC6713
-```
-
-Push image
-```
-singularity push search_engine_${DEF_VERSION}.sif library://proteomicscnic/next-launcher/search_engine:${DEF_VERSION}
-```
-
-
 
