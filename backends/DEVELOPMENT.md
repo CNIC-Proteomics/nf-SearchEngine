@@ -34,7 +34,7 @@ git push origin main
 
 Export a env variable to define the version
 ```
-export DEF_VERSION=0.1.2
+export DEF_VERSION=0.1.3
 ```
 
 # Build in Singularity
