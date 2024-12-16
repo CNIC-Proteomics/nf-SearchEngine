@@ -38,7 +38,7 @@ For more information, read the [How to install Git](docs/Git.md) section.
 
 Export an environment variable to define the version:
 ```
-export PIPELINE_VERSION=0.1.2
+export PIPELINE_VERSION=0.1.3
 ```
 
 You can clone the latest release directly using git with the following command:
@@ -69,14 +69,15 @@ ln -s search_engine_${PIPELINE_VERSION}.sif search_engine.sif
 
 # Usage
 
-## Execute the pipeline with test samples
+## Execute the pipeline with samples
 
 
-1. Download test files
+1. Download sample files
 ```
-cd tests && \
-wget https://zenodo.org/records/12750690/files/test_Raws_1.zip?download=1 -O test_Raws_1.zip && \
-unzip test_Raws_1.zip -d test_Raws_1
+cd samples && \
+wget https://zenodo.org/records/14446572/files/nf-SearchEngine_Heteroplasmic_Muscle.zip?download=1 -O nf-SearchEngine_Heteroplasmic_Muscle.zip && \
+unzip nf-SearchEngine_Heteroplasmic_Muscle.zip && \
+cd ..
 ```
 
 2. Execute the pipeline:
@@ -85,13 +86,14 @@ nextflow \
     -log "/tmp/nextflow/log/nf-searchengine.log" \
     run main.nf   \
         -profile singularity \
-        --raw_files "tests/test_Raws_1/raw_files/*" \
-        --database "tests/test_Raws_1/database.fasta" \
+        --create_mzml false \
+        --raw_files "samples/heteroplasmic_muscle/inputs/mzMLs/*.mzML" \
+        --database "samples/heteroplasmic_muscle/inputs/database.fasta" \
         --add_decoys true \
         --decoy_prefix "DECOY_"\
-        --msf_params_file "tests/test_Raws_1/msf_params_file.params" \
-        --reporter_ion_isotopic "tests/test_Raws_1/reporter_ion_isotopic.tsv" \
-        --outdir  "tests/test_Raws_1" \
+        --msf_params_file "samples/heteroplasmic_muscle/inputs/msf_params_file.params" \
+        --reporter_ion_isotopic "samples/heteroplasmic_muscle/inputs/reporter_ion_isotopic.tsv" \
+        --outdir  "samples/heteroplasmic_muscle/results" \
         -resume
 ```
 
