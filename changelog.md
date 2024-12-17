@@ -8,19 +8,25 @@ DATE: 2024_12
 
 + Updated the sample input files.
 
++ Upgraded the MSFragger version (4.2-rc14) with a patch that extends the precursor mass range.
+
++ Upgraded ThermoRawFileParser version.
+
 ### Changes
+
++ Upgraded the MSFragger version (4.2-rc14) with a patch that extends the precursor mass range.
 
 + Upgraded ThermoRawFileParser version.
 
 ### Image Version history
 
-| Version | Singularity image                                                                                  | Code                                                                     | Version |
-|---------|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|---------|
-| 0.1.3   | [search_engine:0.1.3](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  |                                                                          |         |
-|         |                                                                                                    | [MSFragger](https://msfragger.nesvilab.org)                              | 4.1     |
-|         |                                                                                                    | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.5   |
-|         |                                                                                                    | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)                  | 2.13    |
-|         |                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.1     |
+| Version | Singularity image                                                                                  | Code                                                                     | Version  |
+|---------|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|----------|
+| 0.1.3   | [search_engine:0.1.3](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  |                                                                          |          |
+|         |                                                                                                    | [MSFragger](https://msfragger.nesvilab.org)                              | 4.2-rc14 |
+|         |                                                                                                    | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.5    |
+|         |                                                                                                    | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)                  | 2.13     |
+|         |                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.1      |
 
 ___
 ## 0.1.2
