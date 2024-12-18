@@ -30,7 +30,7 @@ From: ubuntu:22.04
     BIODATAHUB_HOME=/opt/search_engine/biodatahub
 
     # SEARCHTOOLKIT: Setting up variables (with version)
-    SEARCHTOOLKIT_VERSION=1.1
+    SEARCHTOOLKIT_VERSION=1.2
     SEARCHTOOLKIT_HOME=/opt/search_engine/searchtoolkit
     
 

@@ -10,13 +10,13 @@ DATE: 2024_12
 
 + Upgraded the MSFragger version (4.2-rc14) with a patch that extends the precursor mass range.
 
-+ Upgraded ThermoRawFileParser version.
-
 ### Changes
 
 + Upgraded the MSFragger version (4.2-rc14) with a patch that extends the precursor mass range.
 
 + Upgraded ThermoRawFileParser version.
+
++ Upgraded SearchToolkit version.
 
 ### Image Version history
 
@@ -26,7 +26,7 @@ DATE: 2024_12
 |         |                                                                                                    | [MSFragger](https://msfragger.nesvilab.org)                              | 4.2-rc14 |
 |         |                                                                                                    | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.5    |
 |         |                                                                                                    | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)                  | 2.13     |
-|         |                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.1      |
+|         |                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.2      |
 
 ___
 ## 0.1.2
