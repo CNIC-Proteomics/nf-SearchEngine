@@ -1,8 +1,7 @@
 ___
 ## 0.1.3
-```
-DATE: 2024_12
-```
+
+### Date 📅 *2024_12*
 
 ### Highlights
 
@@ -27,6 +26,7 @@ DATE: 2024_12
 |         |                                                                                                    | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.5    |
 |         |                                                                                                    | [DecoyPYrat](https://www.sanger.ac.uk/tool/decoypyrat/)                  | 2.13     |
 |         |                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.2      |
+
 
 ___
 ## 0.1.2
