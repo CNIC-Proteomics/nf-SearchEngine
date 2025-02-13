@@ -1,5 +1,5 @@
 # License
-iSanXoT was developed by the Cardiovascular Proteomics Lab/Proteomic Unit at **The National Centre for Cardiovascular Research** (CNIC, [https://www.cnic.es](https://www.cnic.es/)).
+nf-SearchEngine was developed by the Cardiovascular Proteomics Lab/Proteomic Unit at **The National Centre for Cardiovascular Research** (CNIC, [https://www.cnic.es](https://www.cnic.es/)).
 
 This application is licensed under a **Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) License**
 
