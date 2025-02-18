@@ -15,7 +15,7 @@ sudo apt-get update
 
 We now install git with the following command:
 ```
-apt-get install -y git
+sudo apt-get install -y git
 ```
 
 ## References

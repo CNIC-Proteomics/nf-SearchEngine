@@ -73,7 +73,8 @@ You can download SingularityCE from one of the releases. To see a full list, vis
 
 After deciding on a release to install, you can run the following commands to proceed with the installation.
 ```
-cd ${HOME}/softwares
+mkdir -p ${HOME}/softwares && \
+cd ${HOME}/softwares && \
 export VERSION=4.1.2 && \
   wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-ce-${VERSION}.tar.gz
   tar -xzf singularity-ce-${VERSION}.tar.gz && \
