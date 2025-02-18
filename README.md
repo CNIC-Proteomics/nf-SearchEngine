@@ -40,6 +40,7 @@ Export an environment variable to define the version:
 ```
 export PIPELINE_VERSION=0.1.3
 ```
+Note: The list of releases is located on the [releases page](https://github.com/CNIC-Proteomics/nf-SearchEngine/releases).
 
 You can clone the latest release directly using git with the following command:
 ```
@@ -47,9 +48,14 @@ git clone https://github.com/CNIC-Proteomics/nf-SearchEngine.git --branch ${PIPE
 ```
 With the *--recursive* parameter, the submodules repositories are cloned as well.
 
-The list of releases is located on the [releases page](https://github.com/CNIC-Proteomics/nf-SearchEngine/releases).
 
 # Download Singularity images
+
+Export an environment variable to define the version of singularity image:
+```
+export IMAGE_VERSION=0.1.3
+```
+Note: The list of releases is located on the [singularity repository page](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine).
 
 Navigate to the backends folder:
 ```
@@ -58,12 +64,18 @@ cd nf-SearchEngine/backends
 
 You need to download the Singularity image for the pipeline, ensuring version compatibility with the Nextflow pipeline. See the above *versions* section:
 ```
-singularity pull --arch amd64 library://proteomicscnic/next-launcher/search_engine:${PIPELINE_VERSION}
+singularity pull --arch amd64 library://proteomicscnic/next-launcher/search_engine:${IMAGE_VERSION}
 ```
+
+You might see warning messages like the following. You can discard or ignore them:
+
+    WARNING: failed to get key material: 404 Not Found: entity not found
+    WARNING: integrity: signature object 5 not valid: openpgp: signature made by unknown entity
+    WARNING: Skipping container verification
 
 Create a symbolic link
 ```
-ln -s search_engine_${PIPELINE_VERSION}.sif search_engine.sif
+ln -s search_engine_${IMAGE_VERSION}.sif search_engine.sif
 ```
 
 
