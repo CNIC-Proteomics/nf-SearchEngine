@@ -34,7 +34,7 @@ git push origin main
 
 Export a env variable to define the version
 ```
-export DEF_VERSION=0.1.3
+export IMAGE_VERSION=0.1.4
 ```
 
 # Build in Singularity
@@ -42,8 +42,8 @@ export DEF_VERSION=0.1.3
 Building containers from SingularityCE definition files
 Create a symbolic link
 ```
-sudo singularity  build  search_engine_${DEF_VERSION}.sif  search_engine.def
-ln -s search_engine_${DEF_VERSION}.sif search_engine.sif
+sudo singularity  build  search_engine_${IMAGE_VERSION}.sif  search_engine.def
+ln -s search_engine_${IMAGE_VERSION}.sif search_engine.sif
 ```
 
 # Singularity Hub
@@ -57,7 +57,7 @@ singularity remote login
 
 Sign your image locally using Singularity CLI.
 ```
-singularity sign search_engine_${DEF_VERSION}.sif
+singularity sign search_engine_${IMAGE_VERSION}.sif
 
 No OpenPGP signing keys found, autogenerate? [Y/n]
 Enter your name (e.g., John Doe) : John Doe
@@ -69,7 +69,7 @@ Enter encryption passphrase :
 
 Verifying an image is quite easy, just run the verify command within your terminal.
 ```
-singularity verify search_engine_${DEF_VERSION}.sif
+singularity verify search_engine_${IMAGE_VERSION}.sif
 
 Verifying image: image.sif
 Data integrity checked, authentic and signed by:
@@ -78,7 +78,7 @@ John Doe <john.doe@example.com>, KeyID 284972D6D4FC6713
 
 Push image
 ```
-singularity push search_engine_${DEF_VERSION}.sif library://proteomicscnic/next-launcher/search_engine:${DEF_VERSION}
+singularity push search_engine_${IMAGE_VERSION}.sif library://proteomicscnic/next-launcher/search_engine:${IMAGE_VERSION}
 ```
 
 
@@ -104,14 +104,14 @@ By default, when you run SingularityCE, you are the same user inside the contain
 
 Using a fake root (for non-admin users)
 ```
-singularity build --fakeroot search_engine_${DEF_VERSION}.sif search_engine.def
+singularity build --fakeroot search_engine_${IMAGE_VERSION}.sif search_engine.def
 ```
 
 # Interacting with images: Shell
 The shell command allows you to spawn a new shell within your container and interact with it as though it were a virtual machine.
 
 ```
-singularity shell search_engine_${DEF_VERSION}.sif
+singularity shell search_engine_${IMAGE_VERSION}.sif
 ```
 
 Enable to write in folder container (sandbox)
@@ -121,12 +121,12 @@ sudo singularity shell --writable /tmp/search_engine
 
 Enable to write in file container
 ```
-sudo singularity shell --writable-tmpfs search_engine_${DEF_VERSION}.sif
+sudo singularity shell --writable-tmpfs search_engine_${IMAGE_VERSION}.sif
 ```
 
 Bind disk
 ```
-singularity shell --bind /mnt/tierra:/mnt/tierra search_engine_${DEF_VERSION}.sif
+singularity shell --bind /mnt/tierra:/mnt/tierra search_engine_${IMAGE_VERSION}.sif
 ```
 
 # Singularity Hub
