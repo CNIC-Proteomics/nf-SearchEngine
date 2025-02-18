@@ -26,11 +26,11 @@ From: ubuntu:22.04
     RAWPARSER_HOME=/opt/search_engine/thermorawfileparser
 
     # DECOYPYRAT: Setting up variables (with version)
-    BIODATAHUB_VERSION=v2.13
+    BIODATAHUB_VERSION=v2.14
     BIODATAHUB_HOME=/opt/search_engine/biodatahub
 
     # SEARCHTOOLKIT: Setting up variables (with version)
-    SEARCHTOOLKIT_VERSION=1.2
+    SEARCHTOOLKIT_VERSION=1.3
     SEARCHTOOLKIT_HOME=/opt/search_engine/searchtoolkit
     
 
