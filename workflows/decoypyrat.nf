@@ -15,21 +15,31 @@ include { DECOY_PY_RAT }            from '../nf-modules/modules/decoypyrat/main'
 workflow DECOYPYRAT {
 
     take:
-    database
     add_decoys
+    database
     decoy_prefix
 
     main:
     //
     // SUBMODULE: obtain the decoy fasta file
     //
-    DECOY_PY_RAT('01', database, add_decoys, decoy_prefix)
+
+    // optional process that depens on the given flag variable
+    if ( add_decoys ) {
+        DECOY_PY_RAT('01', database, decoy_prefix)
+
+        ch_target_decoy   = DECOY_PY_RAT.out.ofile
+        ch_target         = DECOY_PY_RAT.out.ofile_target
+        ch_decoy          = DECOY_PY_RAT.out.ofile_decoy
+    }
+    // does not execute the process, the output is the same than input
+    else {
+        ch_target_decoy   = database
+        ch_target         = Channel.empty()
+        ch_decoy          = Channel.empty()
+    }
 
     // return channels
-    ch_target_decoy   = DECOY_PY_RAT.out.ofile
-    ch_target         = DECOY_PY_RAT.out.ofile_target
-    ch_decoy          = DECOY_PY_RAT.out.ofile_decoy
-
     emit:
     target_decoy = ch_target_decoy
     target       = ch_target

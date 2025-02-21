@@ -37,24 +37,22 @@ workflow SEARCH_ENGINE_WORKFLOW {
     // WORKFLOW: DecoyPyRat analysis
     //
     DECOYPYRAT(
-        CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_database,
         params.add_decoys,
+        CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_database,
         params.decoy_prefix
     )
     //
     // WORKFLOW: ThermoRawFileParser analysis
     //
     THERMORAWPARSER(
-        CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_raws,
-        params.create_mzml
+        params.create_mzml,
+        CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_raws
     )
-    // collect raw files, handling the case where THERMORAWPARSER is skipped
-    def raw_files = params.create_mzml ? THERMORAWPARSER.out.raws : CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_raws
     //
     // WORKFLOW: Run MSFragger analysis
     //
     MSFRAGGER(
-        raw_files.collect(),
+        THERMORAWPARSER.out.raws.collect(),
         DECOYPYRAT.out.target_decoy,
         params.decoy_prefix,
         params.msf_output_format,
@@ -70,8 +68,9 @@ workflow SEARCH_ENGINE_WORKFLOW {
     // WORKFLOW: Run MZ_extractor analysis
     //
     MZEXTRACTOR(
+        params.add_quant,
         MSFRAGGERADAPTED.out.ofile,
-        raw_files,
+        THERMORAWPARSER.out.raws,
         CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_reporter_ion_isotopic
     )
 }

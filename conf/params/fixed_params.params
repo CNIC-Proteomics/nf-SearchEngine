@@ -9,4 +9,5 @@ params {
   // Flags parameters
   add_decoys  = false
   create_mzml = false
+  add_quant   = true
 }
