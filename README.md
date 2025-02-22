@@ -99,9 +99,9 @@ nextflow \
     run main.nf   \
         -profile singularity \
         --create_mzml false \
+        --add_decoys true \
         --raw_files "samples/heteroplasmic_muscle/inputs/mzMLs/*.mzML" \
         --database "samples/heteroplasmic_muscle/inputs/database.fasta" \
-        --add_decoys true \
         --decoy_prefix "DECOY_"\
         --msf_params_file "samples/heteroplasmic_muscle/inputs/msf_params_file.params" \
         --reporter_ion_isotopic "samples/heteroplasmic_muscle/inputs/reporter_ion_isotopic.tsv" \
