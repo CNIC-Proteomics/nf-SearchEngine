@@ -38,7 +38,7 @@ For more information, read the [How to install Git](docs/Git.md) section.
 
 Export an environment variable to define the version:
 ```
-export PIPELINE_VERSION=0.1.3
+export PIPELINE_VERSION=0.1.4
 ```
 Note: The list of releases is located on the [releases page](https://github.com/CNIC-Proteomics/nf-SearchEngine/releases).
 
@@ -53,7 +53,7 @@ With the *--recursive* parameter, the submodules repositories are cloned as well
 
 Export an environment variable to define the version of singularity image:
 ```
-export IMAGE_VERSION=0.1.3
+export IMAGE_VERSION=0.1.4
 ```
 Note: The list of releases is located on the [singularity repository page](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine).
 

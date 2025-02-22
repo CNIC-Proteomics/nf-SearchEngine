@@ -1,4 +1,34 @@
 ___
+## 0.1.4
+
+### Date 📅 *2025_02*
+
+### Changes in detail
+
++ The 'mz_extractor' is now an optional process.
+
++ The conditions for selecting the 'decoyPYrat' and 'ThermoRawParser' processes have been changed.
+
+
+### Image Version history
+
++ bioDataHub (version 2.14):
+  - Add new version of decoyPYrat (v3). In this version, the '|' character is replaced by '_'in the decoy comment line.
++ SearchToolkit (version 1.3):
+  - 'mz_extractor': Change ProcessPoolExecutor to ThreadPoolExecutor.
+
+
+| Singularity image (version)                                                                        | Code                                                                     | Version  |
+|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|----------|
+| [search_engine:0.1.4](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  |                                                                          |          |
+|                                                                                                    | [MSFragger](https://msfragger.nesvilab.org)                              | 4.2-rc14 |
+|                                                                                                    | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.5    |
+|                                                                                                    | [bioDataHub (DecoyPYrat)](https://www.sanger.ac.uk/tool/decoypyrat/)     | 2.14     |
+|                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.3      |
+
+
+
+___
 ## 0.1.3
 
 ### Date 📅 *2024_12*
