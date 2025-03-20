@@ -1,4 +1,31 @@
 ___
+## 0.1.5
+
+### Date 📅 *2025_XX*
+
+### Changes in detail
+
++ 'base.config' file is deprecated.
+
++ Update REFMOD (ReFrag) module.
+
+
+### Image Version history
+
++ ReFrag (REFMOD, version v0.4.5):
+  - The REFMOD program has been included
+
+| Singularity image (version)                                                                        | Code                                                                     | Version  |
+|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|----------|
+| [search_engine:0.1.5](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  |                                                                          |          |
+|                                                                                                    | [MSFragger](https://msfragger.nesvilab.org)                              | 4.2-rc14 |
+|                                                                                                    | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.5    |
+|                                                                                                    | [bioDataHub (DecoyPYrat)](https://www.sanger.ac.uk/tool/decoypyrat/)     | 2.14     |
+|                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.3      |
+|                                                                                                    | [REFMOD](https://github.com/CNIC-Proteomics/ReFrag)                      | v0.4.5   |
+
+
+___
 ## 0.1.4
 
 ### Date 📅 *2025_02*
