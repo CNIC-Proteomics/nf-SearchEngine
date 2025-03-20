@@ -94,50 +94,50 @@ cd ..
 
 2. Execute several pipelines:
 
-2.1. Execute the pipeline:
-+ Run MSFragger with the mzML files as input.
-+ Generate decoy proteins.
-+ Extract quantifications from the mzML files.
-+ Correct post-translational modifications (PTMs) using the REFMOD module.
-```
-nextflow \
-    -log "/tmp/nextflow/log/nf-searchengine.log" \
-    run main.nf   \
-        -profile singularity \
-        --create_mzml false \
-        --add_decoys true \
-        --raw_files "samples/heteroplasmic_muscle/inputs/mzMLs/*.mzML" \
-        --database "samples/heteroplasmic_muscle/inputs/database.fasta" \
-        --decoy_prefix "DECOY_"\
-        --msf_params_file "samples/heteroplasmic_muscle/inputs/msf_params_file.params" \
-        --reporter_ion_isotopic "samples/heteroplasmic_muscle/inputs/reporter_ion_isotopic.tsv" \
-        --outdir  "samples/heteroplasmic_muscle/results" \
-        -resume
-```
+    2.1. Execute the pipeline:
+    + Run MSFragger with the mzML files as input.
+    + Generate decoy proteins.
+    + Extract quantifications from the mzML files.
+    + Correct post-translational modifications (PTMs) using the REFMOD module.
+    ```
+    nextflow \
+        -log "/tmp/nextflow/log/nf-searchengine.log" \
+        run main.nf   \
+            -profile singularity \
+            --create_mzml false \
+            --add_decoys true \
+            --raw_files "samples/heteroplasmic_muscle/inputs/mzMLs/*.mzML" \
+            --database "samples/heteroplasmic_muscle/inputs/database.fasta" \
+            --decoy_prefix "DECOY_"\
+            --msf_params_file "samples/heteroplasmic_muscle/inputs/msf_params_file.params" \
+            --reporter_ion_isotopic "samples/heteroplasmic_muscle/inputs/reporter_ion_isotopic.tsv" \
+            --outdir  "samples/heteroplasmic_muscle/results" \
+            -resume
+    ```
 
-2.2. Execute the pipeline:
-+ Run MSFragger with the mzML files as input.
-+ Generate decoy proteins.
-+ Extract quantifications from the mzML files.
-+ Correct post-translational modifications (PTMs) using the REFMOD module.
-```
-nextflow \
-    -log "/tmp/nextflow/log/nf-searchengine.log" \
-    run main.nf   \
-        -profile singularity \
-        --create_mzml false \
-        --add_decoys true \
-        --exec_refmod true \
-        --raw_files "samples/heteroplasmic_muscle/inputs/mzMLs/*.mzML" \
-        --database "samples/heteroplasmic_muscle/inputs/database.fasta" \
-        --decoy_prefix "DECOY_"\
-        --msf_params_file "samples/heteroplasmic_muscle/inputs/msf_params_file.params" \
-        --dm_file "samples/heteroplasmic_muscle/inputs/dm_list.tsv" \
-        --refmod_params_file "samples/heteroplasmic_muscle/inputs/refmod_params_file.ini" \
-        --reporter_ion_isotopic "samples/heteroplasmic_muscle/inputs/reporter_ion_isotopic.tsv" \
-        --outdir  "samples/heteroplasmic_muscle/results" \
-        -resume
-```
+    2.2. Execute the pipeline:
+    + Run MSFragger with the mzML files as input.
+    + Generate decoy proteins.
+    + Extract quantifications from the mzML files.
+    + Correct post-translational modifications (PTMs) using the REFMOD module.
+    ```
+    nextflow \
+        -log "/tmp/nextflow/log/nf-searchengine.log" \
+        run main.nf   \
+            -profile singularity \
+            --create_mzml false \
+            --add_decoys true \
+            --exec_refmod true \
+            --raw_files "samples/heteroplasmic_muscle/inputs/mzMLs/*.mzML" \
+            --database "samples/heteroplasmic_muscle/inputs/database.fasta" \
+            --decoy_prefix "DECOY_"\
+            --msf_params_file "samples/heteroplasmic_muscle/inputs/msf_params_file.params" \
+            --dm_file "samples/heteroplasmic_muscle/inputs/dm_list.tsv" \
+            --refmod_params_file "samples/heteroplasmic_muscle/inputs/refmod_params_file.ini" \
+            --reporter_ion_isotopic "samples/heteroplasmic_muscle/inputs/reporter_ion_isotopic.tsv" \
+            --outdir  "samples/heteroplasmic_muscle/results" \
+            -resume
+    ```
 
 
 # Image Version History
