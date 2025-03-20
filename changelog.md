@@ -1,7 +1,7 @@
 ___
 ## 0.1.5
 
-### Date 📅 *2025_XX*
+### Date 📅 *2025_03*
 
 ### Changes in detail
 
