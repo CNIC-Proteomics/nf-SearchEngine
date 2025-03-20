@@ -8,6 +8,7 @@ include { DECOYPYRAT } from './decoypyrat'
 include { THERMORAWPARSER } from './thermorawparser'
 include { MSFRAGGER } from './msfragger'
 include { MSFRAGGERADAPTED } from './msfraggeradapted'
+include { REFMOD } from './refmod'
 include { MZEXTRACTOR } from './mzextractor'
 
 //
@@ -72,6 +73,16 @@ workflow SEARCH_ENGINE_WORKFLOW {
         MSFRAGGERADAPTED.out.ofile,
         THERMORAWPARSER.out.raws,
         CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_reporter_ion_isotopic
+    )
+    //
+    // WORKFLOW: Execute REFMOD
+    //
+    REFMOD(
+        params.exec_refmod,
+        MZEXTRACTOR.out.ofile,
+        THERMORAWPARSER.out.raws,
+        CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_dm_file,
+        CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_refmod_param_file
     )
 }
 

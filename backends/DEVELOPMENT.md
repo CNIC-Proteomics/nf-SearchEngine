@@ -34,7 +34,7 @@ git push origin main
 
 Export a env variable to define the version
 ```
-export IMAGE_VERSION=0.1.4
+export IMAGE_VERSION=0.1.5
 ```
 
 # Build in Singularity
@@ -67,6 +67,7 @@ Generating Entity and OpenPGP Key Pair... Done
 Enter encryption passphrase :
 ```
 
+I HAVE TO DO THE FOLLOWING STEP ???
 Verifying an image is quite easy, just run the verify command within your terminal.
 ```
 singularity verify search_engine_${IMAGE_VERSION}.sif
@@ -74,6 +75,11 @@ singularity verify search_engine_${IMAGE_VERSION}.sif
 Verifying image: image.sif
 Data integrity checked, authentic and signed by:
 John Doe <john.doe@example.com>, KeyID 284972D6D4FC6713
+```
+
+TIP: You can Push Unsigned images with 
+```
+singularity push -U search_engine_${IMAGE_VERSION}.sif library://proteomicscnic/next-launcher/search_engine:${IMAGE_VERSION}
 ```
 
 Push image

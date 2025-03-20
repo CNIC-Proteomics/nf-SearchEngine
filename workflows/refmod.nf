@@ -12,7 +12,7 @@ include { joinChannelsFromFilename } from '../nf-modules/lib/Utils'
 ========================================================================================
 */
 
-include { MZ_EXTRACTOR }            from '../nf-modules/modules/mz_extractor/main'
+include { REF_MOD }            from '../nf-modules/modules/refmod/main'
 
 /*
 ========================================================================================
@@ -20,38 +20,31 @@ include { MZ_EXTRACTOR }            from '../nf-modules/modules/mz_extractor/mai
 ========================================================================================
 */
 
-workflow MZEXTRACTOR {
+workflow REFMOD {
 
     take:
-    add_quant
+    exec_refmod
     ident_files
     mzml_files
-    reporter_ion_isotopic
+    dm_file
+    params_file
 
     main:
     //
-    // SUBMODULE: execute MZ_extractor
+    // SUBMODULE: execute REFMOD
     //
 
-    // optional process that depens on the given parameter variable
-    if ( add_quant ) {
+    // optional process that depends on the given parameter variable
+    if ( exec_refmod && dm_file.name.val != 'NO_FILE' && params_file.name.val != 'NO_FILE' ) {
         
-        // if reporter ion isotopic file is provided, add labeling quantification (TMT)
-        if ( reporter_ion_isotopic.name.val != 'NO_FILE' ) {
-            
-            // join two channels based on the file name
-            ident_quant_files = joinChannelsFromFilename(ident_files, mzml_files)
+        // join two channels based on the file name
+        ident_quant_files = joinChannelsFromFilename(ident_files, mzml_files)
 
-            // execute the process
-            MZ_EXTRACTOR('01', ident_quant_files, reporter_ion_isotopic)
+        // execute the process
+        REF_MOD('01', ident_quant_files, dm_file, params_file)
 
-            ch_ofile         = MZ_EXTRACTOR.out.ofile
-
-        }
-        // add label-free quantification (Label-Free)
-        else {
-            ch_ofile = ident_files // at the moment, does not execute the process, the output is the same than input
-        }
+        ch_ofile         = REF_MOD.out.ofile
+        ch_summary_file  = REF_MOD.out.summary_file
     }
     // does not execute the process, the output is the same than input
     else {
@@ -61,7 +54,6 @@ workflow MZEXTRACTOR {
     // return channels
     emit:
     ofile       = ch_ofile
-
 }
 
 /*

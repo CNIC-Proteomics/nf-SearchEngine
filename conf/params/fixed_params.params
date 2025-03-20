@@ -10,4 +10,5 @@ params {
   add_decoys  = false
   create_mzml = false
   add_quant   = true
+  exec_refmod = false
 }

@@ -38,7 +38,7 @@ For more information, read the [How to install Git](docs/Git.md) section.
 
 Export an environment variable to define the version:
 ```
-export PIPELINE_VERSION=0.1.4
+export PIPELINE_VERSION=0.1.5
 ```
 Note: The list of releases is located on the [releases page](https://github.com/CNIC-Proteomics/nf-SearchEngine/releases).
 
@@ -53,7 +53,7 @@ With the *--recursive* parameter, the submodules repositories are cloned as well
 
 Export an environment variable to define the version of singularity image:
 ```
-export IMAGE_VERSION=0.1.4
+export IMAGE_VERSION=0.1.5
 ```
 Note: The list of releases is located on the [singularity repository page](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine).
 
@@ -92,7 +92,13 @@ unzip nf-SearchEngine_Heteroplasmic_Muscle.zip && \
 cd ..
 ```
 
-2. Execute the pipeline:
+2. Execute several pipelines:
+
+2.1. Execute the pipeline:
++ Run MSFragger with the mzML files as input.
++ Generate decoy proteins.
++ Extract quantifications from the mzML files.
++ Correct post-translational modifications (PTMs) using the REFMOD module.
 ```
 nextflow \
     -log "/tmp/nextflow/log/nf-searchengine.log" \
@@ -104,6 +110,30 @@ nextflow \
         --database "samples/heteroplasmic_muscle/inputs/database.fasta" \
         --decoy_prefix "DECOY_"\
         --msf_params_file "samples/heteroplasmic_muscle/inputs/msf_params_file.params" \
+        --reporter_ion_isotopic "samples/heteroplasmic_muscle/inputs/reporter_ion_isotopic.tsv" \
+        --outdir  "samples/heteroplasmic_muscle/results" \
+        -resume
+```
+
+2.2. Execute the pipeline:
++ Run MSFragger with the mzML files as input.
++ Generate decoy proteins.
++ Extract quantifications from the mzML files.
++ Correct post-translational modifications (PTMs) using the REFMOD module.
+```
+nextflow \
+    -log "/tmp/nextflow/log/nf-searchengine.log" \
+    run main.nf   \
+        -profile singularity \
+        --create_mzml false \
+        --add_decoys true \
+        --exec_refmod true \
+        --raw_files "samples/heteroplasmic_muscle/inputs/mzMLs/*.mzML" \
+        --database "samples/heteroplasmic_muscle/inputs/database.fasta" \
+        --decoy_prefix "DECOY_"\
+        --msf_params_file "samples/heteroplasmic_muscle/inputs/msf_params_file.params" \
+        --dm_file "samples/heteroplasmic_muscle/inputs/dm_list.tsv" \
+        --refmod_params_file "samples/heteroplasmic_muscle/inputs/refmod_params_file.ini" \
         --reporter_ion_isotopic "samples/heteroplasmic_muscle/inputs/reporter_ion_isotopic.tsv" \
         --outdir  "samples/heteroplasmic_muscle/results" \
         -resume
