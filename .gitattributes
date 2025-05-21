@@ -1,3 +1,4 @@
 backends/search_engine/MSFragger-4.1.zip filter=lfs diff=lfs merge=lfs -text
 backends/search_engine/ThermoRawFileParser1.4.5.zip filter=lfs diff=lfs merge=lfs -text
 backends/search_engine/MSFragger-4.2-rc14.zip filter=lfs diff=lfs merge=lfs -text
+backends/search_engine/MSFragger-4.2.zip filter=lfs diff=lfs merge=lfs -text
