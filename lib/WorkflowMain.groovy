@@ -8,11 +8,10 @@ class WorkflowMain {
     // Citation string for pipeline
     //
     public static String citation(workflow) {
-        return "If you use ${workflow.manifest.name} for your analysis please cite:\n\n" +
-            "* The nf-core framework\n" +
-            "  https://doi.org/10.1038/s41587-020-0439-x\n\n" +
-            "* Software dependencies\n" +
-            "  https://github.com/CNIC-Proteomics/${workflow.manifest.name}/blob/main/CITATIONS.md"
+        return "If you use nf-PTM-compass for your analysis please cite:\n" +
+            "  https://www.biorxiv.org/content/10.1101/2025.01.20.633864\n\n" +
+            "The GitHub repository of nf-PTM-compass:\n" +
+            "  https://github.com/CNIC-Proteomics/nf-PTM-compass"
     }
 
     //

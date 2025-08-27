@@ -311,11 +311,11 @@ class NfcoreTemplate {
     //
     public static String dashedLine(monochrome_logs) {
         Map colors = logColours(monochrome_logs)
-        return "-${colors.dim}----------------------------------------------------${colors.reset}-"
+        return "-${colors.dim}------------------------------------------------------${colors.reset}-"
     }
 
     //
-    // nf-core logo
+    // nf-cnic logo
     //
     public static String logo(workflow, monochrome_logs) {
         Map colors = logColours(monochrome_logs)
@@ -323,14 +323,13 @@ class NfcoreTemplate {
         String.format(
             """\n
             ${dashedLine(monochrome_logs)}
-                                                    ${colors.green},--.${colors.black}/${colors.green},-.${colors.reset}
-            ${colors.blue}        ___     __   __   __   ___     ${colors.green}/,-._.--~\'${colors.reset}
-            ${colors.blue}  |\\ | |__  __ /  ` /  \\ |__) |__         ${colors.yellow}}  {${colors.reset}
-            ${colors.blue}  | \\| |       \\__, \\__/ |  \\ |___     ${colors.green}\\`-._,-`-,${colors.reset}
-                                                    ${colors.green}`._,._,\'${colors.reset}
-            ${colors.purple}  ${workflow.manifest.name} ${workflow_version}${colors.reset}
+            ${colors.cyan} ${workflow.manifest.name} ${colors.reset}            
+                                                ${colors.bired} __             __   ${colors.reset}
+                                                ${colors.bired}/  `  |\\ |  |  /  `   ${colors.reset}
+            ${colors.reset} developed by the ${colors.purple}Proteomic Unit${colors.yellow} at ${colors.bired}\\__   | \\|  |  \\__  ${colors.reset}
             ${dashedLine(monochrome_logs)}
             """.stripIndent()
         )
     }
+
 }
