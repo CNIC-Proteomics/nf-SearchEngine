@@ -8,7 +8,9 @@ ___
 **rc1**
 + Moved the process container attribute from the modules.config file to nextflow.config.
 + Redefine the process container attribute.
-+ Updated documentation.
++ Updated documentation:
+  - Summary log in the pipeline execution (nextflow).
+
 
 ### Image Version history
 
