@@ -10,7 +10,7 @@ You only need to run this once per user account.
 
 In each Git repository where you want to use Git LFS, select the file types you'd like Git LFS to manage (or directly edit your .gitattributes). You can configure additional file extensions at anytime.
 ```
-git lfs track backends/search_engine/MSFragger-4.1.zip
+git lfs track backends/search_engine/MSFragger-4.2.zip
 ```
 
 2. Add the changes in gitattributes:
@@ -25,7 +25,7 @@ Note that defining the file types Git LFS should track will not, by itself, conv
 
 There is no step three. Just commit and push to GitHub as you normally would; for instance, if your current branch is named main:
 ```
-git add backends/search_engine/MSFragger-4.1.zip
+git add -f backends/search_engine/MSFragger-4.2.zip
 git commit -m "Add new MSFragger release"
 git push origin main
 ```
@@ -34,7 +34,7 @@ git push origin main
 
 Export a env variable to define the version
 ```
-export IMAGE_VERSION=0.1.5
+export IMAGE_VERSION=0.1.6
 ```
 
 # Build in Singularity
@@ -50,12 +50,12 @@ ln -s search_engine_${IMAGE_VERSION}.sif search_engine.sif
 
 ## Login and Push image
 
-Login to Singularity Hub
++ Login to Singularity Hub
 ```
 singularity remote login
 ```
 
-Sign your image locally using Singularity CLI.
++ Sign your image locally using Singularity CLI.
 ```
 singularity sign search_engine_${IMAGE_VERSION}.sif
 
@@ -67,8 +67,7 @@ Generating Entity and OpenPGP Key Pair... Done
 Enter encryption passphrase :
 ```
 
-I HAVE TO DO THE FOLLOWING STEP ???
-Verifying an image is quite easy, just run the verify command within your terminal.
++ Verifying an image is quite easy, just run the verify command within your terminal.
 ```
 singularity verify search_engine_${IMAGE_VERSION}.sif
 
@@ -77,7 +76,7 @@ Data integrity checked, authentic and signed by:
 John Doe <john.doe@example.com>, KeyID 284972D6D4FC6713
 ```
 
-TIP: You can Push Unsigned images with 
++ You can Push Unsigned images with 
 ```
 singularity push -U search_engine_${IMAGE_VERSION}.sif library://proteomicscnic/next-launcher/search_engine:${IMAGE_VERSION}
 ```
