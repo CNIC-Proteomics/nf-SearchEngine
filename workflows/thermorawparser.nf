@@ -15,6 +15,7 @@ include { THERMO_RAW_PARSER }       from '../nf-modules/modules/thermo_raw_parse
 workflow THERMORAWPARSER {
 
     take:
+    tag_order
     create_mzml
     raw_files
 
@@ -25,7 +26,7 @@ workflow THERMORAWPARSER {
 
     // optional process that depens on the given flag variable
     if ( create_mzml ) {
-        THERMO_RAW_PARSER('01', raw_files)
+        THERMO_RAW_PARSER(tag_order, raw_files)
         
         ch_raws = THERMO_RAW_PARSER.out.ofile
     }

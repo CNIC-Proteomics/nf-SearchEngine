@@ -23,6 +23,7 @@ include { MZ_EXTRACTOR }            from '../nf-modules/modules/mz_extractor/mai
 workflow MZEXTRACTOR {
 
     take:
+    tag_order
     add_quant
     ident_files
     mzml_files
@@ -43,7 +44,7 @@ workflow MZEXTRACTOR {
             ident_quant_files = joinChannelsFromFilename(ident_files, mzml_files)
 
             // execute the process
-            MZ_EXTRACTOR('01', ident_quant_files, reporter_ion_isotopic)
+            MZ_EXTRACTOR(tag_order, ident_quant_files, reporter_ion_isotopic)
 
             ch_ofile         = MZ_EXTRACTOR.out.ofile
 

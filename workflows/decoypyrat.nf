@@ -15,6 +15,7 @@ include { DECOY_PY_RAT }            from '../nf-modules/modules/decoypyrat/main'
 workflow DECOYPYRAT {
 
     take:
+    tag_order
     add_decoys
     database
     decoy_prefix
@@ -26,7 +27,7 @@ workflow DECOYPYRAT {
 
     // optional process that depens on the given flag variable
     if ( add_decoys ) {
-        DECOY_PY_RAT('01', database, decoy_prefix)
+        DECOY_PY_RAT(tag_order, database, decoy_prefix)
 
         ch_target_decoy   = DECOY_PY_RAT.out.ofile
         ch_target         = DECOY_PY_RAT.out.ofile_target

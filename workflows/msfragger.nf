@@ -15,6 +15,7 @@ include { MSF }               from '../nf-modules/modules/msfragger/main'
 workflow MSFRAGGER {
 
     take:
+    tag_order
     raw_files
     database
     decoy_prefix
@@ -25,7 +26,7 @@ workflow MSFRAGGER {
     //
     // SUBMODULE: execute MSFragger
     //
-    MSF('01', raw_files, msf_params_file)
+    MSF(tag_order, raw_files, msf_params_file)
 
     // return channels
     ch_ofile         = MSF.out.ofile

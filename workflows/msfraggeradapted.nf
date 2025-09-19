@@ -15,13 +15,14 @@ include { MSFRAGGER_ADAPTED }            from '../nf-modules/modules/msfragger_a
 workflow MSFRAGGERADAPTED {
 
     take:
+    tag_order
     ident_files
 
     main:
     //
     // SUBMODULE: adapt the MSFragger result
     //
-    MSFRAGGER_ADAPTED('01', ident_files)
+    MSFRAGGER_ADAPTED(tag_order, ident_files)
 
     // return channels
     ch_ofile         = MSFRAGGER_ADAPTED.out.ofile

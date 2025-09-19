@@ -23,6 +23,7 @@ include { REF_MOD }            from '../nf-modules/modules/refmod/main'
 workflow REFMOD {
 
     take:
+    tag_order
     exec_refmod
     ident_files
     mzml_files
@@ -41,7 +42,7 @@ workflow REFMOD {
         ident_quant_files = joinChannelsFromFilename(ident_files, mzml_files)
 
         // execute the process
-        REF_MOD('01', ident_quant_files, dm_file, params_file)
+        REF_MOD(tag_order, ident_quant_files, dm_file, params_file)
 
         ch_ofile         = REF_MOD.out.ofile
         ch_summary_file  = REF_MOD.out.summary_file
