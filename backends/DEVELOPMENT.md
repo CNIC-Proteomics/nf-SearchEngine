@@ -34,7 +34,7 @@ git push origin main
 
 Export a env variable to define the version
 ```
-export IMAGE_VERSION=0.1.6
+export IMAGE_VERSION=1.6
 ```
 
 # Build in Singularity

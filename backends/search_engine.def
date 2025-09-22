@@ -3,7 +3,7 @@ From: ubuntu:22.04
 
 %labels
     Author jmrodriguezc@cnic.es
-    Version v0.1.5
+    Version v1.6
 
 %help
     This Singularity container is used for the PTM pipelines:
