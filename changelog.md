@@ -1,5 +1,5 @@
 ___
-## 0.1.6
+## 1.6
 
 ### Date 📅 *2025_08*
 
@@ -10,20 +10,25 @@ ___
 + Redefine the process container attribute.
 + Updated documentation:
   - Summary log in the pipeline execution (nextflow).
-
+**rc2, rc3, rc4, rc5**
++ Fixing a bug related to reporting error output for ThermoRawFileParser.
+**rc6**
++ Version format reduced from three segments to two (major.minor).
++ Updated documentation: Hardware specifications and Execution trace.
++ Changed the location where the tag order variable is assigned.
 
 ### Image Version history
 
 + Updated MSFragger to the new version (4.2).
 
-| Singularity image (version)                                                                        | Code                                                                     | Version  |
-|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|----------|
-| [search_engine:0.1.5](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  |                                                                          |          |
-|                                                                                                    | [MSFragger](https://msfragger.nesvilab.org)                              | 4.2      |
-|                                                                                                    | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.5    |
-|                                                                                                    | [bioDataHub (DecoyPYrat)](https://www.sanger.ac.uk/tool/decoypyrat/)     | 2.14     |
-|                                                                                                    | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.3      |
-|                                                                                                    | [REFMOD](https://github.com/CNIC-Proteomics/ReFrag)                      | v0.4.5   |
+| Singularity image (version)                                                                      | Code                                                                     | Version  |
+|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|----------|
+| [search_engine:1.6](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  |                                                                          |          |
+|                                                                                                  | [MSFragger](https://msfragger.nesvilab.org)                              | 4.2      |
+|                                                                                                  | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.5    |
+|                                                                                                  | [bioDataHub (DecoyPYrat)](https://www.sanger.ac.uk/tool/decoypyrat/)     | 2.14     |
+|                                                                                                  | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.3      |
+|                                                                                                  | [REFMOD](https://github.com/CNIC-Proteomics/ReFrag)                      | v0.4.5   |
 
 
 
