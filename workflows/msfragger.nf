@@ -1,5 +1,13 @@
 /*
 ========================================================================================
+    IMPORT MODULES
+========================================================================================
+*/
+
+include { readFileAsString } from '../nf-modules/lib/Utils'
+
+/*
+========================================================================================
     IMPORT LOCAL MODULES/SUBWORKFLOWS
 ========================================================================================
 */
@@ -23,7 +31,7 @@ workflow MSFRAGGER {
     //
     // SUBMODULE: execute MSFragger
     //
-    MSF(tag_order, raw_files, msf_params_file)
+    MSF(tag_order, raw_files, readFileAsString(msf_params_file))
 
     // return channels
     ch_ofile         = MSF.out.ofile
