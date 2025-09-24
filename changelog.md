@@ -1,7 +1,7 @@
 ___
 ## 1.6
 
-### Date 📅 *2025_08*
+### Date 📅 *2025_09*
 
 ### Changes in detail
 
@@ -16,6 +16,8 @@ ___
 + Version format reduced from three segments to two (major.minor).
 + Updated documentation: Hardware specifications and Execution trace.
 + Changed the location where the tag order variable is assigned.
+**rc7,rc8,rc9**
++ Fixing a bug: The MSFragger log file cannot be required; otherwise, the process in Nextflow will not be cached.
 
 ### Image Version history
 
