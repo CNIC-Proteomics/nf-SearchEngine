@@ -17,9 +17,6 @@ workflow MSFRAGGER {
     take:
     tag_order
     raw_files
-    database
-    decoy_prefix
-    output_format
     msf_params_file
 
     main:

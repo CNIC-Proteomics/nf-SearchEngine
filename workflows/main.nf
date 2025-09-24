@@ -57,9 +57,6 @@ workflow SEARCH_ENGINE_WORKFLOW {
     MSFRAGGER(
         '02',
         THERMORAWPARSER.out.raws.collect(),
-        DECOYPYRAT.out.target_decoy,
-        params.decoy_prefix,
-        params.msf_output_format,
         CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_msf_param_file
     )
     //
@@ -135,9 +132,6 @@ workflow MSFRAGGER_WORKFLOW {
     MSFRAGGER(
         '00',
         CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_raws,
-        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_database,
-        params.decoy_prefix,
-        params.msf_output_format,
         CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_msf_param_file
     )
     //
