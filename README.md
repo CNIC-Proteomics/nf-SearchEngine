@@ -38,7 +38,7 @@ For more information, read the [How to install Git](docs/Git.md) section.
 
 Export an environment variable to define the version:
 ```
-export PIPELINE_VERSION=1.6
+export PIPELINE_VERSION=1.7
 ```
 Note: The list of releases is located on the [releases page](https://github.com/CNIC-Proteomics/nf-SearchEngine/releases).
 
@@ -53,7 +53,7 @@ With the *--recursive* parameter, the submodules repositories are cloned as well
 
 Export an environment variable to define the version of singularity image:
 ```
-export IMAGE_VERSION=1.6
+export IMAGE_VERSION=1.7
 ```
 Note: The list of releases is located on the [singularity repository page](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine).
 
@@ -85,13 +85,13 @@ ln -s search_engine_${IMAGE_VERSION}.sif search_engine.sif
 
 The input files provided are open search results for mouse heteroplasmy (`heart tissue`) at the following URL:
 
-https://zenodo.org/records/17175586/files/heteroplasmic_heart.zip?download=1
+https://zenodo.org/records/17912282/files/heteroplasmic_heart.zip?download=1
 
 
 1. Download sample files
 ```
 cd samples && \
-wget https://zenodo.org/records/17175586/files/heteroplasmic_heart.zip?download=1 -O heteroplasmic_heart.zip && \
+wget https://zenodo.org/records/17912282/files/heteroplasmic_heart.zip?download=1 -O heteroplasmic_heart.zip && \
 unzip heteroplasmic_heart.zip && \
 cd ..
 ```
@@ -164,13 +164,13 @@ The trace log shows the execution of each module along with the corresponding **
 
 + You can download the input files for this `liver` sample from the study by Bagwan N, Bonzon-Kulichenko E, Calvo E, et al. [1] at the following URL:
 
-https://zenodo.org/records/17175586/files/heteroplasmic_liver.zip?download=1
+https://zenodo.org/records/17912282/files/heteroplasmic_liver.zip?download=1
 
 To execute the pipeline, follow the same steps as in Sample 1.
 
 + You can download the input files for this `muscle` sample from the study by Bagwan N, Bonzon-Kulichenko E, Calvo E, et al. [1] at the following URL:
 
-https://zenodo.org/records/17175586/files/heteroplasmic_muscle.zip?download=1
+https://zenodo.org/records/17912282/files/heteroplasmic_muscle.zip?download=1
 
 To execute the pipeline, follow the same steps as in Sample 1.
 
