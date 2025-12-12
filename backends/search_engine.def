@@ -1,9 +1,9 @@
-Bootstrap: library
-From: ubuntu:22.04
+Bootstrap: docker
+From: ubuntu:24.04
 
 %labels
     Author jmrodriguezc@cnic.es
-    Version v1.6
+    Version v1.7
 
 %help
     This Singularity container is used for the PTM pipelines:
@@ -26,15 +26,15 @@ From: ubuntu:22.04
     RAWPARSER_HOME=/opt/search_engine/thermorawfileparser
 
     # DECOYPYRAT: Setting up variables (with version)
-    BIODATAHUB_VERSION=v2.14
+    BIODATAHUB_VERSION=v2.16
     BIODATAHUB_HOME=/opt/search_engine/biodatahub
 
     # SEARCHTOOLKIT: Setting up variables (with version)
-    SEARCHTOOLKIT_VERSION=1.3
+    SEARCHTOOLKIT_VERSION=1.4
     SEARCHTOOLKIT_HOME=/opt/search_engine/searchtoolkit
     
     # REFMOD: Setting up the variables
-    REFMOD_VERSION=v0.4.5
+    REFMOD_VERSION=v1.0.1
     REFMOD_HOME=/opt/search_engine/refmod
 
 %environment
@@ -71,11 +71,12 @@ From: ubuntu:22.04
     apt-get update -y
 
     # Requirements for MSFragger
-    apt-get install -y openjdk-19-jre-headless
+    # apt-get install -y openjdk-19-jre-headless
+    apt-get install -y openjdk-21-jre-headless
 
     # Install Python packages
     apt-get -y install python-is-python3 python3-pip python3-venv
-    python -m pip install --upgrade pip
+    # python -m pip install --upgrade pip
     DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata python3-tk
 
     # Requeriments for ThermoRawFileParser
@@ -86,8 +87,8 @@ From: ubuntu:22.04
     apt-get update -y
     apt-get install -y mono-devel
 
-    # Requirements for RefMod (pyopenms)
-    apt-get install -y libglib2.0-0
+    # # Requirements for RefMod (pyopenms)
+    # apt-get install -y libglib2.0-0
 
 
     #
@@ -138,11 +139,11 @@ From: ubuntu:22.04
     #
 
     # Clone the repository
-    git clone https://github.com/CNIC-Proteomics/ReFrag.git  --branch {{REFMOD_VERSION}}  {{REFMOD_HOME}}
+    git clone https://github.com/CNIC-Proteomics/RefMod.git  --branch {{REFMOD_VERSION}}  {{REFMOD_HOME}}
 
     # Python environment --
     cd {{REFMOD_HOME}} && python -m venv env
-    . {{REFMOD_HOME}}/env/bin/activate && pip install -r {{REFMOD_HOME}}/python_requirements.txt
+    . {{REFMOD_HOME}}/env/bin/activate && pip install -r {{REFMOD_HOME}}/src/requirements.txt
 
 
     # To end the build
@@ -211,8 +212,8 @@ From: ubuntu:22.04
         exit 1
     fi
 
-    # Check if SearchToolkit has been installed
-    REFMOD_test=$(cd {{REFMOD_HOME}} && . env/bin/activate && python ReFrag.py 2>&1 | grep "usage:")
+    # Check if RefMod has been installed
+    REFMOD_test=$(cd {{REFMOD_HOME}} && . env/bin/activate && python src/RefMod.py 2>&1 | grep "usage:")
     if [ "${REFMOD_test}" != "" ]; then
         echo "REFMOD ${REFMOD_test} has been installed as expected."
     else
