@@ -4,7 +4,7 @@
 
 The input files provided are open search results for mouse heteroplasmy (`heart tissue`) at the following URL:
 
-https://zenodo.org/records/17912282/files/heteroplasmic_heart.zip?download=1
+https://zenodo.org/records/17953709/files/heteroplasmic_heart.zip?download=1
 
 
 2.1. Execute the pipeline:
@@ -30,7 +30,7 @@ nextflow \
 
 + You can download the input files for this `liver` sample from the study by Bagwan N, Bonzon-Kulichenko E, Calvo E, et al. [1] at the following URL:
 
-https://zenodo.org/records/17912282/files/heteroplasmic_liver.zip?download=1
+https://zenodo.org/records/17953709/files/heteroplasmic_liver.zip?download=1
 
 ```
 nextflow \
@@ -50,7 +50,7 @@ nextflow \
 
 + You can download the input files for this `muscle` sample from the study by Bagwan N, Bonzon-Kulichenko E, Calvo E, et al. [1] at the following URL:
 
-https://zenodo.org/records/17912282/files/heteroplasmic_muscle.zip?download=1
+https://zenodo.org/records/17953709/files/heteroplasmic_muscle.zip?download=1
 
 ```
 nextflow \

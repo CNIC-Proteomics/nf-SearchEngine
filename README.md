@@ -85,13 +85,13 @@ ln -s search_engine_${IMAGE_VERSION}.sif search_engine.sif
 
 The input files provided are open search results for mouse heteroplasmy (`heart tissue`) at the following URL:
 
-https://zenodo.org/records/17912282/files/heteroplasmic_heart.zip?download=1
+https://zenodo.org/records/17953709/files/heteroplasmic_heart.zip?download=1
 
 
 1. Download sample files
 ```
 cd samples && \
-wget https://zenodo.org/records/17912282/files/heteroplasmic_heart.zip?download=1 -O heteroplasmic_heart.zip && \
+wget https://zenodo.org/records/17953709/files/heteroplasmic_heart.zip?download=1 -O heteroplasmic_heart.zip && \
 unzip heteroplasmic_heart.zip && \
 cd ..
 ```
@@ -130,14 +130,13 @@ cd ..
             -profile singularity \
             --create_mzml false \
             --add_decoys true \
-            --exec_refmod true \
             --raw_files "samples/heteroplasmic_heart/inputs/mzMLs/*.mzML" \
             --database "samples/heteroplasmic_heart/inputs/database.fasta" \
             --decoy_prefix "DECOY_"\
             --msf_params_file "samples/heteroplasmic_heart/inputs/msf_params_file.params" \
+            --reporter_ion_isotopic "samples/heteroplasmic_heart/inputs/reporter_ion_isotopic.tsv" \
             --dm_file "samples/heteroplasmic_heart/inputs/dm_list.tsv" \
             --refmod_params_file "samples/heteroplasmic_heart/inputs/refmod_params_file.ini" \
-            --reporter_ion_isotopic "samples/heteroplasmic_heart/inputs/reporter_ion_isotopic.tsv" \
             --outdir  "samples/heteroplasmic_heart/results" \
             -resume
     ```
@@ -164,13 +163,13 @@ The trace log shows the execution of each module along with the corresponding **
 
 + You can download the input files for this `liver` sample from the study by Bagwan N, Bonzon-Kulichenko E, Calvo E, et al. [1] at the following URL:
 
-https://zenodo.org/records/17912282/files/heteroplasmic_liver.zip?download=1
+https://zenodo.org/records/17953709/files/heteroplasmic_liver.zip?download=1
 
 To execute the pipeline, follow the same steps as in Sample 1.
 
 + You can download the input files for this `muscle` sample from the study by Bagwan N, Bonzon-Kulichenko E, Calvo E, et al. [1] at the following URL:
 
-https://zenodo.org/records/17912282/files/heteroplasmic_muscle.zip?download=1
+https://zenodo.org/records/17953709/files/heteroplasmic_muscle.zip?download=1
 
 To execute the pipeline, follow the same steps as in Sample 1.
 
