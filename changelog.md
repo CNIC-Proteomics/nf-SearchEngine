@@ -10,6 +10,11 @@ ___
 + Updated the definition file for singularity.
 + Upgraded the versions of the Singularity image and sample data on the Zenodo server.
 
+**rc2**
++ Upgraded the sample sata on Zenodo server.
++ Discard the obsolete 'exec_refmod' parameter for the REFMOD module.
+
+
 ### Image Version history
 
 + Updated the definition file for singularity.
