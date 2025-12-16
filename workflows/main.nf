@@ -81,7 +81,6 @@ workflow SEARCH_ENGINE_WORKFLOW {
     //
     REFMOD(
         '05',
-        params.exec_refmod,
         MZEXTRACTOR.out.ofile,
         THERMORAWPARSER.out.raws,
         CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_dm_file,

@@ -24,7 +24,6 @@ workflow REFMOD {
 
     take:
     tag_order
-    exec_refmod
     ident_files
     mzml_files
     dm_file
@@ -36,7 +35,7 @@ workflow REFMOD {
     //
 
     // optional process that depends on the given parameter variable
-    if ( exec_refmod && dm_file.name.val != 'NO_FILE' && params_file.name.val != 'NO_FILE' ) {
+    if ( dm_file.name.val != 'NO_FILE' && params_file.name.val != 'NO_FILE' ) {
         
         // join two channels based on the file name
         ident_quant_files = joinChannelsFromFilename(ident_files, mzml_files)
