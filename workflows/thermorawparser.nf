@@ -28,16 +28,16 @@ workflow THERMORAWPARSER {
     if ( create_mzml ) {
         THERMO_RAW_PARSER(tag_order, raw_files)
         
-        ch_raws = THERMO_RAW_PARSER.out.ofile
+        raws = THERMO_RAW_PARSER.out.ofile
     }
     // does not execute the process, the output is the same than input
     else {
-        ch_raws = raw_files
+        raws = raw_files
     }
 
     // return channels
     emit:
-    raws = ch_raws
+    raws
 }
 
 /*

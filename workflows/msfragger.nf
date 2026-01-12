@@ -34,10 +34,10 @@ workflow MSFRAGGER {
     MSF(tag_order, raw_files, readFileAsString(msf_params_file))
 
     // return channels
-    ch_ofile         = MSF.out.ofile
+    ofile = MSF.out.ofile
 
     emit:
-    ofile       = ch_ofile
+    ofile
 }
 
 /*

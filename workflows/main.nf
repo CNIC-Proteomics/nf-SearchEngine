@@ -8,21 +8,14 @@ include { DECOYPYRAT } from './decoypyrat'
 include { THERMORAWPARSER } from './thermorawparser'
 include { MSFRAGGER } from './msfragger'
 include { MSFRAGGERADAPTED } from './msfraggeradapted'
-include { REFMOD } from './refmod'
 include { MZEXTRACTOR } from './mzextractor'
+include { REFMOD } from './refmod'
 
 //
 // SUBWORKFLOW: Create input channels
 //
 
-include {
-    CREATE_INPUT_CHANNEL_SEARCH_ENGINE;
-    CREATE_INPUT_CHANNEL_DECOYPYRAT;
-    CREATE_INPUT_CHANNEL_THERMORAWPARSER;
-    CREATE_INPUT_CHANNEL_MSFRAGGER;
-    CREATE_INPUT_CHANNEL_MSFRAGGERADAPTED;
-    CREATE_INPUT_CHANNEL_MZEXTRACTOR
-} from '../nf-modules/subworkflows/search_engine'
+include { CREATE_INPUT_CHANNEL_SEARCH_ENGINE } from '../nf-modules/subworkflows/search_engine'
 
 
 //
@@ -49,7 +42,7 @@ workflow SEARCH_ENGINE_WORKFLOW {
     THERMORAWPARSER(
         '01',
         params.create_mzml,
-        CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_raws
+        CREATE_INPUT_CHANNEL_SEARCH_ENGINE.out.ch_raw_files
     )
     //
     // WORKFLOW: Run MSFragger analysis
@@ -88,91 +81,6 @@ workflow SEARCH_ENGINE_WORKFLOW {
     )
 }
 
-workflow DECOYPYRAT_WORKFLOW {
-    //
-    // SUBWORKFLOW: Create input channels
-    //
-    CREATE_INPUT_CHANNEL_DECOYPYRAT()
-    //
-    // WORKFLOW: DecoyPyRat analysis
-    //
-    DECOYPYRAT(
-        '00',
-        CREATE_INPUT_CHANNEL_DECOYPYRAT.out.ch_database,
-        params.add_decoys,
-        params.decoy_prefix
-    )
-}
-
-workflow THERMORAWPARSER_WORKFLOW {
-    //
-    // SUBWORKFLOW: Create input channels
-    //
-    CREATE_INPUT_CHANNEL_THERMORAWPARSER()
-    //
-    // WORKFLOW: ThermoRawFileParser analysis
-    //
-    THERMORAWPARSER(
-        '00',
-        CREATE_INPUT_CHANNEL_THERMORAWPARSER.out.ch_raws,
-        params.create_mzml
-    )
-}
-
-workflow MSFRAGGER_WORKFLOW {
-    //
-    // SUBWORKFLOW: Create input channels
-    //
-    CREATE_INPUT_CHANNEL_MSFRAGGER()
-    CREATE_INPUT_CHANNEL_MZEXTRACTOR()
-    //
-    // WORKFLOW: Run MSFragger analysis
-    //
-    MSFRAGGER(
-        '00',
-        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_raws,
-        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_msf_param_file
-    )
-    //
-    // WORKFLOW: Add Spectrum File and ScanID
-    //
-    MSFRAGGERADAPTED(
-        '00',
-        MSFRAGGER.out.ofile.flatten()
-    )
-    //
-    // WORKFLOW: Run MZ_extractor analysis
-    //
-    MZEXTRACTOR(
-        '00',
-        MSFRAGGER.out.ofile,
-        CREATE_INPUT_CHANNEL_MSFRAGGER.out.ch_raws,
-        CREATE_INPUT_CHANNEL_MZEXTRACTOR.out.ch_reporter_ion_isotopic
-    )
-}
-
-workflow MSFRAGGERADAPTED_WORKFLOW {
-    //
-    // SUBWORKFLOW: Create input channels
-    //
-    CREATE_INPUT_CHANNEL_MSFRAGGERADAPTED()
-    //
-    // WORKFLOW: Add Spectrum File and ScanID
-    //
-    MSFRAGGERADAPTED(
-        '00',
-        CREATE_INPUT_CHANNEL_MSFRAGGERADAPTED.out.ch_msf_files
-    )
-    //
-    // WORKFLOW: Run MZ_extractor analysis
-    //
-    MZEXTRACTOR(
-        '00',
-        MSFRAGGERADAPTED.out.ofile,
-        CREATE_INPUT_CHANNEL_MSFRAGGERADAPTED.out.ch_mz_files,
-        CREATE_INPUT_CHANNEL_MSFRAGGERADAPTED.out.ch_reporter_ion_isotopic
-    )
-}
 
 /*
 ========================================================================================

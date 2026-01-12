@@ -29,22 +29,22 @@ workflow DECOYPYRAT {
     if ( add_decoys ) {
         DECOY_PY_RAT(tag_order, database, decoy_prefix)
 
-        ch_target_decoy   = DECOY_PY_RAT.out.ofile
-        ch_target         = DECOY_PY_RAT.out.ofile_target
-        ch_decoy          = DECOY_PY_RAT.out.ofile_decoy
+        target_decoy   = DECOY_PY_RAT.out.ofile
+        target         = DECOY_PY_RAT.out.ofile_target
+        decoy          = DECOY_PY_RAT.out.ofile_decoy
     }
     // does not execute the process, the output is the same than input
     else {
-        ch_target_decoy   = database
-        ch_target         = Channel.empty()
-        ch_decoy          = Channel.empty()
+        target_decoy   = database
+        target         = Channel.empty()
+        decoy          = Channel.empty()
     }
 
     // return channels
     emit:
-    target_decoy = ch_target_decoy
-    target       = ch_target
-    decoy        = ch_decoy
+    target_decoy
+    target
+    decoy
 }
 
 /*

@@ -43,17 +43,17 @@ workflow REFMOD {
         // execute the process
         REF_MOD(tag_order, ident_quant_files, dm_file, params_file)
 
-        ch_ofile         = REF_MOD.out.ofile
-        ch_summary_file  = REF_MOD.out.summary_file
+        ofile         = REF_MOD.out.ofile
+        summary_file  = REF_MOD.out.summary_file
     }
     // does not execute the process, the output is the same than input
     else {
-        ch_ofile = ident_files
+        ofile = ident_files
     }
 
     // return channels
     emit:
-    ofile       = ch_ofile
+    ofile
 }
 
 /*

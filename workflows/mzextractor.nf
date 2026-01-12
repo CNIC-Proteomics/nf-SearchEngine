@@ -46,22 +46,22 @@ workflow MZEXTRACTOR {
             // execute the process
             MZ_EXTRACTOR(tag_order, ident_quant_files, reporter_ion_isotopic)
 
-            ch_ofile         = MZ_EXTRACTOR.out.ofile
+            ofile = MZ_EXTRACTOR.out.ofile
 
         }
         // add label-free quantification (Label-Free)
         else {
-            ch_ofile = ident_files // at the moment, does not execute the process, the output is the same than input
+            ofile = ident_files // at the moment, does not execute the process, the output is the same than input
         }
     }
     // does not execute the process, the output is the same than input
     else {
-        ch_ofile = ident_files
+        ofile = ident_files
     }
 
     // return channels
     emit:
-    ofile       = ch_ofile
+    ofile
 
 }
 

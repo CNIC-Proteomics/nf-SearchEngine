@@ -25,10 +25,10 @@ workflow MSFRAGGERADAPTED {
     MSFRAGGER_ADAPTED(tag_order, ident_files)
 
     // return channels
-    ch_ofile         = MSFRAGGER_ADAPTED.out.ofile
+    ofile = MSFRAGGER_ADAPTED.out.ofile
 
     emit:
-    ofile       = ch_ofile
+    ofile
 }
 
 /*

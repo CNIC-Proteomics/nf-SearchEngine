@@ -18,13 +18,7 @@ WorkflowMain.initialise(workflow, params, log)
 ========================================================================================
 */
 
-include {
-    SEARCH_ENGINE_WORKFLOW;
-    DECOYPYRAT_WORKFLOW;
-    THERMORAWPARSER_WORKFLOW;
-    MSFRAGGER_WORKFLOW;
-    MSFRAGGERADAPTED_WORKFLOW
-} from './workflows/main'
+include { SEARCH_ENGINE_WORKFLOW } from './workflows/main'
 
 
 /*
@@ -43,22 +37,6 @@ workflow {
     // Execute main workflow
     SEARCH_ENGINE_WORKFLOW()
 }
-
-/*
-========================================================================================
-    COMPLETION EMAIL AND SUMMARY
-========================================================================================
-*/
-
-// workflow.onComplete {
-//     if (params.email || params.email_on_fail) {
-//         NfcoreTemplate.email(workflow, params, summary_params, projectDir, log, multiqc_report)
-//     }
-//     NfcoreTemplate.summary(workflow, params, log)
-//     if (params.hook_url) {
-//         NfcoreTemplate.IM_notification(workflow, params, summary_params, projectDir, log)
-//     }
-// }
 
 /*
 ========================================================================================
