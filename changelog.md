@@ -1,4 +1,26 @@
 ___
+## 1.8
+
+### Date 📅 *2026_01*
+
+### Changes in detail
+
+**rc1**
++ Refine and simplify the code by removing obsolete code.
+
+### Image Version history
+
+| Singularity image (version)                                                                      | Code                                                                     | Version  |
+|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|----------|
+| [search_engine:1.7](https://cloud.sylabs.io/library/proteomicscnic/next-launcher/search_engine)  |                                                                          |          |
+|                                                                                                  | [MSFragger](https://msfragger.nesvilab.org)                              | 4.2      |
+|                                                                                                  | [ThermoRawFileParser](https://github.com/compomics/ThermoRawFileParser)  | 1.4.5    |
+|                                                                                                  | [bioDataHub (DecoyPYrat)](https://www.sanger.ac.uk/tool/decoypyrat/)     | v2.16    |
+|                                                                                                  | [SearchToolkit](https://github.com/CNIC-Proteomics/SearchToolkit)        | 1.4      |
+|                                                                                                  | [REFMOD](https://github.com/CNIC-Proteomics/RefMod)                      | v1.0.1   |
+
+
+___
 ## 1.7
 
 ### Date 📅 *2025_12*
