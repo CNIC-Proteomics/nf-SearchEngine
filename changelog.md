@@ -7,6 +7,7 @@ ___
 
 **rc1**
 + Refine and simplify the code by removing obsolete code.
++ Discard nextflow schema file from nf-core. It is saved in the "pipeline" folder of next-Launcher.
 
 ### Image Version history
 
