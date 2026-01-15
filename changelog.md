@@ -9,6 +9,9 @@ ___
 + Refine and simplify the code by removing obsolete code.
 + Discard nextflow schema file from nf-core. It is saved in the "pipeline" folder of next-Launcher.
 
+**rc2**
++ Add RefMod parameters into 'params' folder.
+
 ### Image Version history
 
 | Singularity image (version)                                                                      | Code                                                                     | Version  |
